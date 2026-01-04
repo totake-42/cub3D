@@ -15,26 +15,26 @@
 
 #include "cub3d.h"
 
-void	free_mlx_ptr(t_mlx **mlx_ptr)
+void	free_mlx_ptr(t_minilibx **view)
 {
-	if (mlx_ptr == NULL || *mlx_ptr == NULL)
+	if (view == NULL || *view == NULL)
 		return ;
-	if ((*mlx_ptr)->img != NULL)
+	if ((*view)->img_ptr != NULL)
 	{
-		mlx_ptr_destroy_image((*mlx_ptr)->mlx, (*mlx_ptr)->img);
-		(*mlx_ptr)->img = NULL;
+		mlx_ptr_destroy_image((*view)->mlx_ptr, (*view)->img_ptr);
+		(*view)->img_ptr = NULL;
 	}
-	mlx_loop_end(*mlx_ptr);
-	if ((*mlx_ptr)->win != NULL)
+	mlx_loop_end(*view);
+	if ((*view)->win_ptr != NULL)
 	{
-		mlx_destroy_window((*mlx_ptr)->mlx, (*mlx_ptr)->win);
-		(*mlx_ptr)->win = NULL
+		mlx_destroy_window((*view)->mlx_ptr, (*view)->win_ptr);
+		(*view)->win_ptr = NULL;
 	}
-	if ((*mlx_ptr)->mlx != NULL)
+	if ((*view)->mlx_ptr != NULL)
 	{
-		mlx_destroy_display((*mlx_ptr)->mlx);
-		(*mlx_ptr)->mlx = NULL;
+		mlx_destroy_display((*view)->mlx_ptr);
+		(*view)->mlx_ptr = NULL;
 	}
-	free(*mlx_ptr);
-	*mlx_ptr = NULL;	
+	free(*view);
+	*view = NULL;	
 }

@@ -1,38 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/27 13:18:19 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/04 10:26:17 by itakumi          ###   ########.fr       */
+/*   Created: 2025/12/27 13:35:22 by itakumi           #+#    #+#             */
+/*   Updated: 2026/01/04 10:29:51 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef UTILS_H
+# define UTILS_H
 
-typedef struct s_minilibx
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*img_ptr;
-	int		win_size_x;
-	int		win_size_y;
-	char	*title;
-}	t_minilibx;
+# include "cub3d.h"
 
-typedef struct s_map
-{
-
-}	t_map;
-
-typedef struct s_cub3d
-{
-	t_minilibx	*view;
-	t_map		*map;
-
-}	t_cub3d;
+void	free_view(t_minilibx **view);
 
 #endif
