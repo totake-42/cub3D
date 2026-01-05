@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 17:39:53 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/04 18:22:18 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/01/05 14:12:07 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ const char *input_file, size_t *col_max_len, size_t *row_len)
 	fd = open(input_file, STDERR_FILENO);
 	if (fd == -1)
 	{
+		ft_putendl_fd("Error", STDERR_FILENO);
 		perror(input_file);
-		return (STATUS_OK);
+		return (STATUS_ERROR);
 	}
 	while (true)
 	{
@@ -47,36 +48,36 @@ const char *input_file, size_t *col_max_len, size_t *row_len)
 	return (STATUS_OK);
 }
 
-static char	**init_map_from_input_file(
+static char	**init_file_lines_from_input_file(
 const char *input_file, size_t col_max_len)
 {
-	char	**map_temp;
-	char	**map;
+	char	**file_lines;
+	char	**file_lines_temp;
 	int		fd;
 	char	*line;
 
-	map = ft_calloc(sizeof(char *), (col_max_len + 1));
-	if (map == NULL)
+	file_lines = ft_calloc(sizeof(char *), (col_max_len + 1));
+	if (file_lines == NULL)
 		return (ft_putendl_fd(ERROR_MALLOC, STDERR_FILENO), NULL);
 	fd = open(input_file, O_RDONLY);
 	if (fd == -1)
-		return (free(map), ft_putendl_fd((char *)input_file, STDERR_FILENO), NULL);
-	map_temp = map;
+		return (free(file_lines), ft_putendl_fd((char *)input_file, STDERR_FILENO), NULL);
+	file_lines_temp = file_lines;
 	while (true)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		*map = line;
-		map++;
+		*file_lines = line;
+		file_lines++;
 	}
 	close(fd);
-	return (map_temp);
+	return (file_lines);
 }
 
 char	**load_input_file(const char *input_file)
 {
-	char	**map_temp;
+	char	**file_lines;
 	size_t	col_max_len;
 	size_t	row_len;
 
@@ -87,10 +88,10 @@ char	**load_input_file(const char *input_file)
 	if (analyze_file_dimensions(input_file, &col_max_len, &row_len) \
 		== STATUS_ERROR)
 		return (NULL);
-	map_temp = init_map_from_input_file(input_file, col_max_len);
-	if (map_temp == NULL)
+	file_lines = init_file_lines_from_input_file(input_file, col_max_len);
+	if (file_lines == NULL)
 		return (NULL);
-	return (map_temp);
+	return (file_lines);
 }
 
 // int	main(void)

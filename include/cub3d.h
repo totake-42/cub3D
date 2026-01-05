@@ -6,12 +6,14 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:18:19 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/04 18:37:34 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/01/05 15:17:20 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+
+# include <stdbool.h>
 
 /* Argument error */
 # define ERROR_ARGC "Error\nUsage: ./cub3D <map_file>"
@@ -57,9 +59,19 @@ typedef struct s_minilibx
 
 typedef struct s_map
 {
-	int		**map;
-	int		map_width;
-	int		map_height;
+	char	**grid;
+	int		width;
+	int		height;
+	int		player_x;
+	int		player_y;
+	char	player_dir;
+	char	*north_tex_path;
+	char	*south_tex_path;
+	char	*west_tex_path;
+	char	*east_tex_path;
+	int		floor_color[3];
+	int		ceiling_color[3];
+	bool	has_error;
 }	t_map;
 
 typedef struct s_cub3d

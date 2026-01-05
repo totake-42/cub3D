@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:29:12 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/04 18:32:29 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/01/05 16:14:17 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 char	**parse_map(t_cub3d *app, const char *input_file)
 {
-	char	**map_temp;
+	char	**file_lines;
 
 	if (app == NULL || input_file == NULL)
 		return (NULL);
@@ -33,15 +33,20 @@ char	**parse_map(t_cub3d *app, const char *input_file)
 		ft_putendl_fd(ERROR_INVALID_MAP_EXTENSION, STDERR_FILENO);
 		return (NULL);
 	}
-	map_temp = load_input_file(input_file);
-	if (map_temp == NULL)
+	file_lines = load_input_file(input_file);
+	if (file_lines == NULL)
 		return (NULL);
-	if (validate_map(map_temp) == STATUS_ERROR)
+	if (parse_identifiers(file_lines) == STATUS_ERROR)
 	{
-		free_array((void **)map_temp);
+		free_array((void **)file_lines);
 		return (NULL);
 	}
-	return (map_temp);
+	if (parse_grid(file_lines) == STATUS_ERROR)
+	{
+		free_array((void **)file_lines);
+		return (NULL);
+	}
+	return (file_lines);
 }
 
 // #include <assert.h>
