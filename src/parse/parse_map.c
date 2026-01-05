@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:29:12 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/05 16:14:17 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/01/05 21:47:23 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,31 +22,32 @@
 #include "parse.h"
 #include "utils.h"
 
-char	**parse_map(t_cub3d *app, const char *input_file)
+t_status	parse_map(t_cub3d *app, const char *input_file)
 {
 	char	**file_lines;
 
 	if (app == NULL || input_file == NULL)
-		return (NULL);
+		return (STATUS_ERROR);
 	if (validate_input_file_extension(input_file) == false)
-	{
-		ft_putendl_fd(ERROR_INVALID_MAP_EXTENSION, STDERR_FILENO);
-		return (NULL);
-	}
+		return (ft_putendl_fd(ERROR_INVALID_MAP_EXTENSION, STDERR_FILENO), \
+		STATUS_ERROR);
 	file_lines = load_input_file(input_file);
 	if (file_lines == NULL)
-		return (NULL);
-	if (parse_identifiers(file_lines) == STATUS_ERROR)
+		return (STATUS_ERROR);
+	app->map_data = ft_calloc(sizeof(t_map), 1);
+	if (parse_identifiers(file_lines, app->map_data) == STATUS_ERROR)
 	{
+		free(app->map_data);
 		free_array((void **)file_lines);
-		return (NULL);
+		return (STATUS_ERROR);
 	}
-	if (parse_grid(file_lines) == STATUS_ERROR)
+	if (parse_grid(file_lines, app->map_data) == STATUS_ERROR)
 	{
+		free(app->map_data);
 		free_array((void **)file_lines);
-		return (NULL);
+		return (STATUS_ERROR);
 	}
-	return (file_lines);
+	return (STATUS_OK);
 }
 
 // #include <assert.h>
@@ -59,7 +60,7 @@ char	**parse_map(t_cub3d *app, const char *input_file)
 // 	char	*test4 = ".cub";
 // 	char	*test5 = "..cub";
 // 	char	*test6 = "valid.cub";
-// 	assert(validate_input_file(test0) == false);
+// 	assert(validate_input_file() == false);
 // 	assert(validate_input_file(test1) == false);
 // 	assert(validate_input_file(test2) == false);
 // 	assert(validate_input_file(test3) == false);

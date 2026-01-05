@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:07:34 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/05 14:12:46 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/01/05 19:52:01 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 int	main(int argc, char **argv)
 {
 	t_cub3d	app;
-	char	**map_temp;
 
 	if (argc != 2)
 	{
@@ -31,8 +30,7 @@ int	main(int argc, char **argv)
 	}
 	app.map_data = NULL;
 	app.view = NULL;
-	map_temp = parse_map(&app, argv[1]);
-	if (map_temp == NULL)
+	if (parse_map(&app, argv[1]) == STATUS_ERROR)
 		return (EXIT_FAILURE);
 	if (init_view(&app) == STATUS_ERROR)
 	{

@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:35:22 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/05 15:42:21 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/01/05 19:58:52 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	free_map(t_map **map_data);
 
 /* general utils */
 void	free_array(void **array);
-bool	strequal(const char *s1, const char *s2);
+bool	ft_strequal(const char *s1, const char *s2);
+char	*ft_strndup(const char *s, size_t n);
 void	print_error(char *context, char *message);
 
 #endif

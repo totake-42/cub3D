@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:18:19 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/05 15:17:20 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/01/05 17:32:22 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,19 @@ typedef struct s_minilibx
 
 typedef struct s_map
 {
-	char	**grid;
-	int		width;
-	int		height;
-	int		player_x;
-	int		player_y;
-	char	player_dir;
 	char	*north_tex_path;
 	char	*south_tex_path;
 	char	*west_tex_path;
 	char	*east_tex_path;
 	int		floor_color[3];
 	int		ceiling_color[3];
-	bool	has_error;
+
+	char	**grid;
+	int		grid_width;
+	int		grid_height;
+	int		player_x;
+	int		player_y;
+	char	player_dir;
 }	t_map;
 
 typedef struct s_cub3d

@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 17:39:53 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/05 14:12:07 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/01/05 21:34:55 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ const char *input_file, size_t col_max_len)
 		return (ft_putendl_fd(ERROR_MALLOC, STDERR_FILENO), NULL);
 	fd = open(input_file, O_RDONLY);
 	if (fd == -1)
-		return (free(file_lines), ft_putendl_fd((char *)input_file, STDERR_FILENO), NULL);
+		return (free(file_lines),
+			ft_putendl_fd((char *)input_file, STDERR_FILENO), NULL);
 	file_lines_temp = file_lines;
 	while (true)
 	{
@@ -85,8 +86,8 @@ char	**load_input_file(const char *input_file)
 		return (NULL);
 	col_max_len = 0;
 	row_len = 0;
-	if (analyze_file_dimensions(input_file, &col_max_len, &row_len) \
-		== STATUS_ERROR)
+	if (analyze_file_dimensions(input_file, \
+		&col_max_len, &row_len) == STATUS_ERROR)
 		return (NULL);
 	file_lines = init_file_lines_from_input_file(input_file, col_max_len);
 	if (file_lines == NULL)
