@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 07:55:39 by itakumi           #+#    #+#             */
-/*   Updated: 2025/06/19 10:37:17 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/01/04 18:12:31 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*move_next(char *stuck)
 		return (stuck = NULL, NULL);
 	}
 	i++;
-	next = ft_calloc((ft_strlen(stuck) - i + 1), sizeof(char));
+	next = _calloc((_strlen(stuck) - i + 1), sizeof(char));
 	if (!next)
 	{
 		free(stuck);
@@ -53,7 +53,7 @@ char	*extract_line(char *stuck)
 		i++;
 	if (stuck[i] == '\n')
 		i++;
-	line = ft_calloc(i + 1, sizeof(char));
+	line = _calloc(i + 1, sizeof(char));
 	if (!line)
 		return (NULL);
 	i = 0;
@@ -72,7 +72,7 @@ char	*join_and_free(char *stuck, char *buffer)
 {
 	char	*tmp;
 
-	tmp = ft_strjoin(stuck, buffer);
+	tmp = _strjoin(stuck, buffer);
 	free(stuck);
 	stuck = NULL;
 	return (tmp);
@@ -85,15 +85,15 @@ char	*read_file(int fd, char **stuck)
 
 	if (!*stuck)
 	{
-		*stuck = ft_calloc(1, 1);
+		*stuck = _calloc(1, 1);
 		if (!*stuck)
 			return (NULL);
 	}
-	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	buffer = _calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (!buffer)
 		return (NULL);
 	read_bytes = 1;
-	while (read_bytes > 0 && !ft_strchr(buffer, '\n'))
+	while (read_bytes > 0 && !_strchr(buffer, '\n'))
 	{
 		read_bytes = read(fd, buffer, BUFFER_SIZE);
 		if (read_bytes == -1)
