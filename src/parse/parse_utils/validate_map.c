@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.h                                             :+:      :+:    :+:   */
+/*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/04 13:39:07 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/04 15:10:29 by itakumi          ###   ########.fr       */
+/*   Created: 2026/01/04 18:26:36 by itakumi           #+#    #+#             */
+/*   Updated: 2026/01/04 18:34:26 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INIT_H
-# define INIT_H
+#include <stddef.h>
 
-# include "status.h"
+#include "status.h"
 
-t_status	init_view(t_cub3d *app);
-
-#endif
+/*
+	CHECK LIST
+	1. 
+*/
+t_status	validate_map(char **map)
+{
+	if (map == NULL)
+		return (STATUS_ERROR);
+	while (*map != NULL)	
+	{
+		
+	}
+	return (STATUS_OK);
+}

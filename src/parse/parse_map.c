@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_map.c                                         :+:      :+:    :+:   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:29:12 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/04 14:31:32 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/01/04 18:32:29 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,68 +15,33 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include "libft.h"
+#include "get_next_line.h"
 
 #include "cub3d.h"
 #include "status.h"
+#include "parse.h"
+#include "utils.h"
 
-static bool	judge_validate(char c, int len)
+char	**parse_map(t_cub3d *app, const char *input_file)
 {
-	if (len == 0 && c != 'b')
-		return (false);
-	else if (len == 1 && c != 'u')
-		return (false);
-	else if (len == 2 && c != 'c')
-		return (false);
-	else if (len == 3 && c != '.')
-		return (false);
-	return (true);
-}
-
-// if 3 character from back are '.' 'c' 'u' 'b', the file is acceptable
-static bool	validate_input_file(char *input_file)
-{
-	char	*last_ptr;
-	char	*start_ptr;
-	int		len;
-
-	if (input_file == NULL || *input_file == '\0')
-		return (false);
-	start_ptr = input_file;
-	while (*(input_file + 1) != '\0')
-		input_file++;
-	last_ptr = input_file;
-	len = 0;
-	while (last_ptr >= start_ptr && len < 4)
-	{
-		if (judge_validate(*last_ptr, len) == false)
-			return (false);
-		last_ptr--;
-		len++;
-	}
-	if (len < 4)
-		return (false);
-	return (true);
-}
-
-t_status	parse_map(t_cub3d *app, char *input_file)
-{
-	int	fd;
+	char	**map_temp;
 
 	if (app == NULL || input_file == NULL)
-		return (STATUS_ERROR);
-	if (validate_input_file(input_file) == false)
+		return (NULL);
+	if (validate_input_file_extension(input_file) == false)
 	{
 		ft_putendl_fd(ERROR_INVALID_MAP_EXTENSION, STDERR_FILENO);
-		return (STATUS_ERROR);
+		return (NULL);
 	}
-	fd = open(input_file, O_RDONLY);
-	if (fd == -1)	
+	map_temp = load_input_file(input_file);
+	if (map_temp == NULL)
+		return (NULL);
+	if (validate_map(map_temp) == STATUS_ERROR)
 	{
-		perror(input_file);
-		return (STATUS_ERROR);
+		free_array((void **)map_temp);
+		return (NULL);
 	}
-	close(fd);
-	return (STATUS_OK);
+	return (map_temp);
 }
 
 // #include <assert.h>
@@ -89,7 +54,6 @@ t_status	parse_map(t_cub3d *app, char *input_file)
 // 	char	*test4 = ".cub";
 // 	char	*test5 = "..cub";
 // 	char	*test6 = "valid.cub";
-	
 // 	assert(validate_input_file(test0) == false);
 // 	assert(validate_input_file(test1) == false);
 // 	assert(validate_input_file(test2) == false);

@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_map.c                                         :+:      :+:    :+:   */
+/*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/04 13:34:15 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/04 13:48:33 by itakumi          ###   ########.fr       */
+/*   Created: 2026/01/04 14:32:11 by itakumi           #+#    #+#             */
+/*   Updated: 2026/01/04 18:24:31 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <sys/types.h>
-#include "libft.h"
+#ifndef PARSE_H
+# define PARSE_H
 
-#include "cub3d.h"
-#include "status.h"
+# include "cub3d.h"
+# include "status.h"
 
-t_status	init_map(t_cub3d *app, char *input_file)
-{
-	int	fd;
+/* main */
+char	**parse_map(t_cub3d *app, const char *input_file);
 
-	if (app == NULL || input_file == NULL)
-		return (STATUS_ERROR);
-	fd = open(input_file, O_RDONLY);
-	if (fd == -1)	
-	{
-		perror(input_file);
-		return (STATUS_ERROR);
-	}
-	
-	return (STATUS_OK);
-}
+/* utils */
+char	**load_input_file(const char *input_file);
+bool	validate_input_file_extension(const char *input_file);
+
+#endif

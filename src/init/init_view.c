@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:33:06 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/04 13:32:59 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/01/04 17:58:50 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@
 #include "status.h"
 #include "cub3d.h"
 
-static t_status	set_mlx(t_cub3d *cub3d_ptr)
+static t_status	set_mlx(t_cub3d *app)
 {
-	cub3d_ptr->view = malloc(sizeof(t_minilibx));
-	if (cub3d_ptr->view == NULL)
+	app->view = malloc(sizeof(t_minilibx));
+	if (app->view == NULL)
 		return (STATUS_ERROR);
-	cub3d_ptr->view->mlx_ptr = mlx_init();
-	if (cub3d_ptr->view->mlx_ptr == NULL)
+	app->view->mlx_ptr = mlx_init();
+	if (app->view->mlx_ptr == NULL)
 	{
 		ft_putendl_fd(ERROR_MLX, STDERR_FILENO);
-		free(cub3d_ptr->view);
+		free(app->view);
 		return (STATUS_ERROR);
 	}
 	return (STATUS_OK);
@@ -82,30 +82,30 @@ static t_status	set_data_addr(t_minilibx *view)
 	return (STATUS_OK);
 }
 
-t_status	init_view(t_cub3d *cub3d_ptr)
+t_status	init_view(t_cub3d *app)
 {
-	if (cub3d_ptr == NULL || set_mlx(cub3d_ptr) == STATUS_ERROR)
+	if (app == NULL || set_mlx(app) == STATUS_ERROR)
 		return (STATUS_ERROR);
-	if (set_window(cub3d_ptr->view) == STATUS_ERROR)
+	if (set_window(app->view) == STATUS_ERROR)
 	{
-		mlx_destroy_display(cub3d_ptr->view->mlx_ptr);
-		free(cub3d_ptr->view->mlx_ptr);
-		return (free(cub3d_ptr->view), STATUS_ERROR);
+		mlx_destroy_display(app->view->mlx_ptr);
+		free(app->view->mlx_ptr);
+		return (free(app->view), STATUS_ERROR);
 	}
-	if (set_image(cub3d_ptr->view) == STATUS_ERROR)	
+	if (set_image(app->view) == STATUS_ERROR)
 	{
-		mlx_destroy_window(cub3d_ptr->view->mlx_ptr, cub3d_ptr->view->win_ptr);
-		mlx_destroy_display(cub3d_ptr->view->mlx_ptr);
-		free(cub3d_ptr->view);
-		return (free(cub3d_ptr->view->mlx_ptr), STATUS_ERROR);
+		mlx_destroy_window(app->view->mlx_ptr, app->view->win_ptr);
+		mlx_destroy_display(app->view->mlx_ptr);
+		free(app->view);
+		return (free(app->view->mlx_ptr), STATUS_ERROR);
 	}
-	if (set_data_addr(cub3d_ptr->view) == STATUS_ERROR)
+	if (set_data_addr(app->view) == STATUS_ERROR)
 	{
-		mlx_destroy_window(cub3d_ptr->view->mlx_ptr, cub3d_ptr->view->win_ptr);
-		mlx_destroy_image(cub3d_ptr->view->mlx_ptr, cub3d_ptr->view->img_ptr);
-		mlx_destroy_display(cub3d_ptr->view->mlx_ptr);
-		free(cub3d_ptr->view->mlx_ptr);
-		return (free(cub3d_ptr->view), STATUS_ERROR);
+		mlx_destroy_window(app->view->mlx_ptr, app->view->win_ptr);
+		mlx_destroy_image(app->view->mlx_ptr, app->view->img_ptr);
+		mlx_destroy_display(app->view->mlx_ptr);
+		free(app->view->mlx_ptr);
+		return (free(app->view), STATUS_ERROR);
 	}
 	return (STATUS_OK);
 }

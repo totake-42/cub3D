@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:18:19 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/04 12:59:42 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/01/04 18:37:34 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,22 @@
 # define DEBUG_WIN_HEIGHT 480
 
 /* Mlx error */
-# define ERROR_MLX "Error: init mlx failed"
+# define ERROR_MLX "Error\ninit mlx failed"
 
 /* Window error */
-# define ERROR_NEW_WINDOW "Error: new window failed"
+# define ERROR_NEW_WINDOW "Error\nnew window failed"
 
 /* Image error */
-# define ERROR_IMAGE "Error: new image failed"
+# define ERROR_IMAGE "Error\nnew image failed"
 
 /* Data addr error */
-# define ERROR_DATA_ADDR "Error: get data_addr failed"
+# define ERROR_DATA_ADDR "Error\nget data_addr failed"
+
+/* Map error */
+# define ERROR_INVALID_MAP_EXTENSION "Error\ninvalid map extension"
+
+/* Mallox error */
+# define ERROR_MALLOC "Error\nmalloc failed"
 
 typedef struct s_minilibx
 {
@@ -51,13 +57,15 @@ typedef struct s_minilibx
 
 typedef struct s_map
 {
-
+	int		**map;
+	int		map_width;
+	int		map_height;
 }	t_map;
 
 typedef struct s_cub3d
 {
 	t_minilibx	*view;
-	t_map		*map;
+	t_map		*map_data;
 
 }	t_cub3d;
 

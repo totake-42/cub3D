@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.h                                             :+:      :+:    :+:   */
+/*   free_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/04 13:39:07 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/04 15:10:29 by itakumi          ###   ########.fr       */
+/*   Created: 2026/01/04 18:29:33 by itakumi           #+#    #+#             */
+/*   Updated: 2026/01/04 18:30:49 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INIT_H
-# define INIT_H
+#include <stdlib.h>
 
-# include "status.h"
+void	free_array(void **array)
+{
+	void	**array_temp;
 
-t_status	init_view(t_cub3d *app);
-
-#endif
+	if (array == NULL)
+		return ;
+	array_temp = array;
+	while (*array != NULL)
+	{
+		free(*array);
+		array++;
+	}
+	free(array_temp);
+}
