@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_map.c                                         :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/04 13:45:45 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/05 14:07:08 by itakumi          ###   ########.fr       */
+/*   Created: 2025/12/27 13:07:34 by itakumi           #+#    #+#             */
+/*   Updated: 2026/01/05 14:12:46 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,30 @@
 #include "libft.h"
 
 #include "cub3d.h"
+#include "init.h"
+#include "utils.h"
+#include "parse.h"
+#include "utils.h"
 
-void	free_map(t_map **map_data)
+int	main(int argc, char **argv)
 {
-	char	**grid;
+	t_cub3d	app;
+	char	**map_temp;
 
-	if (map_data == NULL || *map_data == NULL)
-		return ;
-	grid = (*map_data)->grid;
-	while (*grid == NULL)
+	if (argc != 2)
 	{
-		free(grid);
-		grid++;
+		ft_putendl_fd(ERROR_ARGC, STDERR_FILENO);
+		return (EXIT_FAILURE);
 	}
-	free((*map_data)->grid);
-	(*map_data)->grid = NULL;
+	app.map_data = NULL;
+	app.view = NULL;
+	map_temp = parse_map(&app, argv[1]);
+	if (map_temp == NULL)
+		return (EXIT_FAILURE);
+	if (init_view(&app) == STATUS_ERROR)
+	{
+		free_map(&(app.map_data));
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
 }

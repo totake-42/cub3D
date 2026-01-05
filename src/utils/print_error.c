@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_map.c                                         :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/04 13:45:45 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/05 14:07:08 by itakumi          ###   ########.fr       */
+/*   Created: 2026/01/05 15:35:28 by itakumi           #+#    #+#             */
+/*   Updated: 2026/01/05 16:14:42 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-#include "cub3d.h"
-
-void	free_map(t_map **map_data)
+void	print_error(char *context, char *message)
 {
-	char	**grid;
-
-	if (map_data == NULL || *map_data == NULL)
-		return ;
-	grid = (*map_data)->grid;
-	while (*grid == NULL)
-	{
-		free(grid);
-		grid++;
-	}
-	free((*map_data)->grid);
-	(*map_data)->grid = NULL;
+	ft_putendl_fd("Error", STDERR_FILENO);
+	ft_putstr_fd(context, STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_putendl_fd(message, STDERR_FILENO);
 }
