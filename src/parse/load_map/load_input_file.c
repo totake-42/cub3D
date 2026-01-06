@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 17:39:53 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/05 21:34:55 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/01/06 16:56:41 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <sys/types.h>
 #include <stdbool.h>
 #include "libft.h"
-#include "get_next_line.h"
+#include "get_next_line_no_nl.h"
 
 #include "cub3d.h"
 #include "status.h"
@@ -35,7 +35,7 @@ const char *input_file, size_t *col_max_len, size_t *row_len)
 	}
 	while (true)
 	{
-		line = get_next_line(fd);
+		line = get_next_line_no_nl(fd);
 		if (line == NULL)
 			break ;
 		line_len = ft_strlen(line);
@@ -66,7 +66,7 @@ const char *input_file, size_t col_max_len)
 	file_lines_temp = file_lines;
 	while (true)
 	{
-		line = get_next_line(fd);
+		line = get_next_line_no_nl(fd);
 		if (line == NULL)
 			break ;
 		*file_lines = line;

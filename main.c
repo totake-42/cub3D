@@ -6,11 +6,12 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:07:34 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/05 19:52:01 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/01/06 16:55:46 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "get_next_line_no_nl.h"
 #include "libft.h"
 
 #include "cub3d.h"

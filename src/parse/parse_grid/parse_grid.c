@@ -6,17 +6,17 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 18:26:36 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/06 14:16:35 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/01/06 18:58:12 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include "libft.h"
-
 #include "cub3d.h"
+#include "libft.h"
+#include "parse.h"
 #include "status.h"
 #include "utils.h"
-#include "parse.h"
+#include <stddef.h>
+
 /*
 	CHECK LIST
 	1.
@@ -26,15 +26,14 @@ static void	analyze_file_dimensions(const char **file_lines, size_t *row_len,
 		size_t *max_col_len)
 {
 	size_t	col_len;
-	size_t	row_count;
 
-	row_count = 0;
+	*row_len = 0;
 	while (*file_lines != NULL)
 	{
 		col_len = ft_strlen(*file_lines);
 		if (col_len > *max_col_len)
 			*max_col_len = col_len;
-		row_count++;
+		(*row_len)++;
 		file_lines++;
 	}
 }
@@ -64,22 +63,20 @@ static void	analyze_file_dimensions(const char **file_lines, size_t *row_len,
 // 最後まで見る
 t_status	parse_grid(const char **file_lines, t_map *map_data)
 {
-	char	*line;
 	size_t	row_len;
 	size_t	max_col_len;
 
 	if (file_lines == NULL)
 		return (STATUS_ERROR);
+	analyze_file_dimensions(file_lines, &row_len, &max_col_len);
 	if (validate_characters(file_lines) == STATUS_ERROR)
 		return (STATUS_ERROR);
-	if (validate_player(file_lines) == STATUS_ERROR)
+	if (validate_player(file_lines, map_data) == STATUS_ERROR)
 		return (STATUS_ERROR);
-	if (validate_walls(file_lines) == STATUS_ERROR)
+	if (validate_walls(file_lines, map_data) == STATUS_ERROR)
 		return (STATUS_ERROR);
-	analyze_file_dimensions(file_lines, &row_len, &max_col_len);
-	map_data->grid = ft_calloc(row_len, 1);
+	map_data->grid = duplicate_file_lines(file_lines, map_data->grid_height);
 	if (map_data->grid == NULL)
-		return (ft_putendl_fd(ERROR_MALLOC, STDERR_FILENO), STATUS_ERROR);
-	// set grid
+		return (STATUS_ERROR);
 	return (STATUS_OK);
 }

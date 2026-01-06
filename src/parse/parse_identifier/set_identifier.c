@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:44:18 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/05 21:49:43 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/01/06 16:59:22 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,17 @@ static size_t	find_target_index(const char *hex, char target)
 	return (ERROR_VALUE);
 }
 
-static size_t	ft_strlen_newline(const char *s)
-{
-	const char	*s_temp;
+// static size_t	ft_strlen_newline(const char *s)
+// {
+// 	const char	*s_temp;
 
-	if (s == NULL)
-		return (0);
-	s_temp = s;
-	while (*s != '\0' && *s != '\n')
-		s++;
-	return (s - s_temp);
-}
+// 	if (s == NULL)
+// 		return (0);
+// 	s_temp = s;
+// 	while (*s != '\0' && *s != '\n')
+// 		s++;
+// 	return (s - s_temp);
+// }
 
 // number
 // validateの役割も持たせるべきだろうか？
@@ -81,7 +81,7 @@ t_status	set_layer_color(t_map *map_data, size_t offset, const char *value)
 	while (i < 3)
 	{
 		if (i == 2)
-			len = ft_strlen_newline(value);
+			len = ft_strlen(value);
 		else
 			len = find_target_index(value, ',');
 		if (len == ERROR_VALUE)

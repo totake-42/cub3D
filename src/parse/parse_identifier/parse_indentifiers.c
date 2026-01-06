@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 13:50:15 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/06 13:42:38 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/01/06 17:07:46 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ const char *line, t_map *map_data, int *set_count)
 	line += ft_strlen(g_config_table[idx].identifier);
 	while (*line == ' ')
 		line++;
-	if (*line == '\0' || *line == '\n')
+	if (*line == '\0')
 	{
-		print_error(line, ERROR_INVALID_IDENTIFIER_VALUE);
+		print_error((char *)line, ERROR_INVALID_IDENTIFIER_VALUE);
 		return (STATUS_ERROR);
 	}
 	if (g_config_table[idx].func(map_data, idx, line) == STATUS_ERROR)
@@ -102,7 +102,7 @@ t_status	parse_identifiers(const char ***file_lines, t_map *map_data)
 	while (**file_lines != NULL && set_count <= g_config_table_len)
 	{
 		line = **file_lines;
-		if (ft_strequal(line, "\n") == false)
+		if (ft_strequal(line, "") == false)
 		{
 			if (process_config_line(line, map_data, &set_count) == STATUS_ERROR)
 				return (STATUS_ERROR);
@@ -148,19 +148,23 @@ t_status	parse_identifiers(const char ***file_lines, t_map *map_data)
 // #include <stdio.h>
 // int	main(void)
 // {
-// 	char	*file_lines1[] =
-// 	{
-// 		"NO /north",
-// 		"SO /south",
-// 		"WE /west",
-// 		"EA /east",
-// 		"F 0,255,0",
-// 		"C 0,0,255",
-// 		NULL
-// 	};
+// 	const char	*t1 = ft_strdup("NO /north");
+// 	const char	*t2 = ft_strdup("SO /south");
+// 	const char	*t3 = ft_strdup("WE /west");
+// 	const char	*t4 = ft_strdup("EA /east");
+// 	const char 	*t5 = ft_strdup("F 0,255,0");
+// 	const char	*t6 = ft_strdup("C 0,0,255");
+// 	const char	**file_lines1 = malloc(sizeof(const char *) * 7);
+// 	file_lines1[0] = t1;
+// 	file_lines1[1] = t2;
+// 	file_lines1[2] = t3;
+// 	file_lines1[3] = t4;
+// 	file_lines1[4] = t5;
+// 	file_lines1[5] = t6;
+// 	file_lines1[6] = NULL;
 // 	t_map	map_data;
 
-// 	t_status	status = parse_identifiers(file_lines1, &map_data);
+// 	t_status	status = parse_identifiers(&file_lines1, &map_data);
 // 	printf("status: %d\n", status);
 // 	return (0);
 // }

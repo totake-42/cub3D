@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/26 10:45:00 by itakumi           #+#    #+#              #
-#    Updated: 2026/01/04 18:21:08 by itakumi          ###   ########.fr        #
+#    Updated: 2026/01/06 16:51:18 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ INCS				= -I $(DIR_INCS) $(foreach PATH_LIB,$(PATH_LIBS),-I $(PATH_LIB))
 INCS				+= -I $(DIR_MLX)
 
 OBJS				= $(SRCS:%.c=$(DIR_OBJS)/%.o)
-LIBS				= libft get_next_line
+LIBS				= libft get_next_line get_next_line_no_nl
 						
 PATH_LIBS			= $(foreach LIB,$(LIBS),$(DIR_LIBS)/$(LIB))
 ARCH_LIBS			= $(foreach PATH_LIB,$(PATH_LIBS),$(PATH_LIB)/$(notdir $(PATH_LIB)).a)
