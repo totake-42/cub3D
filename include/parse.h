@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:32:11 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/05 21:21:20 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/01/06 14:14:01 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,15 @@ t_status	parse_map(t_cub3d *app, const char *input_file);
 /* utils */
 char		**load_input_file(const char *input_file);
 bool		validate_input_file_extension(const char *input_file);
-t_status	parse_grid(char **file_lines, t_map *map_data);
-t_status	parse_identifiers(char **file_lines, t_map *map_data);
+
+/* parse grid */
+t_status	parse_grid(const char **file_lines, t_map *map_data);
+t_status	validate_characters(const char **file_lines);
+t_status	validate_player(const char **file_lines);
+t_status	validate_walls(const char **file_lines);
+
+/* parse identifiers */
+t_status	parse_identifiers(const char ***file_lines, t_map *map_data);
 t_status	set_texture_path(t_map *map_data, size_t offset, const char *value);
 t_status	set_layer_color(t_map *map_data, size_t offset, const char *value);
 
