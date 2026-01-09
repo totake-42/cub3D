@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:44:18 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/06 16:59:22 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/01/09 14:39:46 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,6 @@ static size_t	find_target_index(const char *hex, char target)
 	return (ERROR_VALUE);
 }
 
-// static size_t	ft_strlen_newline(const char *s)
-// {
-// 	const char	*s_temp;
-
-// 	if (s == NULL)
-// 		return (0);
-// 	s_temp = s;
-// 	while (*s != '\0' && *s != '\n')
-// 		s++;
-// 	return (s - s_temp);
-// }
-
 // number
 // validateの役割も持たせるべきだろうか？
 // if (*value != '\0' || *value != '\n')
@@ -102,6 +90,7 @@ t_status	set_layer_color(t_map *map_data, size_t offset, const char *value)
 // valueを切り取る
 // value ポインタ以降の文字列をすべて受け取るようにする
 // ただし、改行は抜く
+// FIX ME
 t_status	set_texture_path(t_map *map_data, size_t offset, const char *value)
 {
 	size_t	len;
@@ -109,7 +98,7 @@ t_status	set_texture_path(t_map *map_data, size_t offset, const char *value)
 
 	target_ptr = (char **)((char *)map_data + offset);
 	len = 0;
-	while (value[len] != '\0' && value[len] != '\n')
+	while (value[len] != '\0')
 		len++;
 	*target_ptr = ft_strndup(value, len);
 	if (*target_ptr == NULL)
