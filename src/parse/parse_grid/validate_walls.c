@@ -1,0 +1,196 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate_walls.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/06 14:10:33 by itakumi           #+#    #+#             */
+/*   Updated: 2026/01/06 18:56:31 by itakumi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+#include "libft.h"
+#include "parse.h"
+#include "status.h"
+#include "utils.h"
+
+// stack overflowに気をつけないといけない
+// playerが行くことができない、領域を削除するアルゴリズムができる
+// bonusのスプライト実装のときに、孤立エリアを削除することで、高速化できるので、
+// こちらを採用する
+// mapをオブジェクト指向チックにしてもいいかもしれない
+// 4方位の中で、１ではない、かつ探索していない場所を探索するのかな
+// 上下左右がメモリ範囲外ではないかを確認する
+// playerは1の手前の０で止まるため、その、gridの行の範囲を越していたら、終了させる
+// その行の範囲はどのように,算出できるのか？
+static t_status	flood_fill(char **file_lines, int x_pos, int y_pos,
+		t_map const *map_data)
+{
+	if (x_pos < 0 || y_pos < 0 || file_lines[y_pos][x_pos] == '\0'
+		|| y_pos > map_data->grid_height)
+		return (STATUS_ERROR);
+	if (file_lines[y_pos][x_pos] == WALL)
+		return (STATUS_OK);
+	file_lines[y_pos][x_pos] = WALL;
+	if (flood_fill(file_lines, x_pos + 1, y_pos, map_data) == STATUS_ERROR)
+		return (STATUS_ERROR);
+	if (flood_fill(file_lines, x_pos - 1, y_pos, map_data) == STATUS_ERROR)
+		return (STATUS_ERROR);
+	if (flood_fill(file_lines, x_pos, y_pos + 1, map_data) == STATUS_ERROR)
+		return (STATUS_ERROR);
+	if (flood_fill(file_lines, x_pos, y_pos - 1, map_data) == STATUS_ERROR)
+		return (STATUS_ERROR);
+	return (STATUS_OK);
+}
+
+t_status	validate_walls(const char **file_lines, t_map *map_data)
+{
+	char	**file_lines_cpy;
+
+	file_lines_cpy = duplicate_file_lines(file_lines, map_data->grid_height);
+	if (file_lines_cpy == NULL)
+		return (STATUS_ERROR);
+	if (flood_fill(file_lines_cpy, map_data->player_x, map_data->player_y,
+			(t_map const *)map_data) == STATUS_ERROR)
+	{
+		free_array((void **)file_lines_cpy);
+		return (STATUS_ERROR);
+	}
+	free_array((void **)file_lines_cpy);
+	return (STATUS_OK);
+}
+
+/*
+	Validate walls Test
+
+*/
+// #include <stdio.h>
+// #include <assert.h>
+// int	main(void)
+// {
+// 	puts("\n -------------- test1 (valid case) ---------------");
+// 	const char  *m1 = ft_strdup("11111");
+//     const char  *m2 = ft_strdup("1N000");
+//     const char  *m3 = ft_strdup("10001");
+//     const char  *m4 = ft_strdup("10001");
+//     const char  *m5 = ft_strdup("11111");
+// 	const char	**file_lines1 = malloc(sizeof(const char *) * 6);
+// 	file_lines1[0] = m1;
+//     file_lines1[1] = m2;
+//     file_lines1[2] = m3;
+//     file_lines1[3] = m4;
+//     file_lines1[4] = m5;
+//     file_lines1[5] = NULL;
+// 	t_map	map_data = {0};
+// 	map_data.player_x = 1;
+// 	map_data.player_y = 1;
+// 	printf("x: %d\n", map_data.player_x);
+// 	printf("y: %d\n", map_data.player_y);
+// 	map_data.grid_width = 5;
+// 	map_data.grid_height = 5;
+// 	assert(validate_walls(file_lines1, &map_data) == STATUS_ERROR);
+// 	const char	*m6 = ft_strdup("10001");
+// 	file_lines1[1] = m6;
+// 	assert(validate_walls(file_lines1, &map_data) == STATUS_OK);
+// 	puts("Test1 OK!!");
+
+// 	puts("\n----- test2 (space case) ------------");
+// 	m1 = ft_strdup("11111   ");
+//     m2 = ft_strdup("1N001");
+//     m3 = ft_strdup("10001");
+//     m4 = ft_strdup("10001");
+//     m5 = ft_strdup("11111");
+// 	file_lines1[0] = m1;
+//     file_lines1[1] = m2;
+//     file_lines1[2] = m3;
+//     file_lines1[3] = m4;
+//     file_lines1[4] = m5;
+//     file_lines1[5] = NULL;
+// 	assert(validate_walls(file_lines1, &map_data) == STATUS_OK);
+// 	puts("Test2 OK!!");
+
+// 	puts("\n----- test3 (space case) ------------");
+// 	m1 = ft_strdup("11111   ");
+// 	m2 = ft_strdup("1N001");
+// 	m3 = ft_strdup("10001");
+// 	m4 = ft_strdup("10001");
+// 	m5 = ft_strdup("11111");
+// 	file_lines1[0] = m1;
+//     file_lines1[1] = m2;
+//     file_lines1[2] = m3;
+//     file_lines1[3] = m4;
+//     file_lines1[4] = m5;
+//     file_lines1[5] = NULL;
+// 	assert(validate_walls(file_lines1, &map_data) == STATUS_OK);
+// 	puts("Test3 OK!!");
+
+// 	puts("\n----- test4 (lonely area case) ------------");
+// 	m1 = ft_strdup("11111   ");
+// 	m2 = ft_strdup("1N001");
+// 	m3 = ft_strdup("10111");
+// 	m4 = ft_strdup("10101");
+// 	m5 = ft_strdup("11111");
+// 	file_lines1[0] = m1;
+//     file_lines1[1] = m2;
+//     file_lines1[2] = m3;
+//     file_lines1[3] = m4;
+//     file_lines1[4] = m5;
+//     file_lines1[5] = NULL;
+// 	assert(validate_walls(file_lines1, &map_data) == STATUS_OK);
+// 	puts("Test4 OK!!");
+// 	return (0);
+// }
+
+/*
+	flood fill basic TEST
+*/
+
+// t_status	check_iterative_neighbor(const char **file_lines)
+// {
+
+// 	return (STATUS_OK);
+// }
+
+// int	map[5][5] =
+// {
+// 	{1, 1, 1, 1, 1},
+// 	{1, 0, 0, 0, 1},
+// 	{1, 0, 0, 0, 1},
+// 	{1, 0, 0, 0, 1},
+// 	{1, 1, 1, 1, 1}
+// };
+// const int max_x = 4;
+// const int max_y = 4;
+
+// void	flood_fill_basic(int x, int y, char target_color, char new_color)
+// {
+// 	if (x < 0 || y < 0 || x > max_x || y > max_y)
+// 		return ;
+// 	if (map[y][x] != target_color || map[y][x] == new_color)
+// 		return ;
+// 	if (map[y][x] == target_color)
+// 		map[y][x] = new_color;
+// 	flood_fill_basic(x + 1, y, target_color, new_color);
+// 	flood_fill_basic(x - 1, y, target_color, new_color);
+// 	flood_fill_basic(x, y + 1, target_color, new_color);
+// 	flood_fill_basic(x, y - 1, target_color, new_color);
+// }
+
+// #include <stdio.h>
+// int	main(void)
+// {
+// 	const char	target_color = 0;
+// 	const char	new_color = 1;
+// 	flood_fill_basic(1, 1, target_color, new_color);
+// 	for (int i = 0; i < 5; i++) {
+// 		for (int j = 0; j < 5; j++) {
+// 			printf("%d", map[i][j]);
+// 			if (j != 4)
+// 				printf(" ");
+// 		}
+// 		puts("");
+// 	}
+// 	return (0);
+// }

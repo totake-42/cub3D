@@ -6,14 +6,14 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/26 10:45:00 by itakumi           #+#    #+#              #
-#    Updated: 2025/12/27 13:11:18 by itakumi          ###   ########.fr        #
+#    Updated: 2026/01/06 16:51:18 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 override	NAME	= cub3D
 
 override	CC		= cc
-override	CFLAGS	= -Wall -Werror -Wextra
+override	CFLAGS	= -Wall -Werror -Wextra -g
 
 M_FLAG				= -lm
 # Linux
@@ -28,10 +28,12 @@ override DIR_MLX	= lib/minilibx
 SRCS				= $(shell find $(DIR_SRCS) -type f -name "*.c")
 
 INCS				= -I $(DIR_INCS) $(foreach PATH_LIB,$(PATH_LIBS),-I $(PATH_LIB))
+INCS				+= -I $(DIR_MLX)
+
 OBJS				= $(SRCS:%.c=$(DIR_OBJS)/%.o)
-LIBS				= libft
+LIBS				= libft get_next_line get_next_line_no_nl
 						
-PATH_LIBS			= $(foreach LIB,$(LIBS),$(DIR_LIBS)/$(LIBS))
+PATH_LIBS			= $(foreach LIB,$(LIBS),$(DIR_LIBS)/$(LIB))
 ARCH_LIBS			= $(foreach PATH_LIB,$(PATH_LIBS),$(PATH_LIB)/$(notdir $(PATH_LIB)).a)
 
 ### minilibx ###
@@ -100,7 +102,7 @@ print_sourcefiles:
 	@$(foreach SRC,$(SRCS_LIST),echo '$(SRC:$(DIR_SRCS)/%.c=%.c\\)';)
 
 norm:
-	@norminette | grep 'Error'
+	@norminette $(DIR_SRCS) | grep 'Error'
 
 .PHONY: print_sourcefiles norm
 
