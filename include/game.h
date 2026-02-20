@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:00:00 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/20 12:42:58 by totake           ###   ########.fr       */
+/*   Updated: 2026/02/20 17:20:43 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,9 @@ int		handle_close(t_cub3d *app);
 
 // render.c
 void	render(t_cub3d *app);
+
+// raycasting.c
+void	raycast_all(t_cub3d *app);
+void	raycast_single(t_cub3d *app);
 
 #endif

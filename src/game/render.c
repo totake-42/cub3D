@@ -6,11 +6,12 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:00:00 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/20 14:13:36 by totake           ###   ########.fr       */
+/*   Updated: 2026/02/20 17:23:25 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "game.h"
 
 /**
  * fill the pixel at (x, y) with the specified color
@@ -99,4 +100,16 @@ void	render(t_cub3d *app)
 		}
 		y++;
 	}
+	// // テスト用: raycast_single()を使用（デバッグ情報を表示）
+	// raycast_single(app);
+	// // 画面中央に赤い縦線を描画（テスト用の目印）
+	// x = app->view->win_width / 2;
+	// y = 0;
+	// while (y < app->view->win_height)
+	// {
+	// 	put_pixel(app->view, x, y, 0x808080); // 赤色
+	// 	y++;
+	// }
+	// フルスクリーンのレイキャスティング
+	raycast_all(app);
 }

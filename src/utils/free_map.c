@@ -6,14 +6,13 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 13:45:45 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/20 12:57:40 by totake           ###   ########.fr       */
+/*   Updated: 2026/02/20 14:19:32 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "libft.h"
 #include <stdlib.h>
-#include <unistd.h>
 
 void	free_map(t_map **map_data)
 {

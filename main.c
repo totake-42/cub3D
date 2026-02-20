@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:07:34 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/20 13:47:15 by totake           ###   ########.fr       */
+/*   Updated: 2026/02/20 15:28:56 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	main(int argc, char **argv)
 		free_map(&(app.map_data));
 		return (EXIT_FAILURE);
 	}
+	init_player(&app);
 	mlx_loop_hook(app.view->mlx_ptr, game_loop, &app);
 	mlx_hook(app.view->win_ptr, 2, 1L << 0, handle_keypress, &app);
 	mlx_hook(app.view->win_ptr, 17, 0, handle_close, &app);

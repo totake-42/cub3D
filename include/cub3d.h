@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:18:19 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/06 13:03:40 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/02/20 15:28:46 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,43 +42,53 @@
 /* Mallox error */
 # define ERROR_MALLOC "Error\nmalloc failed"
 
+typedef struct s_player
+{
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+}				t_player;
+
 typedef struct s_minilibx
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	int		win_width;
-	int		win_height;
-	char	*title;
-	void	*img_ptr;
-	char	*data_addr;
-	int		bits_per_pixel;
-	int		size_line;
-	int		endian;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	int			win_width;
+	int			win_height;
+	char		*title;
+	void		*img_ptr;
+	char		*data_addr;
+	int			bits_per_pixel;
+	int			size_line;
+	int			endian;
 
-}	t_minilibx;
+}				t_minilibx;
 
 typedef struct s_map
 {
-	char	*north_tex_path;
-	char	*south_tex_path;
-	char	*west_tex_path;
-	char	*east_tex_path;
-	int		floor_color[3];
-	int		ceiling_color[3];
+	char		*north_tex_path;
+	char		*south_tex_path;
+	char		*west_tex_path;
+	char		*east_tex_path;
+	int			floor_color[3];
+	int			ceiling_color[3];
 
-	char	**grid;
-	int		grid_width;
-	int		grid_height;
-	int		player_x;
-	int		player_y;
-	int		player_dir;
-}	t_map;
+	char		**grid;
+	int			grid_width;
+	int			grid_height;
+	int			player_x;
+	int			player_y;
+	int			player_dir;
+}				t_map;
 
 typedef struct s_cub3d
 {
 	t_minilibx	*view;
 	t_map		*map_data;
-
-}	t_cub3d;
+	t_player	player;
+}				t_cub3d;
 
 #endif
