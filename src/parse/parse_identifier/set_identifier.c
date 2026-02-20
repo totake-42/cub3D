@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   set_identifier.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:44:18 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/09 14:39:46 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/02/20 14:03:04 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 #include "cub3d.h"
+#include "libft.h"
+#include "parse.h"
 #include "status.h"
 #include "utils.h"
-#include "parse.h"
 
 #define ERROR_VALUE -1
 #define RGB_COLOR_LIMIT 255
@@ -60,11 +59,11 @@ static size_t	find_target_index(const char *hex, char target)
 // それ以降に文字があったら、
 t_status	set_layer_color(t_map *map_data, size_t offset, const char *value)
 {
-	int		len;
-	int		*target_ptr;
-	int		i;
+	int	len;
+	int	*target_ptr;
+	int	i;
 
-	target_ptr = (int *)((int *)map_data + offset);
+	target_ptr = (int *)((char *)map_data + offset);
 	i = 0;
 	while (i < 3)
 	{
@@ -73,8 +72,8 @@ t_status	set_layer_color(t_map *map_data, size_t offset, const char *value)
 		else
 			len = find_target_index(value, ',');
 		if (len == ERROR_VALUE)
-			return (ft_putendl_fd(ERROR_INVALID_COLOR, STDERR_FILENO), \
-							STATUS_ERROR);
+			return (ft_putendl_fd(ERROR_INVALID_COLOR, STDERR_FILENO),
+				STATUS_ERROR);
 		target_ptr[i] = ft_atoi_only_plus_number(value, len);
 		if (target_ptr[i] == ERROR_VALUE)
 		{

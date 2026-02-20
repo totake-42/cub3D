@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:00:00 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/20 12:46:04 by totake           ###   ########.fr       */
+/*   Updated: 2026/02/20 14:13:36 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,20 @@ static void	put_pixel(t_minilibx *view, int x, int y, int color)
 		return ;
 	offset = y * view->size_line + x * (view->bits_per_pixel / 8);
 	dst = view->data_addr + offset;
-	*(unsigned int *)dst = color;
+	if (view->endian == 0)
+	{
+		dst[0] = (color)&0xFF;
+		dst[1] = (color >> 8) & 0xFF;
+		dst[2] = (color >> 16) & 0xFF;
+		dst[3] = 0;
+	}
+	else
+	{
+		dst[0] = (color >> 16) & 0xFF;
+		dst[1] = (color >> 8) & 0xFF;
+		dst[2] = (color)&0xFF;
+		dst[3] = 0;
+	}
 }
 
 // /**
