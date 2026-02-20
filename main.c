@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:07:34 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/06 16:55:46 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/02/20 13:47:15 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "get_next_line_no_nl.h"
-#include "libft.h"
-
 #include "cub3d.h"
+#include "game.h"
+#include "get_next_line_no_nl.h"
 #include "init.h"
-#include "utils.h"
+#include "libft.h"
+#include "mlx.h"
 #include "parse.h"
 #include "utils.h"
+#include <stdlib.h>
 
 int	main(int argc, char **argv)
 {
@@ -38,5 +38,11 @@ int	main(int argc, char **argv)
 		free_map(&(app.map_data));
 		return (EXIT_FAILURE);
 	}
+	mlx_loop_hook(app.view->mlx_ptr, game_loop, &app);
+	mlx_hook(app.view->win_ptr, 2, 1L << 0, handle_keypress, &app);
+	mlx_hook(app.view->win_ptr, 17, 0, handle_close, &app);
+	mlx_loop(app.view->mlx_ptr);
+	free_view(&(app.view));
+	free_map(&(app.map_data));
 	return (EXIT_SUCCESS);
 }

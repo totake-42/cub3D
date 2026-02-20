@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   free_view.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 10:38:20 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/04 10:52:58 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/02/20 13:48:17 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <mlx.h>
-
 #include "cub3d.h"
+#include "libft.h"
+#include <mlx.h>
+#include <stdlib.h>
+#include <unistd.h>
 
-// free view structure 
+// free view structure
 void	free_view(t_minilibx **view)
 {
 	if (view == NULL || *view == NULL)
@@ -25,7 +26,6 @@ void	free_view(t_minilibx **view)
 		mlx_destroy_image((*view)->mlx_ptr, (*view)->img_ptr);
 		(*view)->img_ptr = NULL;
 	}
-	mlx_loop_end(*view);
 	if ((*view)->win_ptr != NULL)
 	{
 		mlx_destroy_window((*view)->mlx_ptr, (*view)->win_ptr);
@@ -34,6 +34,7 @@ void	free_view(t_minilibx **view)
 	if ((*view)->mlx_ptr != NULL)
 	{
 		mlx_destroy_display((*view)->mlx_ptr);
+		free((*view)->mlx_ptr);
 		(*view)->mlx_ptr = NULL;
 	}
 	free(*view);

@@ -36,6 +36,7 @@ t_status	validate_characters(const char **file_lines)
 		{
 			if (is_valid_character(*line) == false)
 				return (STATUS_ERROR);
+			line++;
 		}
 		file_lines++;
 	}

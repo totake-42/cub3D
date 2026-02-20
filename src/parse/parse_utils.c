@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 18:55:38 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/06 18:56:01 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/02/20 12:39:05 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 #include "cub3d.h"
+#include "libft.h"
 #include "status.h"
+#include "utils.h"
 
 char	**duplicate_file_lines(const char **file_lines, int grid_height)
 {

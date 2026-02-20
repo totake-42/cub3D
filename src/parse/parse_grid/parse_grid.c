@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_grid.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 18:26:36 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/06 18:58:12 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/02/20 13:33:03 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,10 @@ t_status	parse_grid(const char **file_lines, t_map *map_data)
 
 	if (file_lines == NULL)
 		return (STATUS_ERROR);
+	max_col_len = 0;
 	analyze_file_dimensions(file_lines, &row_len, &max_col_len);
+	map_data->grid_height = row_len;
+	map_data->grid_width = max_col_len;
 	if (validate_characters(file_lines) == STATUS_ERROR)
 		return (STATUS_ERROR);
 	if (validate_player(file_lines, map_data) == STATUS_ERROR)

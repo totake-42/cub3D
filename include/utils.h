@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:35:22 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/06 16:18:38 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/02/20 12:41:34 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-# include <stdbool.h>
 # include "cub3d.h"
+# include <stdbool.h>
+# include <stddef.h> // for size_t
 
 /* cub3d utils */
 void	free_view(t_minilibx **view);

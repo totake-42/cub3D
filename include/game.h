@@ -1,45 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   event_handlers.c                                   :+:      :+:    :+:   */
+/*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:00:00 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/20 13:35:54 by totake           ###   ########.fr       */
+/*   Updated: 2026/02/20 12:42:58 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "mlx.h"
-#include "utils.h"
-#include <stdlib.h>
+#ifndef GAME_H
+# define GAME_H
 
-// define keycode of X11
-#define KEY_ESC 65307
+# include "cub3d.h"
 
-// window close button event
-#define EVENT_CLOSE 17
+// game_loop.c
+int		game_loop(t_cub3d *app);
 
-/*
- * if ESC key is pressed
- * exit the game
- */
-int	handle_keypress(int keycode, t_cub3d *app)
-{
-	if (keycode == KEY_ESC)
-	{
-		mlx_loop_end(app->view->mlx_ptr);
-	}
-	return (0);
-}
+// event_handlers.c
+int		handle_keypress(int keycode, t_cub3d *app);
+int		handle_close(t_cub3d *app);
 
-/**
- * if the window close button is pressed
- * exit the game
- */
-int	handle_close(t_cub3d *app)
-{
-	mlx_loop_end(app->view->mlx_ptr);
-	return (0);
-}
+// render.c
+void	render(t_cub3d *app);
+
+#endif

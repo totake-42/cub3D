@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
+#    By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/26 10:45:00 by itakumi           #+#    #+#              #
-#    Updated: 2026/01/06 16:51:18 by itakumi          ###   ########.fr        #
+#    Updated: 2026/02/20 12:48:04 by totake           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ override DIR_OBJS	= build
 override DIR_LIBS	= lib
 override DIR_MLX	= lib/minilibx
 
-SRCS				= $(shell find $(DIR_SRCS) -type f -name "*.c")
+SRCS				= $(shell find $(DIR_SRCS) -type f -name "*.c") main.c
 
 INCS				= -I $(DIR_INCS) $(foreach PATH_LIB,$(PATH_LIBS),-I $(PATH_LIB))
 INCS				+= -I $(DIR_MLX)

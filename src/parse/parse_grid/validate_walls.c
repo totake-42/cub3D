@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_walls.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 14:10:33 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/06 18:56:31 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/02/20 13:33:13 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,11 @@
 static t_status	flood_fill(char **file_lines, int x_pos, int y_pos,
 		t_map const *map_data)
 {
-	if (x_pos < 0 || y_pos < 0 || file_lines[y_pos][x_pos] == '\0'
-		|| y_pos > map_data->grid_height)
+	if (y_pos < 0 || y_pos >= map_data->grid_height)
+		return (STATUS_ERROR);
+	if (x_pos < 0 || x_pos >= (int)ft_strlen(file_lines[y_pos]))
+		return (STATUS_ERROR);
+	if (file_lines[y_pos][x_pos] == '\0' || file_lines[y_pos][x_pos] == ' ')
 		return (STATUS_ERROR);
 	if (file_lines[y_pos][x_pos] == WALL)
 		return (STATUS_OK);
@@ -44,6 +47,8 @@ static t_status	flood_fill(char **file_lines, int x_pos, int y_pos,
 		return (STATUS_ERROR);
 	return (STATUS_OK);
 }
+
+#include <stdio.h>
 
 t_status	validate_walls(const char **file_lines, t_map *map_data)
 {
