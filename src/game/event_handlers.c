@@ -6,31 +6,40 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:00:00 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/20 13:35:54 by totake           ###   ########.fr       */
+/*   Updated: 2026/02/21 17:05:54 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "game.h"
 #include "mlx.h"
 #include "utils.h"
-#include <stdlib.h>
-
-// define keycode of X11
-#define KEY_ESC 65307
 
 // window close button event
 #define EVENT_CLOSE 17
 
 /*
- * if ESC key is pressed
- * exit the game
+ * Handle keyboard input
+ * W/A/S/D: movement
+ * Left/Right arrow: rotation
+ * ESC: exit
  */
 int	handle_keypress(int keycode, t_cub3d *app)
 {
 	if (keycode == KEY_ESC)
-	{
 		mlx_loop_end(app->view->mlx_ptr);
-	}
+	else if (keycode == KEY_W)
+		move_forward(app);
+	else if (keycode == KEY_S)
+		move_backward(app);
+	else if (keycode == KEY_A)
+		move_left(app);
+	else if (keycode == KEY_D)
+		move_right(app);
+	else if (keycode == KEY_LEFT)
+		rotate_left(app);
+	else if (keycode == KEY_RIGHT)
+		rotate_right(app);
 	return (0);
 }
 

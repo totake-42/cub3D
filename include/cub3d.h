@@ -6,14 +6,18 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:18:19 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/20 15:28:46 by totake           ###   ########.fr       */
+/*   Updated: 2026/02/21 16:41:39 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include <math.h>
 # include <stdbool.h>
+# include <stddef.h>
+# include <stdio.h>
+# include <stdlib.h>
 
 /* Argument error */
 # define ERROR_ARGC "Error\nUsage: ./cub3D <map_file>"

@@ -6,13 +6,11 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 16:00:00 by totake            #+#    #+#             */
-/*   Updated: 2026/02/20 18:17:20 by totake           ###   ########.fr       */
+/*   Updated: 2026/02/21 17:05:45 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <math.h>
-#include <stdio.h>
 
 /*
  * DDA (Digital Differential Analyzer) algorithm

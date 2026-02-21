@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:35:22 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/20 12:41:34 by totake           ###   ########.fr       */
+/*   Updated: 2026/02/21 17:06:01 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define UTILS_H
 
 # include "cub3d.h"
-# include <stdbool.h>
-# include <stddef.h> // for size_t
 
 /* cub3d utils */
 void	free_view(t_minilibx **view);
