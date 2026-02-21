@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 10:00:00 by totake            #+#    #+#             */
-/*   Updated: 2026/02/21 16:43:29 by totake           ###   ########.fr       */
+/*   Updated: 2026/02/21 17:17:53 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void	move_left(t_cub3d *app)
 	double	new_x;
 	double	new_y;
 
-	new_x = app->player.pos_x - app->player.dir_y * MOVE_SPEED;
-	new_y = app->player.pos_y + app->player.dir_x * MOVE_SPEED;
+	new_x = app->player.pos_x + app->player.dir_y * MOVE_SPEED;
+	new_y = app->player.pos_y - app->player.dir_x * MOVE_SPEED;
 	if (app->map_data->grid[(int)new_y][(int)new_x] != '1')
 	{
 		app->player.pos_x = new_x;
@@ -76,8 +76,8 @@ void	move_right(t_cub3d *app)
 	double	new_x;
 	double	new_y;
 
-	new_x = app->player.pos_x + app->player.dir_y * MOVE_SPEED;
-	new_y = app->player.pos_y - app->player.dir_x * MOVE_SPEED;
+	new_x = app->player.pos_x - app->player.dir_y * MOVE_SPEED;
+	new_y = app->player.pos_y + app->player.dir_x * MOVE_SPEED;
 	if (app->map_data->grid[(int)new_y][(int)new_x] != '1')
 	{
 		app->player.pos_x = new_x;
