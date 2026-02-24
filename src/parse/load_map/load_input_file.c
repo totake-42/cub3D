@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_input_file.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 17:39:53 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/06 16:56:41 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/02/24 14:50:07 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ const char *input_file, size_t *col_max_len, size_t *row_len)
 	char	*line;
 	size_t	line_len;
 
-	fd = open(input_file, STDERR_FILENO);
+	fd = open(input_file, O_RDONLY);
 	if (fd == -1)
 	{
 		ft_putendl_fd("Error", STDERR_FILENO);
