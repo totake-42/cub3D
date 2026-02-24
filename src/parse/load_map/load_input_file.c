@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 17:39:53 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/24 14:50:07 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/02/24 14:54:42 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ const char *input_file, size_t col_max_len)
 		file_lines++;
 	}
 	close(fd);
-	return (file_lines);
+	return (file_lines_temp);
 }
 
 char	**load_input_file(const char *input_file)
