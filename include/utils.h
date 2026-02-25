@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:35:22 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/25 13:37:05 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/02/25 15:11:13 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ void	free_array(void **array);
 bool	ft_strequal(const char *s1, const char *s2);
 char	*ft_strndup(const char *s, size_t n);
 void	print_error(char *context, char *message);
+double	get_time(void);
 
 #endif
