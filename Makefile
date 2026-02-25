@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
+#    By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/26 10:45:00 by itakumi           #+#    #+#              #
-#    Updated: 2026/01/06 16:51:18 by itakumi          ###   ########.fr        #
+#    Updated: 2026/02/25 15:01:12 by tigarashi        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 override	NAME	= cub3D
 
 override	CC		= cc
-override	CFLAGS	= -Wall -Werror -Wextra -g
+CFLAGS				= -Wall -Werror -Wextra -g
 
 M_FLAG				= -lm
 # Linux
@@ -32,7 +32,7 @@ INCS				+= -I $(DIR_MLX)
 
 OBJS				= $(SRCS:%.c=$(DIR_OBJS)/%.o)
 LIBS				= libft get_next_line get_next_line_no_nl
-						
+
 PATH_LIBS			= $(foreach LIB,$(LIBS),$(DIR_LIBS)/$(LIB))
 ARCH_LIBS			= $(foreach PATH_LIB,$(PATH_LIBS),$(PATH_LIB)/$(notdir $(PATH_LIB)).a)
 
