@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 18:55:38 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/06 18:56:01 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/02/25 15:05:26 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include "cub3d.h"
 #include "status.h"
+#include "utils.h"
 
 char	**duplicate_file_lines(const char **file_lines, int grid_height)
 {
