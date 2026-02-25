@@ -6,14 +6,14 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:32:11 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/25 13:36:49 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/02/25 13:42:15 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 
-#include <stddef.h>
+# include <stddef.h>
 # include "cub3d.h"
 # include "status.h"
 
