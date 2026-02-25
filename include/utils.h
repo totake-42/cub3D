@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:35:22 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/06 16:18:38 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/02/25 13:37:05 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-# include <stdbool.h>
+# include <stddef.h>
 # include "cub3d.h"
 
 /* cub3d utils */

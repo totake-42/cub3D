@@ -3,36 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:32:11 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/06 18:56:18 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/02/25 13:36:49 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 
-# include <stdbool.h>
+#include <stddef.h>
 # include "cub3d.h"
 # include "status.h"
 
-/* parse identifiers */
+/**
+ * @def
+ * They are parse error macro.
+ */
 # define ERROR_INVALID_IDENTIFIER "invalid identifier"
 # define ERROR_DUPLICATE_IDENTIFIER "redefinition of identifier"
 # define ERROR_INVALID_IDENTIFIER_VALUE "invalid identifier value"
 # define ERROR_INVALID_COLOR "invalid color"
 # define ERROR_NO_ENOUGH_ELEMENTS "not enough elements"
 
-/* parse grid*/
-	/* Error messages */
+/**
+ * @def
+ * They are parse grid error messages. 
+ */
 # define ERROR_TOO_MANY_PLAYERS "Error\n too many players"
 
-	/* Boundary condition number*/
+/**
+ * @def
+ * They are Boundary condition number
+ */
 # define AIRSPACE '0'
 # define WALL '1'
 
-/* Not found identifier number */
+/**
+ * @def 
+ * They are Not found identifier number macro.
+ */
 # define NOT_FOUND_IDENTIFIER -1
 
 typedef struct s_element_config
