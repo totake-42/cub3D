@@ -6,10 +6,11 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 16:54:14 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/02/27 18:52:35 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/02/27 20:01:01 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "mlx.h"
 #include <stdlib.h>
 
@@ -20,7 +21,6 @@
 void	move_forward(t_cub3d *app)
 {
 	double	frametime;
-	double	fps;
 	double	move_speed;
 	double	oldtime;
 
@@ -37,7 +37,6 @@ void	move_forward(t_cub3d *app)
 void	move_backward(t_cub3d *app)
 {
 	double	frametime;
-	double	fps;
 	double	move_speed;
 	double	oldtime;
 
@@ -54,7 +53,6 @@ void	move_backward(t_cub3d *app)
 void	move_left(t_cub3d *app)
 {
 	double	frametime;
-	double	fps;
 	double	move_speed;
 	double	oldtime;
 
@@ -72,7 +70,6 @@ void	move_left(t_cub3d *app)
 void	move_right(t_cub3d *app)
 {
 	double	frametime;
-	double	fps;
 	double	move_speed;
 	double	oldtime;
 

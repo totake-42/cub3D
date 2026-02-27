@@ -6,16 +6,21 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 19:24:10 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/02/25 15:15:26 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/02/27 19:56:22 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "mlx.h"
 #include <stddef.h>
+#include <math.h>
 
 #include "cub3d.h"
+#include "status.h"
+#include "render.h"
 #include "utils.h"
 
-static void	init_variable(double *dir_x, double *dir_y, double *plane_x, double *plane_y);
+static t_status	render_loop(t_cub3d *app);
+static	void	pixel_loop(t_cub3d *app);
 
 /**
  * @fn render
@@ -23,30 +28,53 @@ static void	init_variable(double *dir_x, double *dir_y, double *plane_x, double 
  * @param ( app ) All of the game information.
  * @return Success or failure.
  */
-int	render(t_cub3d *app)
+int	render(void *param)
 {
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-	double	time;
-	double	oldtime;
+	t_cub3d		*app;
 
-	if (app == NULL)
+	if (param == NULL)
 		return (-1);
-	init_variable(&dir_x, &dir_y, &plane_x, &plane_y);
-	time = get_time();
-	if (time == -1.0)
+	app = (t_cub3d *)param;
+	if (init_player(&(app->player)) == STATUS_ERROR)
 		return (-1);
-	oldtime = time;	
-	
+	if (render_loop(app) == STATUS_ERROR)
+		return (-1);
 	return (0);
 }
 
-static void	init_variable(double *dir_x, double *dir_y, double *plane_x, double *plane_y)
+static t_status	render_loop(t_cub3d *app)
 {
-	*dir_x = -1;
-	*dir_y = 0;
-	*plane_x = 0;
-	*plane_y = 0.66;
+	pixel_loop(app);	
+	// put_image
+	mlx_put_image_to_window(app->view->mlx_ptr, app->view->win_ptr, app->view->img_ptr, 0, 0);
+	return (STATUS_OK);
+}
+
+static	void	pixel_loop(t_cub3d *app)
+{
+	t_ray	ray;
+	int		x;
+
+	x = 0;
+	while (x < app->view->win_width)
+	{
+		init_ray(&(app->player), &ray, x, app->view->win_width);
+		init_sidedist(&(app->player), &ray);
+		// calculate perp wall distance
+		if (dda_loop(&(app->player), &ray, app) == true)
+		{
+			calc_drawline(&ray, app);
+			// 一旦色は白のみにする
+			ray.wall_color = 0x00;
+		}
+		else
+		{
+			ray.wall_color = 0xFF;	
+		}
+		drawline(app, &ray, x);
+			// colorを黑にする。
+		// x = ?の線を引く。
+		x++;
+	}
+	
 }
