@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_input_file.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 17:39:53 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/06 16:56:41 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/02/24 14:57:36 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ const char *input_file, size_t *col_max_len, size_t *row_len)
 	char	*line;
 	size_t	line_len;
 
-	fd = open(input_file, STDERR_FILENO);
+	fd = open(input_file, O_RDONLY);
 	if (fd == -1)
 	{
 		ft_putendl_fd("Error", STDERR_FILENO);
@@ -49,14 +49,14 @@ const char *input_file, size_t *col_max_len, size_t *row_len)
 }
 
 static char	**init_file_lines_from_input_file(
-const char *input_file, size_t col_max_len)
+const char *input_file, size_t row_len)
 {
 	char	**file_lines;
 	char	**file_lines_temp;
 	int		fd;
 	char	*line;
 
-	file_lines = ft_calloc(sizeof(char *), (col_max_len + 1));
+	file_lines = ft_calloc(sizeof(char *), (row_len + 1));
 	if (file_lines == NULL)
 		return (ft_putendl_fd(ERROR_MALLOC, STDERR_FILENO), NULL);
 	fd = open(input_file, O_RDONLY);
@@ -73,7 +73,7 @@ const char *input_file, size_t col_max_len)
 		file_lines++;
 	}
 	close(fd);
-	return (file_lines);
+	return (file_lines_temp);
 }
 
 char	**load_input_file(const char *input_file)
@@ -89,7 +89,7 @@ char	**load_input_file(const char *input_file)
 	if (analyze_file_dimensions(input_file, \
 		&col_max_len, &row_len) == STATUS_ERROR)
 		return (NULL);
-	file_lines = init_file_lines_from_input_file(input_file, col_max_len);
+	file_lines = init_file_lines_from_input_file(input_file, row_len);
 	if (file_lines == NULL)
 		return (NULL);
 	return (file_lines);

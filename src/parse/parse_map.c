@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:29:12 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/06 13:22:33 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/02/24 15:04:31 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 t_status	parse_map(t_cub3d *app, const char *input_file)
 {
 	char	**file_lines;
+	char	**file_lines_temp;
 
 	if (app == NULL || input_file == NULL)
 		return (STATUS_ERROR);
@@ -33,18 +34,19 @@ t_status	parse_map(t_cub3d *app, const char *input_file)
 	file_lines = load_input_file(input_file);
 	if (file_lines == NULL)
 		return (STATUS_ERROR);
+	file_lines_temp = file_lines;
 	app->map_data = ft_calloc(sizeof(t_map), 1);
 	if (parse_identifiers((const char ***)&file_lines,
 			app->map_data) == STATUS_ERROR)
 	{
 		free(app->map_data);
-		free_array((void **)file_lines);
+		free_array((void **)file_lines_temp);
 		return (STATUS_ERROR);
 	}
 	if (parse_grid((const char **)file_lines, app->map_data) == STATUS_ERROR)
 	{
 		free(app->map_data);
-		free_array((void **)file_lines);
+		free_array((void **)file_lines_temp);
 		return (STATUS_ERROR);
 	}
 	return (STATUS_OK);
