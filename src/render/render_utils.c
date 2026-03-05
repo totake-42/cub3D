@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 16:03:18 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/02/27 19:59:15 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/02 19:18:26 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 #include "cub3d.h" 
 #include "status.h"
 
-int	init_player(t_player	*player1)
+int	init_player(t_player *player1, t_map *map_data)
 {
+	player1->pos_x = (double)map_data->player_x + 0.5;
+	player1->pos_y = (double)map_data->player_y + 0.5;
 	player1->dir_x = -1;
 	player1->dir_y = 0;
 	player1->plane_x = 0;
@@ -74,10 +76,10 @@ void	calc_drawline(t_ray *ray, t_cub3d *app)
 	int	line_height;
 
 	line_height = (int)(app->view->win_height / ray->perpwall_dist);
-	ray->draw_start = -line_height / 2 + app->view->win_height;
+	ray->draw_start = -line_height / 2 + app->view->win_height / 2;
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;
-	ray->draw_end = line_height / 2 + app->view->win_height;
+	ray->draw_end = line_height / 2 + app->view->win_height / 2;
 	if (ray->draw_end >= app->view->win_height)
 		ray->draw_end = app->view->win_height - 1;	
 }

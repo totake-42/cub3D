@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 15:47:39 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/02/27 20:01:29 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/05 18:50:10 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ t_status	execute_game(t_cub3d *app)
 
 	if (app == NULL)
 		return (STATUS_ERROR);
+	if (init_player(&(app->player), app->map_data) == STATUS_ERROR)
+		return (STATUS_ERROR);
 	param = (void *)app;
-	if (mlx_expose_hook(app->view->win_ptr, render, param) == -1)
-		exit_cub3d(app, EXIT_FAILURE);
+	mlx_loop_hook(app->view->mlx_ptr, render, param);
 	// only windows
 	mlx_hook(app->view->win_ptr, KeyPress, KeyPressMask, handle_keypress, param);
 	mlx_hook(app->view->win_ptr, DestroyNotify, StructureNotifyMask, close_window, param);

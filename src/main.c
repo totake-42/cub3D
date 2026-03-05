@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:07:34 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/27 19:57:48 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/02 19:15:18 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 #include "utils.h"
 #include "parse.h"
 #include "utils.h"
+
+void	debug_grid(char **grid)
+{
+	for (int i = 0; grid[i] != NULL; i++) {
+			printf("%s\n", grid[i]);
+	}
+}
 
 int	main(int argc, char **argv)
 {

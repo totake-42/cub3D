@@ -49,7 +49,7 @@ void	rotate_left(t_cub3d *app);
 void	rotate_right(t_cub3d *app);
 
 /* render utils */
-int		init_player(t_player	*player);
+int		init_player(t_player *player, t_map *map_data);
 void	init_ray(t_player *player, t_ray *ray, int x, int width);
 void	init_sidedist(t_player *player, t_ray *ray);
 void	calc_drawline(t_ray *ray, t_cub3d *app);

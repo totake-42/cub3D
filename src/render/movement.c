@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 16:54:14 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/02/27 20:01:01 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/02 19:27:01 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	move_forward(t_cub3d *app)
 	app->time = get_time();
 	frametime = app->time - oldtime;
 	move_speed = frametime * 5.0; // 5.0 is random.
-	if (app->map_data->grid[(int)(app->player.pos_x + app->player.dir_x * move_speed)][(int)app->player.pos_y] == '0')
+	if (app->map_data->grid[(int)app->player.pos_y][(int)(app->player.pos_x + app->player.dir_x * move_speed)] == '0')
 		app->player.pos_x = app->player.pos_x + app->player.dir_x * move_speed;
-	if (app->map_data->grid[(int)(app->player.pos_x)][(int)(app->player.pos_y + app->player.dir_y * move_speed)] == '0')
+	if (app->map_data->grid[(int)(app->player.pos_y + app->player.dir_y * move_speed)][(int)(app->player.pos_x)] == '0')
 		app->player.pos_y = app->player.pos_y + app->player.dir_y * move_speed; 
 }
 
@@ -44,9 +44,9 @@ void	move_backward(t_cub3d *app)
 	app->time = get_time();
 	frametime = app->time - oldtime;
 	move_speed = frametime * 5.0; // 5.0 is random.
-	if (app->map_data->grid[(int)(app->player.pos_x - app->player.dir_x * move_speed)][(int)app->player.pos_y] == '0')
+	if (app->map_data->grid[(int)app->player.pos_y][(int)(app->player.pos_x - app->player.dir_x * move_speed)] == '0')
 		app->player.pos_x = app->player.pos_x - app->player.dir_x * move_speed;
-	if (app->map_data->grid[(int)(app->player.pos_x)][(int)(app->player.pos_y - app->player.dir_y * move_speed)] == '0')
+	if (app->map_data->grid[(int)(app->player.pos_y - app->player.dir_y * move_speed)][(int)(app->player.pos_x)] == '0')
 		app->player.pos_y = app->player.pos_y - app->player.dir_y * move_speed; 
 }
 

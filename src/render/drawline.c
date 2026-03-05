@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 19:05:17 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/02/27 19:48:55 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/05 18:49:22 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@ void	put_pixel(t_minilibx *view, int x, int y, int color)
 	{
 		dst[0] = (color >> 16) & 0xFF;
 		dst[1] = (color >> 8) & 0xFF;
-		dst[2] = (color)&0xFF;
+		dst[2] = (color) & 0xFF;
 		dst[3] = 0;
 	}	
 }
+
+#include <stdio.h>
 
 void	drawline(t_cub3d *app, t_ray *ray, int x)
 {

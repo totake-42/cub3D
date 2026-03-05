@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 16:14:58 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/02/27 20:00:23 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/02 19:24:39 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	dda_loop(t_ray *ray, t_cub3d *app)
 		// map が外に出ているかどうかを判定する関数が欲しい。
 		if (is_inmap(ray, app->map_data) == false)
 			return (false);
-		if (app->map_data->grid[(int)ray->map_x][(int)ray->map_y] == '1')
+		if (app->map_data->grid[(int)ray->map_y][(int)ray->map_x] == '1')
 		{
 			hit = 1;
 			break ;

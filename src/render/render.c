@@ -6,13 +6,14 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 19:24:10 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/02/27 19:56:22 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/05 18:49:55 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include <stddef.h>
 #include <math.h>
+#include "libft.h"
 
 #include "cub3d.h"
 #include "status.h"
@@ -35,8 +36,6 @@ int	render(void *param)
 	if (param == NULL)
 		return (-1);
 	app = (t_cub3d *)param;
-	if (init_player(&(app->player)) == STATUS_ERROR)
-		return (-1);
 	if (render_loop(app) == STATUS_ERROR)
 		return (-1);
 	return (0);
@@ -44,6 +43,8 @@ int	render(void *param)
 
 static t_status	render_loop(t_cub3d *app)
 {
+	mlx_clear_window(app->view->mlx_ptr, app->view->win_ptr);
+	ft_bzero(app->view->data_addr, app->view->size_line * app->view->win_height);
 	pixel_loop(app);	
 	// put_image
 	mlx_put_image_to_window(app->view->mlx_ptr, app->view->win_ptr, app->view->img_ptr, 0, 0);
@@ -61,15 +62,15 @@ static	void	pixel_loop(t_cub3d *app)
 		init_ray(&(app->player), &ray, x, app->view->win_width);
 		init_sidedist(&(app->player), &ray);
 		// calculate perp wall distance
-		if (dda_loop(&(app->player), &ray, app) == true)
+		if (dda_loop(&ray, app) == true)
 		{
 			calc_drawline(&ray, app);
 			// 一旦色は白のみにする
-			ray.wall_color = 0x00;
+			ray.wall_color = 0xFFFFFF;
 		}
 		else
 		{
-			ray.wall_color = 0xFF;	
+			ray.wall_color = 0x000000;	
 		}
 		drawline(app, &ray, x);
 			// colorを黑にする。

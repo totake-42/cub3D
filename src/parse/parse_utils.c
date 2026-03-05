@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 18:55:38 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/25 15:11:49 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/02 20:34:13 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,20 @@
 #include "status.h"
 #include "utils.h"
 
+#include <stdio.h>
 char	**duplicate_file_lines(const char **file_lines, int grid_height)
 {
 	char	**file_lines_cpy;
 	char	**tmp;
 
-	file_lines_cpy = ft_calloc(sizeof(char *), (grid_height + 1));
+	file_lines_cpy = ft_calloc((grid_height + 1), sizeof(char *));
 	if (file_lines_cpy == NULL)
 	{
 		ft_putendl_fd(ERROR_MALLOC, STDERR_FILENO);
 		return (NULL);
 	}
+	while (*file_lines != NULL && **file_lines == '\0')
+		file_lines++;
 	tmp = file_lines_cpy;
 	while (*file_lines != NULL)
 	{
@@ -39,5 +42,6 @@ char	**duplicate_file_lines(const char **file_lines, int grid_height)
 		file_lines_cpy++;
 		file_lines++;
 	}
+	*file_lines_cpy = NULL;
 	return (tmp);
 }

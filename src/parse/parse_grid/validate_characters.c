@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_characters.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 14:06:45 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/06 17:57:13 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/02/27 20:39:26 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_status	validate_characters(const char **file_lines)
 		{
 			if (is_valid_character(*line) == false)
 				return (STATUS_ERROR);
+			line++;
 		}
 		file_lines++;
 	}
