@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:13:55 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/02/27 19:59:56 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/05 19:46:22 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@
 # define KEY_ESC 65307
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
+
+/**
+ * @def
+ * @brief movement speeds
+ */
+# define MOVE_SPEED 0.5;
+# define ROTATE_SPEED 0.5;
 
 /* render loop */
 int		render(void *param);
