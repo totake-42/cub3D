@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 13:45:45 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/05 14:07:08 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/02/25 14:52:26 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	free_map(t_map **map_data)
 	if (map_data == NULL || *map_data == NULL)
 		return ;
 	grid = (*map_data)->grid;
-	while (*grid == NULL)
+	while (*grid != NULL)
 	{
-		free(grid);
+		free(*grid);
 		grid++;
 	}
 	free((*map_data)->grid);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:07:34 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/06 16:55:46 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/03/02 19:15:18 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,17 @@
 
 #include "cub3d.h"
 #include "init.h"
+#include "execute.h"
 #include "utils.h"
 #include "parse.h"
 #include "utils.h"
+
+void	debug_grid(char **grid)
+{
+	for (int i = 0; grid[i] != NULL; i++) {
+			printf("%s\n", grid[i]);
+	}
+}
 
 int	main(int argc, char **argv)
 {
@@ -31,6 +39,9 @@ int	main(int argc, char **argv)
 	}
 	app.map_data = NULL;
 	app.view = NULL;
+	app.time = get_time();
+	if (app.time == -1)
+		return (EXIT_FAILURE);
 	if (parse_map(&app, argv[1]) == STATUS_ERROR)
 		return (EXIT_FAILURE);
 	if (init_view(&app) == STATUS_ERROR)
@@ -38,5 +49,7 @@ int	main(int argc, char **argv)
 		free_map(&(app.map_data));
 		return (EXIT_FAILURE);
 	}
+	if (execute_game(&app) == STATUS_ERROR)
+		exit_cub3d(&app, EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

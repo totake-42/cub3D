@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:18:19 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/06 13:03:40 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/02/27 19:28:37 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ typedef struct s_minilibx
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;
-
 }	t_minilibx;
 
 typedef struct s_map
@@ -74,11 +73,41 @@ typedef struct s_map
 	int		player_dir;
 }	t_map;
 
+typedef	struct s_player
+{
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+}	t_player;
+
+typedef struct s_ray
+{
+	double	camera_x;
+	double	raydir_x;
+	double	raydir_y;
+	double	map_x;
+	double	map_y;
+	double	sidedist_x;
+	double	sidedist_y;
+	double	deltadist_x;
+	double	deltadist_y;
+	double	perpwall_dist;
+	int		step_x;
+	int		step_y;
+	int		draw_start;
+	int		draw_end;
+	int		wall_color;
+}	t_ray;
+
 typedef struct s_cub3d
 {
 	t_minilibx	*view;
 	t_map		*map_data;
-
+	t_player	player;
+	double		time;
 }	t_cub3d;
 
 #endif
