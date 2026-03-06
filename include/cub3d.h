@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:18:19 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/27 19:28:37 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/05 21:31:15 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@
 
 /* Mallox error */
 # define ERROR_MALLOC "Error\nmalloc failed"
+
+/**
+ * @def
+ * @brief texture settings
+ */
+# define TEXTURE_NUM 4
 
 typedef struct s_minilibx
 {
@@ -102,11 +108,19 @@ typedef struct s_ray
 	int		wall_color;
 }	t_ray;
 
+typedef struct s_texture
+{
+	void	*img_ptr;
+	int		width;
+	int		height;
+}	t_texture;
+
 typedef struct s_cub3d
 {
 	t_minilibx	*view;
 	t_map		*map_data;
 	t_player	player;
+	t_texture	texture[4];
 	double		time;
 }	t_cub3d;
 
