@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:18:19 by itakumi           #+#    #+#             */
-/*   Updated: 2026/03/05 21:31:15 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/06 13:27:19 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,15 @@
  */
 # define TEXTURE_NUM 4
 
+typedef enum e_dir
+{
+	NORTH = 0,
+	SOUTH,
+	EAST,
+	WEST,
+	DIR_COUNT
+}	t_dir;
+
 typedef struct s_minilibx
 {
 	void	*mlx_ptr;
@@ -68,6 +77,7 @@ typedef struct s_map
 	char	*south_tex_path;
 	char	*west_tex_path;
 	char	*east_tex_path;
+	char	*texture_pathes[DIR_COUNT];
 	int		floor_color[3];
 	int		ceiling_color[3];
 
@@ -108,9 +118,15 @@ typedef struct s_ray
 	int		wall_color;
 }	t_ray;
 
+
+
 typedef struct s_texture
 {
 	void	*img_ptr;
+	char	*data_addr;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
 	int		width;
 	int		height;
 }	t_texture;
@@ -120,7 +136,7 @@ typedef struct s_cub3d
 	t_minilibx	*view;
 	t_map		*map_data;
 	t_player	player;
-	t_texture	texture[4];
+	t_texture	texture[DIR_COUNT];
 	double		time;
 }	t_cub3d;
 
