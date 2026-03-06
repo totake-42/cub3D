@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:18:19 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/27 19:28:37 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/06 13:41:31 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,15 @@
 /* Mallox error */
 # define ERROR_MALLOC "Error\nmalloc failed"
 
+typedef enum e_dir
+{
+	NORTH = 0,
+	SOUTH,
+	EAST,
+	WEST,
+	DIR_COUNT
+}	t_dir;
+
 typedef struct s_minilibx
 {
 	void	*mlx_ptr;
@@ -58,10 +67,7 @@ typedef struct s_minilibx
 
 typedef struct s_map
 {
-	char	*north_tex_path;
-	char	*south_tex_path;
-	char	*west_tex_path;
-	char	*east_tex_path;
+	char	*texture_pathes[DIR_COUNT];
 	int		floor_color[3];
 	int		ceiling_color[3];
 
