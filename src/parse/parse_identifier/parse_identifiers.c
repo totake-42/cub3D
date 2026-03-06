@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 13:50:15 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/24 14:45:50 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/02/27 20:43:21 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,15 @@ t_status	parse_identifiers(const char ***file_lines, t_map *map_data)
 	if (file_lines == NULL || *file_lines == NULL || map_data == NULL)
 		return (STATUS_ERROR);
 	set_count = 0;
-	while (**file_lines != NULL && set_count <= g_config_table_len)
+	while (**file_lines != NULL && set_count < g_config_table_len)
 	{
 		line = **file_lines;
 		if (ft_strequal(line, "") == false)
 		{
 			if (process_config_line(line, map_data, &set_count) == STATUS_ERROR)
+			{
 				return (STATUS_ERROR);
+			}
 		}
 		(*file_lines)++;
 	}

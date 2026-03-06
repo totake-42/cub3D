@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_view.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:33:06 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/04 17:58:50 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/02/27 21:34:40 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static t_status	set_window(t_minilibx *view)
 		view->win_width = screen_width;
 		view->win_height = screen_height;
 	}
+	view->title = "cub3d";
 	view->win_ptr = mlx_new_window(view->mlx_ptr, \
 		view->win_width, view->win_height, view->title);
 	if (view->win_ptr == NULL)
@@ -82,6 +83,7 @@ static t_status	set_data_addr(t_minilibx *view)
 	return (STATUS_OK);
 }
 
+#include <stdio.h>
 t_status	init_view(t_cub3d *app)
 {
 	if (app == NULL || set_mlx(app) == STATUS_ERROR)

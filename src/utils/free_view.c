@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_view.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 10:38:20 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/04 10:52:58 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/03/02 20:17:26 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	free_view(t_minilibx **view)
 		mlx_destroy_image((*view)->mlx_ptr, (*view)->img_ptr);
 		(*view)->img_ptr = NULL;
 	}
-	mlx_loop_end(*view);
+	mlx_loop_end((*view)->mlx_ptr);
 	if ((*view)->win_ptr != NULL)
 	{
 		mlx_destroy_window((*view)->mlx_ptr, (*view)->win_ptr);
