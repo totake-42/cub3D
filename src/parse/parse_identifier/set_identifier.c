@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_identifier.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:44:18 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/09 14:39:46 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/03/08 22:15:37 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,15 @@ static size_t	find_target_index(const char *hex, char target)
 // if (*value != '\0' || *value != '\n')
 // 	return (STATUS_ERROR);
 // それ以降に文字があったら、
+
+#include <stdio.h>
 t_status	set_layer_color(t_map *map_data, size_t offset, const char *value)
 {
 	int		len;
 	int		*target_ptr;
 	int		i;
 
-	target_ptr = (int *)((int *)map_data + offset);
+	target_ptr = (int *)((char *)map_data + offset);
 	i = 0;
 	while (i < 3)
 	{

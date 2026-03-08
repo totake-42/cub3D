@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 13:50:15 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/27 20:43:21 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/08 22:15:36 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ const char *line, t_map *map_data, int *set_count)
 		print_error((char *)line, ERROR_INVALID_IDENTIFIER_VALUE);
 		return (STATUS_ERROR);
 	}
-	if (g_config_table[idx].func(map_data, idx, line) == STATUS_ERROR)
+	if (g_config_table[idx].func(map_data, g_config_table[idx].offset, line) == STATUS_ERROR)
 		return (STATUS_ERROR);
 	return (STATUS_OK);
 }
