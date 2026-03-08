@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:07:34 by itakumi           #+#    #+#             */
-/*   Updated: 2026/03/02 19:15:18 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/08 20:09:41 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	if (parse_map(&app, argv[1]) == STATUS_ERROR)
 		return (EXIT_FAILURE);
+	for (int i = 0; i < DIR_COUNT; i++)
+	{
+		printf("%s\n", app.map_data->texture_pathes[i]);
+	}
 	if (init_view(&app) == STATUS_ERROR)
 	{
 		free_map(&(app.map_data));

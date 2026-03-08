@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:32:11 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/25 13:42:15 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/08 20:08:05 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_status	validate_walls(const char **file_lines, t_map *map_data);
 
 /* parse identifiers */
 t_status	parse_identifiers(const char ***file_lines, t_map *map_data);
-t_status	set_texture_path(t_map *map_data, size_t offset, const char *value);
+t_status	set_texture_path(t_map *map_data, size_t dir, const char *value);
 t_status	set_layer_color(t_map *map_data, size_t offset, const char *value);
 
 /* parse utils */

@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 13:50:15 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/27 20:43:21 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/08 20:06:57 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@
 
 static t_element_config	g_config_table[] = {
 {.identifier = "NO", .is_set = false, \
-	.func = set_texture_path, .offset = offsetof(t_map, north_tex_path)},
+	.func = set_texture_path, .offset = NORTH},
 {.identifier = "SO", .is_set = false, \
-	.func = set_texture_path, .offset = offsetof(t_map, south_tex_path)},
+	.func = set_texture_path, .offset = SOUTH},
 {.identifier = "WE", .is_set = false, \
-	.func = set_texture_path, .offset = offsetof(t_map, west_tex_path)},
+	.func = set_texture_path, .offset = WEST},
 {.identifier = "EA", .is_set = false, \
-	.func = set_texture_path, .offset = offsetof(t_map, east_tex_path)},
+	.func = set_texture_path, .offset = EAST},
 {.identifier = "F", .is_set = false, \
 	.func = set_layer_color, .offset = offsetof(t_map, floor_color)},
 {.identifier = "C", .is_set = false, \
@@ -86,7 +86,7 @@ const char *line, t_map *map_data, int *set_count)
 		print_error((char *)line, ERROR_INVALID_IDENTIFIER_VALUE);
 		return (STATUS_ERROR);
 	}
-	if (g_config_table[idx].func(map_data, idx, line) == STATUS_ERROR)
+	if (g_config_table[idx].func(map_data, g_config_table[idx].offset, line) == STATUS_ERROR)
 		return (STATUS_ERROR);
 	return (STATUS_OK);
 }

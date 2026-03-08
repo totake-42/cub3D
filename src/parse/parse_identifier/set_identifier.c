@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_identifier.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:44:18 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/09 14:39:46 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/03/08 20:08:58 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,17 +91,13 @@ t_status	set_layer_color(t_map *map_data, size_t offset, const char *value)
 // value ポインタ以降の文字列をすべて受け取るようにする
 // ただし、改行は抜く
 // FIX ME
-t_status	set_texture_path(t_map *map_data, size_t offset, const char *value)
+t_status	set_texture_path(t_map *map_data, size_t offset , const char *value)
 {
-	size_t	len;
-	char	**target_ptr;
+	t_dir	dir;
 
-	target_ptr = (char **)((char *)map_data + offset);
-	len = 0;
-	while (value[len] != '\0')
-		len++;
-	*target_ptr = ft_strndup(value, len);
-	if (*target_ptr == NULL)
+	dir = (t_dir)offset;
+	map_data->texture_pathes[dir] = ft_strdup(value);
+	if (map_data->texture_pathes[dir] == NULL)
 		return (STATUS_ERROR);
 	return (STATUS_OK);
 }
