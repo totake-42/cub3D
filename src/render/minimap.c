@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 22:46:54 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/03/11 22:47:24 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/11 22:50:17 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 #include "cub3d.h"
 
-void	minimap(t_cub3d *app)
+void	render_minimap(t_cub3d *app)
 {
-
+	int	dx;
+	int	dy;
+	
+	dx =
 }

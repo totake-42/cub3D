@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:18:19 by itakumi           #+#    #+#             */
-/*   Updated: 2026/03/11 16:50:11 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/11 22:51:40 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,6 @@ typedef struct s_ray
 	int		wall_color;
 }	t_ray;
 
-
-
 typedef struct s_texture
 {
 	void	*img_ptr;
@@ -130,12 +128,19 @@ typedef struct s_texture
 	int		height;
 }	t_texture;
 
+typedef struct s_minimap
+{
+	int	width;
+	int	height;
+}	t_minimap;
+
 typedef struct s_cub3d
 {
 	t_minilibx	*view;
 	t_map		*map_data;
 	t_player	player;
 	t_texture	texture[DIR_COUNT];
+	t_minimap	minimap;
 	double		time;
 }	t_cub3d;
 
