@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 16:03:18 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/03/02 19:18:26 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/11 16:49:52 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,11 @@ void	init_sidedist(t_player *player, t_ray *ray)
 
 void	calc_drawline(t_ray *ray, t_cub3d *app)
 {
-	int	line_height;
-
-	line_height = (int)(app->view->win_height / ray->perpwall_dist);
-	ray->draw_start = -line_height / 2 + app->view->win_height / 2;
+	ray->line_height = (int)(app->view->win_height / ray->perpwall_dist);
+	ray->draw_start = -ray->line_height / 2 + app->view->win_height / 2;
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;
-	ray->draw_end = line_height / 2 + app->view->win_height / 2;
+	ray->draw_end = ray->line_height / 2 + app->view->win_height / 2;
 	if (ray->draw_end >= app->view->win_height)
 		ray->draw_end = app->view->win_height - 1;	
 }

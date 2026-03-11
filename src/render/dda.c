@@ -6,20 +6,20 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 16:14:58 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/03/02 19:24:39 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/11 16:45:09 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 #include "cub3d.h"
+#include "render.h"
 
 static bool	is_inmap(t_ray *ray, t_map *map_data);
 
 bool	dda_loop(t_ray *ray, t_cub3d *app)
 {
 	int	hit;
-	int	side;
 
 	hit = 0;
 	while (hit == 0)	
@@ -28,13 +28,13 @@ bool	dda_loop(t_ray *ray, t_cub3d *app)
 		{
 			ray->sidedist_x += ray->deltadist_x;
 			ray->map_x += ray->step_x;
-			side = 0;
+			ray->side = 0;
 		}
 		else
 		{
 			ray->sidedist_y += ray->deltadist_y;
 			ray->map_y += ray->step_y;
-			side = 1;
+			ray->side = 1;
 		}
 
 		// map が外に出ているかどうかを判定する関数が欲しい。
@@ -46,10 +46,23 @@ bool	dda_loop(t_ray *ray, t_cub3d *app)
 			break ;
 		}
 	}
-	if (side == 0)
+	if (ray->side == 0)
+	{
+		if (ray->raydir_x > 0)
+			ray->dir = WEST;
+		else
+			ray->dir = EAST;
 		ray->perpwall_dist = (ray->sidedist_x - ray->deltadist_x);
+	}
 	else
+	{
+		if (ray->raydir_y > 0)
+			ray->dir = NORTH;
+		else
+			ray->dir = SOUTH;
 		ray->perpwall_dist = (ray->sidedist_y - ray->deltadist_y);	
+	}
+	calc_drawline(ray, app);
 	return (true);
 }
 
