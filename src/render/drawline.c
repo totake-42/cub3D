@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 19:05:17 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/03/09 00:15:05 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/11 16:37:37 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	drawline(t_cub3d *app, t_ray *ray, int x)
 	while (y <= ray->draw_end)
 	{
 		// texture画像から色のピクセル座標を決定する。
+		int	tex_x =	(int)(ray->map_x * (double)app->texture[SOUTH])
 		put_pixel(app->view, x, y, ray->wall_color);
         y++;
 	}
