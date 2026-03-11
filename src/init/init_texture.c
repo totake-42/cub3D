@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   texture.c                                          :+:      :+:    :+:   */
+/*   init_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 20:21:11 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/03/06 13:30:08 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/11 17:28:42 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ t_status	set_texture_image(t_cub3d *app)
 			clear_image_ptr(app, i);
 			return (STATUS_ERROR);
 		}
+		i++;
 	}
 	return (STATUS_OK);
 }

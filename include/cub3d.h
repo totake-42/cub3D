@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:18:19 by itakumi           #+#    #+#             */
-/*   Updated: 2026/03/11 16:40:13 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/11 16:50:11 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,9 @@ typedef struct s_ray
 	double	deltadist_x;
 	double	deltadist_y;
 	int		side;
+	t_dir	dir;
 	double	perpwall_dist;
+	int		line_height;
 	int		step_x;
 	int		step_y;
 	int		draw_start;

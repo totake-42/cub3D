@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 16:14:58 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/03/11 16:40:34 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/11 16:45:09 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,21 @@ bool	dda_loop(t_ray *ray, t_cub3d *app)
 		}
 	}
 	if (ray->side == 0)
+	{
+		if (ray->raydir_x > 0)
+			ray->dir = WEST;
+		else
+			ray->dir = EAST;
 		ray->perpwall_dist = (ray->sidedist_x - ray->deltadist_x);
+	}
 	else
+	{
+		if (ray->raydir_y > 0)
+			ray->dir = NORTH;
+		else
+			ray->dir = SOUTH;
 		ray->perpwall_dist = (ray->sidedist_y - ray->deltadist_y);	
+	}
 	calc_drawline(ray, app);
 	return (true);
 }
