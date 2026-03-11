@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 10:38:20 by itakumi           #+#    #+#             */
-/*   Updated: 2026/03/02 20:17:26 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/11 20:24:57 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	free_view(t_minilibx **view)
 	if ((*view)->mlx_ptr != NULL)
 	{
 		mlx_destroy_display((*view)->mlx_ptr);
+		free((*view)->mlx_ptr);
 		(*view)->mlx_ptr = NULL;
 	}
 	free(*view);

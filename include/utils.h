@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:35:22 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/25 15:11:13 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/11 20:22:40 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 void	free_view(t_minilibx **view);
 void	exit_cub3d(t_cub3d *cub3d, int exit_status);
 void	free_map(t_map **map_data);
+void	free_texture(t_cub3d *app);
 
 /* general utils */
 void	free_array(void **array);

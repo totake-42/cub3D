@@ -1,41 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_map.c                                         :+:      :+:    :+:   */
+/*   free_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/04 13:45:45 by itakumi           #+#    #+#             */
-/*   Updated: 2026/03/11 20:28:24 by tigarashi        ###   ########.fr       */
+/*   Created: 2026/03/11 18:27:22 by tigarashi         #+#    #+#             */
+/*   Updated: 2026/03/11 20:30:56 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "libft.h"
+#include "mlx.h"
+#include <stddef.h>
 
 #include "cub3d.h"
 
-void	free_map(t_map **map_data)
+void	free_texture(t_cub3d *app)
 {
-	char	**grid;
-	int		i;
+	int	i;
 
-	if (map_data == NULL || *map_data == NULL)
+	if (app == NULL)
 		return ;
-	grid = (*map_data)->grid;
-	while (*grid != NULL)
-	{
-		free(*grid);
-		grid++;
-	}
-	free((*map_data)->grid);
-	(*map_data)->grid = NULL;
 	i = 0;
 	while (i < DIR_COUNT)
 	{
-		free((*map_data)->texture_pathes[i]);
+		mlx_destroy_image(app->view->mlx_ptr, app->texture[i].img_ptr);
 		i++;
 	}
-	free(*map_data);
-	*map_data = NULL;
 }

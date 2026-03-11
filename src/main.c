@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:07:34 by itakumi           #+#    #+#             */
-/*   Updated: 2026/03/11 17:26:42 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/11 18:26:25 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ int	main(int argc, char **argv)
 		exit_cub3d(&app, EXIT_FAILURE);
 	if (execute_game(&app) == STATUS_ERROR)
 		exit_cub3d(&app, EXIT_FAILURE);
+	exit_cub3d(&app, EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
 }

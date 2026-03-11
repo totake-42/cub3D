@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:29:12 by itakumi           #+#    #+#             */
-/*   Updated: 2026/03/08 22:08:05 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/11 20:30:25 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ t_status	parse_map(t_cub3d *app, const char *input_file)
 		free_array((void **)file_lines_temp);
 		return (STATUS_ERROR);
 	}
+	free_array((void **)file_lines_temp);
 	return (STATUS_OK);
 }
 
