@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 19:05:17 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/03/12 01:33:11 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/12 01:48:04 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,11 @@ void	draw_texture_wall(t_cub3d *app, t_ray *ray, int x)
 		wall_x = app->player.pos_x + ray->perpwall_dist * ray->raydir_x;
 	wall_x -= floor(wall_x);
 	tex_x =	(int)(wall_x * (double)app->texture[ray->dir].width);
+	// 反転対策をする
+	if (ray->dir == NORTH)
+		tex_x = app->texture[ray->dir].width - tex_x - 1;
+	if (ray->dir == WEST)
+		tex_x = app->texture[ray->dir].width - tex_x - 1;
 	step = 1.0 * app->texture[ray->dir].height / ray->line_height;
 	tex_pos = (ray->draw_start - app->view->win_height / 2 + ray->line_height / 2) * step;
 
