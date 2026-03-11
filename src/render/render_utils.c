@@ -6,11 +6,12 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 16:03:18 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/03/11 16:49:52 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/11 23:31:17 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
+#include "libft.h"
 
 #include "cub3d.h" 
 #include "status.h"
@@ -80,4 +81,30 @@ void	calc_drawline(t_ray *ray, t_cub3d *app)
 	ray->draw_end = ray->line_height / 2 + app->view->win_height / 2;
 	if (ray->draw_end >= app->view->win_height)
 		ray->draw_end = app->view->win_height - 1;	
+}
+
+/**
+ * @fn is_inmap
+ * @brief This function check whether the ray is in the map.
+ * @param ( ray ) ray struct
+ * @return True or false.
+ */
+bool	is_inmap(int map_x, int map_y, t_map *map_data)
+{
+	int	row_len;
+
+	// y axis check
+	if (map_y < 0 || map_y >= map_data->grid_height)
+		return (false);
+	// x axis minus check
+	if (map_x < 0)
+		return (false);
+	row_len = ft_strlen(map_data->grid[map_y]);
+	// x axis len check
+	if (map_x >= row_len)
+		return (false);
+	// null character check
+	if (map_data->grid[map_y][map_x] == '\0')
+		return (false);
+	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:13:55 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/03/05 19:46:22 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/11 23:59:38 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,18 @@
 # define MOVE_SPEED 0.5;
 # define ROTATE_SPEED 0.5;
 
+/**
+ * @def
+ * @brief Minimap color
+ */
+# define MINIMAP_FLOOR_COLOR 0x00000000
+# define MINIMAP_WALL_COLOR 0xFFFFFFFF
+# define MINIMAP_DOOR_COLOR 0xFFFFFFFF
+# define MINIMAP_PLAYER_COLOR 0x00FF0000
+
 /* render loop */
 int		render(void *param);
+void	render_minimap(t_cub3d *app);
 
 /* event handler */
 int	handle_keypress(int keycode, t_cub3d *app);
@@ -46,6 +56,7 @@ bool	dda_loop(t_ray *ray, t_cub3d *app);
 /* draw line */
 void	drawline(t_cub3d *app, t_ray *ray, int x);
 void	put_pixel(t_minilibx *view, int x, int y, int color);
+void	put_pixel_three_color(t_minilibx *view, int x, int y, int color[static 3]);
 
 /* movement */
 void	move_forward(t_cub3d *app);
@@ -60,5 +71,6 @@ int		init_player(t_player *player, t_map *map_data);
 void	init_ray(t_player *player, t_ray *ray, int x, int width);
 void	init_sidedist(t_player *player, t_ray *ray);
 void	calc_drawline(t_ray *ray, t_cub3d *app);
+bool	is_inmap(int map_x, int map_y, t_map *map_data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:07:34 by itakumi           #+#    #+#             */
-/*   Updated: 2026/03/11 18:26:25 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/11 23:25:14 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	main(int argc, char **argv)
 	}
 	if (set_texture_image(&app) == STATUS_ERROR)
 		exit_cub3d(&app, EXIT_FAILURE);
+	init_minimap(&app);
 	if (execute_game(&app) == STATUS_ERROR)
 		exit_cub3d(&app, EXIT_FAILURE);
 	exit_cub3d(&app, EXIT_SUCCESS);

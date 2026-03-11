@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:18:19 by itakumi           #+#    #+#             */
-/*   Updated: 2026/03/11 22:51:40 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/11 23:54:49 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include <stdbool.h>
+# include <stddef.h>
 
 /* Argument error */
 # define ERROR_ARGC "Error\nUsage: ./cub3D <map_file>"
@@ -130,8 +131,13 @@ typedef struct s_texture
 
 typedef struct s_minimap
 {
-	int	width;
-	int	height;
+	int		width;
+	int		height;
+	int		offset_width;
+	int		offset_height;
+	int		tile_size;
+	double	map_center_x;
+	double	map_center_y;
 }	t_minimap;
 
 typedef struct s_cub3d

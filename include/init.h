@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 13:39:07 by itakumi           #+#    #+#             */
-/*   Updated: 2026/03/11 17:25:49 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/11 23:24:22 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,14 @@
 # include "cub3d.h"
 # include "status.h"
 
+/**
+ * @def
+ * @brief MINIMAP OFFEST
+ */
+# define MINIMAP_OFFSET 5
+
 t_status	init_view(t_cub3d *app);
 t_status	set_texture_image(t_cub3d *app);
+void		init_minimap(t_cub3d *app);
 
 #endif

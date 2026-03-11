@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 19:24:10 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/03/11 16:18:42 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/11 23:19:05 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static t_status	render_loop(t_cub3d *app)
 	ft_bzero(app->view->data_addr, app->view->size_line * app->view->win_height);
 	pixel_loop(app);
 	// put_image
+	render_minimap(app);
 	mlx_put_image_to_window(app->view->mlx_ptr, app->view->win_ptr, app->view->img_ptr, 0, 0);
 	return (STATUS_OK);
 }

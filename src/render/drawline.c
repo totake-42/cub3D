@@ -6,13 +6,14 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 19:05:17 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/03/11 18:14:44 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/12 00:00:19 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include <math.h>
 
+#include "render.h"
 #include "cub3d.h"
 
 void	put_pixel(t_minilibx *view, int x, int y, int color)
