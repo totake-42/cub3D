@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:32:11 by itakumi           #+#    #+#             */
-/*   Updated: 2026/03/08 20:08:05 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/12 00:55:30 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,12 @@ typedef struct s_element_config
 	size_t		offset;
 }	t_element_config;
 
+typedef struct s_player_config
+{
+	char		*state;
+	void		(*func)(t_map *);
+}	t_player_config;
+
 /* main */
 t_status	parse_map(t_cub3d *app, const char *input_file);
 
@@ -66,6 +72,10 @@ t_status	parse_grid(const char **file_lines, t_map *map_data);
 t_status	validate_characters(const char **file_lines);
 t_status	validate_player(const char **file_lines, t_map *map_data);
 t_status	validate_walls(const char **file_lines, t_map *map_data);
+void		set_player_north(t_map *map_data);
+void		set_player_south(t_map *map_data);
+void		set_player_east(t_map *map_data);
+void		set_player_west(t_map *map_data);
 
 /* parse identifiers */
 t_status	parse_identifiers(const char ***file_lines, t_map *map_data);

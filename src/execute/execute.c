@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 15:47:39 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/03/11 18:15:33 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/12 00:10:17 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ t_status	execute_game(t_cub3d *app)
 
 	if (app == NULL)
 		return (STATUS_ERROR);
-	if (init_player(&(app->player), app->map_data) == STATUS_ERROR)
-		return (STATUS_ERROR);
+	init_player(&(app->player), app->map_data);
 	param = (void *)app;
 	mlx_loop_hook(app->view->mlx_ptr, render, param);
 	// only windows

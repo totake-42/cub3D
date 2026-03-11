@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:13:55 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/03/11 23:59:38 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/12 01:26:59 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,17 @@ void	rotate_left(t_cub3d *app);
 void	rotate_right(t_cub3d *app);
 
 /* render utils */
-int		init_player(t_player *player, t_map *map_data);
+void	init_player(t_player *player, t_map *map_data);
 void	init_ray(t_player *player, t_ray *ray, int x, int width);
 void	init_sidedist(t_player *player, t_ray *ray);
 void	calc_drawline(t_ray *ray, t_cub3d *app);
 bool	is_inmap(int map_x, int map_y, t_map *map_data);
+
+/* init player utils */
+
+void	init_player_north(t_player *player);
+void	init_player_south(t_player *player);
+void	init_player_east(t_player *player);
+void	init_player_west(t_player *player);
 
 #endif

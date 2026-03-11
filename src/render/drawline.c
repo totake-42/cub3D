@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 19:05:17 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/03/12 00:00:19 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/12 01:33:11 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	put_pixel_three_color(t_minilibx *view, int x, int y, int color[static 3])
 	}
 }
 
-#include <stdio.h>
 void	draw_texture_wall(t_cub3d *app, t_ray *ray, int x)
 {
 	int		tex_x;

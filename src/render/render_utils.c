@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 16:03:18 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/03/11 23:31:17 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/12 01:24:30 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,6 @@
 
 #include "cub3d.h" 
 #include "status.h"
-
-int	init_player(t_player *player1, t_map *map_data)
-{
-	player1->pos_x = (double)map_data->player_x + 0.5;
-	player1->pos_y = (double)map_data->player_y + 0.5;
-	player1->dir_x = -1;
-	player1->dir_y = 0;
-	player1->plane_x = 0;
-	player1->plane_y = 0.66;
-	return (STATUS_OK);
-}
 
 void	init_ray(t_player *player, t_ray *ray, int x, int width)
 {

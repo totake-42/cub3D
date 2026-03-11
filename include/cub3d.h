@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:18:19 by itakumi           #+#    #+#             */
-/*   Updated: 2026/03/11 23:54:49 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/12 00:14:15 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ typedef struct s_map
 	int		grid_height;
 	int		player_x;
 	int		player_y;
-	int		player_dir;
+	int		player_dir_x;
+	int		player_dir_y;
 }	t_map;
 
 typedef	struct s_player
