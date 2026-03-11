@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 19:24:10 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/03/05 18:49:55 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/11 16:18:42 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static t_status	render_loop(t_cub3d *app)
 {
 	mlx_clear_window(app->view->mlx_ptr, app->view->win_ptr);
 	ft_bzero(app->view->data_addr, app->view->size_line * app->view->win_height);
-	pixel_loop(app);	
+	pixel_loop(app);
 	// put_image
 	mlx_put_image_to_window(app->view->mlx_ptr, app->view->win_ptr, app->view->img_ptr, 0, 0);
 	return (STATUS_OK);
@@ -61,21 +61,9 @@ static	void	pixel_loop(t_cub3d *app)
 	{
 		init_ray(&(app->player), &ray, x, app->view->win_width);
 		init_sidedist(&(app->player), &ray);
+		dda_loop(&ray, app);
 		// calculate perp wall distance
-		if (dda_loop(&ray, app) == true)
-		{
-			calc_drawline(&ray, app);
-			// 一旦色は白のみにする
-			ray.wall_color = 0xFFFFFF;
-		}
-		else
-		{
-			ray.wall_color = 0x000000;	
-		}
 		drawline(app, &ray, x);
-			// colorを黑にする。
-		// x = ?の線を引く。
 		x++;
 	}
-	
 }

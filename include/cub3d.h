@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:18:19 by itakumi           #+#    #+#             */
-/*   Updated: 2026/03/08 22:17:54 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/11 16:19:14 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,6 @@
 
 /* Mallox error */
 # define ERROR_MALLOC "Error\nmalloc failed"
-
-typedef enum e_dir
-{
-	NORTH = 0,
-	SOUTH,
-	EAST,
-	WEST,
-	DIR_COUNT
-}	t_dir;
 
 /**
  * @def

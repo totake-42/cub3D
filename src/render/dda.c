@@ -6,13 +6,14 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 16:14:58 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/03/02 19:24:39 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/11 16:19:46 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 #include "cub3d.h"
+#include "render.h"
 
 static bool	is_inmap(t_ray *ray, t_map *map_data);
 
@@ -50,6 +51,7 @@ bool	dda_loop(t_ray *ray, t_cub3d *app)
 		ray->perpwall_dist = (ray->sidedist_x - ray->deltadist_x);
 	else
 		ray->perpwall_dist = (ray->sidedist_y - ray->deltadist_y);	
+	calc_drawline(ray, app);
 	return (true);
 }
 
