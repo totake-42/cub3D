@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_player.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 14:08:40 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/06 18:58:55 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/03/12 01:00:50 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,41 @@
 #include "cub3d.h"
 #include "status.h"
 #include "parse.h"
+#include "utils.h"
+
+static const t_player_config	g_config_table[] = {
+{.state = "N", .func = set_player_north},
+{.state = "S", .func = set_player_south},
+{.state = "E", .func = set_player_east},
+{.state = "W", .func = set_player_west}
+};
+static const size_t	g_config_table_len = sizeof(g_config_table) / sizeof(g_config_table[0]);
 
 // playerが複数人いても対応できるようにする
 // 本当は、設定ファイルのような概念を用いて、playerの検証を行うのがよいのかも
-static bool	is_player_character(int c)
+static int	find_state_index(int c)
 {
-	const unsigned char	uc = (const unsigned char)c;
+	const  char uc[] = {c, '\0'};
+	size_t				i;
 
-	return (uc == 'N' || uc == 'S' || uc == 'E' || uc == 'W');
+	i = 0;
+	while (i < g_config_table_len)
+	{
+		if (ft_strequal(uc, g_config_table[i].state) == true)
+			return (i);
+		i++;
+	}
+	return (NOT_FOUND_IDENTIFIER);
+}
+
+static void	set_player_dir(t_map *map_data, int c)
+{
+	int					idx;
+
+	idx = find_state_index(c);
+	if (idx == NOT_FOUND_IDENTIFIER)
+		return ;
+	g_config_table[idx].func(map_data);
 }
 
 static t_status	process_validate_player(
@@ -33,7 +60,7 @@ const char *line, t_map *map_data, bool *is_set_player, int row_count)
 	line_temp = line;
 	while (*line != '\0')
 	{
-		if (is_player_character(*line) == true)
+		if (find_state_index(*line) != NOT_FOUND_IDENTIFIER)
 		{
 			if (*is_set_player == true)
 			{
@@ -42,6 +69,7 @@ const char *line, t_map *map_data, bool *is_set_player, int row_count)
 			}
 			map_data->player_x = line - line_temp;
 			map_data->player_y = row_count;
+			set_player_dir(map_data, *line);
 			*is_set_player = true;
 		}
 		line++;
