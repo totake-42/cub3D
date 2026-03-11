@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 16:54:14 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/03/05 19:47:57 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/03/11 20:34:57 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@ void	move_left(t_cub3d *app)
 	app->time = get_time();
 	frametime = app->time - oldtime;
 	move_speed = frametime * MOVE_SPEED; 
-	// dir の直交ベクトルを計算する（dirの-90度回転) 
-	if (app->map_data->grid[(int)(app->player.pos_y)][(int)(app->player.pos_x + app->player.dir_y * move_speed)] != '1')
-		app->player.pos_x = app->player.pos_x + app->player.dir_y * move_speed;
-	if (app->map_data->grid[(int)(app->player.pos_y - app->player.dir_x * move_speed)][(int)(app->player.pos_x)] != '1')
-		app->player.pos_y = app->player.pos_y - app->player.dir_x * move_speed;
+	// dir の直交ベクトルを計算する（dirの90度回転) 
+	if (app->map_data->grid[(int)(app->player.pos_y)][(int)(app->player.pos_x - app->player.dir_y * move_speed)] != '1')
+		app->player.pos_x = app->player.pos_x - app->player.dir_y * move_speed;
+	if (app->map_data->grid[(int)(app->player.pos_y + app->player.dir_x * move_speed)][(int)(app->player.pos_x)] != '1')
+		app->player.pos_y = app->player.pos_y + app->player.dir_x * move_speed;
 }
 
 void	move_right(t_cub3d *app)
@@ -77,12 +77,14 @@ void	move_right(t_cub3d *app)
 	app->time = get_time();
 	frametime = app->time - oldtime;
 	move_speed = frametime * MOVE_SPEED; 
-	// dir の直交ベクトルを計算する（dirの90度回転) 
-	if (app->map_data->grid[(int)(app->player.pos_y)][(int)(app->player.pos_x - app->player.dir_y * move_speed)] != '1')
-		app->player.pos_x = app->player.pos_x - app->player.dir_y * move_speed;
-	if (app->map_data->grid[(int)(app->player.pos_y + app->player.dir_x * move_speed)][(int)(app->player.pos_x)] != '1')
-		app->player.pos_y = app->player.pos_y + app->player.dir_x * move_speed;
+	// dir の直交ベクトルを計算する（dirの-90度回転) 
+	if (app->map_data->grid[(int)(app->player.pos_y)][(int)(app->player.pos_x + app->player.dir_y * move_speed)] != '1')
+		app->player.pos_x = app->player.pos_x + app->player.dir_y * move_speed;
+	if (app->map_data->grid[(int)(app->player.pos_y - app->player.dir_x * move_speed)][(int)(app->player.pos_x)] != '1')
+		app->player.pos_y = app->player.pos_y - app->player.dir_x * move_speed;
 }
+
+
 
 void	rotate_left(t_cub3d *app)
 {
