@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:18:19 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/21 16:41:39 by totake           ###   ########.fr       */
+/*   Updated: 2026/02/22 16:21:25 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,46 @@
 
 /* Mallox error */
 # define ERROR_MALLOC "Error\nmalloc failed"
+
+/* Texture error */
+# define ERROR_TEXTURE "Error\nfailed to load texture"
+
+/* Texture index */
+# define TEX_NORTH 0
+# define TEX_SOUTH 1
+# define TEX_WEST 2
+# define TEX_EAST 3
+# define TEX_COUNT 4
+
+typedef struct s_texture
+{
+	void		*img_ptr;
+	char		*data_addr;
+	int			width;
+	int			height;
+	int			bits_per_pixel;
+	int			size_line;
+	int			endian;
+}				t_texture;
+
+typedef struct s_ray_result
+{
+	double		perp_wall_dist;
+	double		wall_x;
+	int			side;
+	int			step_x;
+	int			step_y;
+	int			map_x;
+	int			map_y;
+}				t_ray_result;
+
+typedef struct s_draw_info
+{
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+	int			tex_x;
+}				t_draw_info;
 
 typedef struct s_player
 {
@@ -93,6 +133,7 @@ typedef struct s_cub3d
 	t_minilibx	*view;
 	t_map		*map_data;
 	t_player	player;
+	t_texture	textures[TEX_COUNT];
 }				t_cub3d;
 
 #endif

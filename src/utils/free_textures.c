@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_cub3d.c                                       :+:      :+:    :+:   */
+/*   free_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/27 13:35:02 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/22 16:21:33 by totake           ###   ########.fr       */
+/*   Created: 2026/02/22 12:00:00 by totake            #+#    #+#             */
+/*   Updated: 2026/02/22 16:20:55 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "utils.h"
-#include <stdlib.h>
+#include <mlx.h>
 
-// free cub3d structure and exit exit_status
-void	exit_cub3d(t_cub3d *cub3d, int exit_status)
+void	free_textures(t_cub3d *app)
 {
-	if (cub3d == NULL)
-		exit(exit_status);
-	free_textures(cub3d);
-	if (cub3d->view != NULL)
-		free_view(&(cub3d->view));
-	if (cub3d->map_data != NULL)
-		free_map(&(cub3d->map_data));
-	exit(exit_status);
+	int	i;
+
+	if (app == NULL || app->view == NULL || app->view->mlx_ptr == NULL)
+		return ;
+	i = 0;
+	while (i < TEX_COUNT)
+	{
+		if (app->textures[i].img_ptr != NULL)
+		{
+			mlx_destroy_image(app->view->mlx_ptr, app->textures[i].img_ptr);
+			app->textures[i].img_ptr = NULL;
+		}
+		i++;
+	}
 }

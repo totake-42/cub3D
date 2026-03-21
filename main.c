@@ -38,11 +38,18 @@ int	main(int argc, char **argv)
 		free_map(&(app.map_data));
 		return (EXIT_FAILURE);
 	}
+	if (init_textures(&app) == STATUS_ERROR)
+	{
+		free_view(&(app.view));
+		free_map(&(app.map_data));
+		return (EXIT_FAILURE);
+	}
 	init_player(&app);
 	mlx_loop_hook(app.view->mlx_ptr, game_loop, &app);
 	mlx_hook(app.view->win_ptr, 2, 1L << 0, handle_keypress, &app);
 	mlx_hook(app.view->win_ptr, 17, 0, handle_close, &app);
 	mlx_loop(app.view->mlx_ptr);
+	free_textures(&app);
 	free_view(&(app.view));
 	free_map(&(app.map_data));
 	return (EXIT_SUCCESS);

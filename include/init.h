@@ -16,6 +16,7 @@
 # include "status.h"
 
 t_status	init_view(t_cub3d *app);
+t_status	init_textures(t_cub3d *app);
 void		init_player(t_cub3d *app);
 
 #endif

@@ -17,6 +17,7 @@
 
 /* cub3d utils */
 void	free_view(t_minilibx **view);
+void	free_textures(t_cub3d *app);
 void	exit_cub3d(t_cub3d *cub3d, int exit_status);
 void	free_map(t_map **map_data);
 
