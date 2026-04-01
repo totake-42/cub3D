@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:33:06 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/20 13:49:05 by totake           ###   ########.fr       */
+/*   Updated: 2026/03/30 15:18:16 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ static t_status	set_window(t_minilibx *view)
 	int	screen_height;
 
 	view->title = "cub3D";
-	mlx_get_screen_size(view->mlx_ptr, &screen_width, &screen_height);
+	// mlx_get_screen_size(view->mlx_ptr, &screen_width, &screen_height);
+	// for mac os testing
+	screen_width = 1024;
+	screen_height = 768;
 	if (screen_width > DEFAULT_WIN_WIDTH && screen_height > DEFAULT_WIN_HEIGHT)
 	{
 		view->win_width = DEFAULT_WIN_WIDTH;
@@ -88,23 +91,24 @@ t_status	init_view(t_cub3d *app)
 		return (STATUS_ERROR);
 	if (set_window(app->view) == STATUS_ERROR)
 	{
-		mlx_destroy_display(app->view->mlx_ptr);
-		free(app->view->mlx_ptr);
+		// mlx_destroy_display(app->view->mlx_ptr);
+		// free(app->view->mlx_ptr);
+		mlx_destroy_window(app->view->mlx_ptr, app->view->win_ptr);
 		return (free(app->view), STATUS_ERROR);
 	}
 	if (set_image(app->view) == STATUS_ERROR)
 	{
 		mlx_destroy_window(app->view->mlx_ptr, app->view->win_ptr);
-		mlx_destroy_display(app->view->mlx_ptr);
-		free(app->view);
+		// mlx_destroy_display(app->view->mlx_ptr);
+		// free(app->view);
 		return (free(app->view->mlx_ptr), STATUS_ERROR);
 	}
 	if (set_data_addr(app->view) == STATUS_ERROR)
 	{
 		mlx_destroy_window(app->view->mlx_ptr, app->view->win_ptr);
-		mlx_destroy_image(app->view->mlx_ptr, app->view->img_ptr);
-		mlx_destroy_display(app->view->mlx_ptr);
-		free(app->view->mlx_ptr);
+		// mlx_destroy_image(app->view->mlx_ptr, app->view->img_ptr);
+		// mlx_destroy_display(app->view->mlx_ptr);
+		// free(app->view->mlx_ptr);
 		return (free(app->view), STATUS_ERROR);
 	}
 	return (STATUS_OK);

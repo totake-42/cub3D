@@ -6,7 +6,7 @@
 #    By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/26 10:45:00 by itakumi           #+#    #+#              #
-#    Updated: 2026/02/20 12:48:04 by totake           ###   ########.fr        #
+#    Updated: 2026/03/30 15:23:04 by totake           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ override	CFLAGS	= -Wall -Werror -Wextra -g
 
 M_FLAG				= -lm
 # Linux
-MLX_FLAGS			= -L $(DIR_MLX) -lmlx -lXext -lX11
+# MLX_FLAGS			= -L $(DIR_MLX) -lmlx -lXext -lX11
+# macOS
+MLX_FLAGS			= -L lib/minilibx -lmlx -framework OpenGL -framework AppKit
 
 override DIR_SRCS	= src
 override DIR_INCS	= include
@@ -32,7 +34,7 @@ INCS				+= -I $(DIR_MLX)
 
 OBJS				= $(SRCS:%.c=$(DIR_OBJS)/%.o)
 LIBS				= libft get_next_line get_next_line_no_nl
-						
+
 PATH_LIBS			= $(foreach LIB,$(LIBS),$(DIR_LIBS)/$(LIB))
 ARCH_LIBS			= $(foreach PATH_LIB,$(PATH_LIBS),$(PATH_LIB)/$(notdir $(PATH_LIB)).a)
 
@@ -49,15 +51,14 @@ $(NAME): $(ARCH_LIBS) $(LIB_MLX) $(OBJS)
 $(DIR_OBJS)/%.o: %.c
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
-	
+
 all: $(NAME)
 
 bonus: all
 
 clean: $(ARCH_LIBS:%=%__clean)
-	$(MAKE) clean -C $(DIR_MLX)
 	rm -rf $(DIR_OBJS)
-	
+
 fclean: clean $(ARCH_LIBS:%=%__fclean)
 	rm -f $(NAME)
 
@@ -85,10 +86,10 @@ $(LIB_MLX):
 		fi; \
 	fi
 	$(MAKE) all -C $(DIR_MLX)
-	
+
 %.a__clean:
 	$(MAKE) clean -C $(dir $@)
-	
+
 %.a__fclean:
 	$(MAKE) fclean -C $(dir $@)
 
