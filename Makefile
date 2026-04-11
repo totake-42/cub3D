@@ -57,6 +57,7 @@ all: $(NAME)
 bonus: all
 
 clean: $(ARCH_LIBS:%=%__clean)
+	$(MAKE) clean -C $(DIR_MLX)
 	rm -rf $(DIR_OBJS)
 
 fclean: clean $(ARCH_LIBS:%=%__fclean)

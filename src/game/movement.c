@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 10:00:00 by totake            #+#    #+#             */
-/*   Updated: 2026/04/01 17:43:56 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/11 18:12:30 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,10 @@ void	move_forward(t_cub3d *app)
 
 	new_x = app->player.pos_x + app->player.dir_x * MOVE_SPEED;
 	new_y = app->player.pos_y + app->player.dir_y * MOVE_SPEED;
-	if (app->map_data->grid[(int)new_y][(int)new_x] != '1')
-	{
+	if (app->map_data->grid[(int)app->player.pos_y][(int)new_x] != '1')
 		app->player.pos_x = new_x;
+	if (app->map_data->grid[(int)new_y][(int)app->player.pos_x] != '1')
 		app->player.pos_y = new_y;
-	}
 }
 
 /*
@@ -42,11 +41,10 @@ void	move_backward(t_cub3d *app)
 
 	new_x = app->player.pos_x - app->player.dir_x * MOVE_SPEED;
 	new_y = app->player.pos_y - app->player.dir_y * MOVE_SPEED;
-	if (app->map_data->grid[(int)new_y][(int)new_x] != '1')
-	{
+	if (app->map_data->grid[(int)app->player.pos_y][(int)new_x] != '1')
 		app->player.pos_x = new_x;
+	if (app->map_data->grid[(int)new_y][(int)app->player.pos_x] != '1')
 		app->player.pos_y = new_y;
-	}
 }
 
 /*
@@ -60,11 +58,10 @@ void	move_left(t_cub3d *app)
 
 	new_x = app->player.pos_x + app->player.dir_y * MOVE_SPEED;
 	new_y = app->player.pos_y - app->player.dir_x * MOVE_SPEED;
-	if (app->map_data->grid[(int)new_y][(int)new_x] != '1')
-	{
+	if (app->map_data->grid[(int)app->player.pos_y][(int)new_x] != '1')
 		app->player.pos_x = new_x;
+	if (app->map_data->grid[(int)new_y][(int)app->player.pos_x] != '1')
 		app->player.pos_y = new_y;
-	}
 }
 
 /*
@@ -78,9 +75,8 @@ void	move_right(t_cub3d *app)
 
 	new_x = app->player.pos_x - app->player.dir_y * MOVE_SPEED;
 	new_y = app->player.pos_y + app->player.dir_x * MOVE_SPEED;
-	if (app->map_data->grid[(int)new_y][(int)new_x] != '1')
-	{
+	if (app->map_data->grid[(int)app->player.pos_y][(int)new_x] != '1')
 		app->player.pos_x = new_x;
+	if (app->map_data->grid[(int)new_y][(int)app->player.pos_x] != '1')
 		app->player.pos_y = new_y;
-	}
 }
