@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 17:00:00 by totake            #+#    #+#             */
-/*   Updated: 2026/04/01 16:44:33 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/12 22:19:28 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@
  *      delta_dist_y = fabs(1 / ray_y)
  *
  *    example:
- *      ray_y = -1 → delta_dist_y = 1.0
+ *      ray_x = 0.5 → delta_dist_x = fabs(1 / 0.5) = 2.0
+ *      (1 step moves only 0.5 in X, so 2 steps needed to cross one grid line)
  *
  * 3. Determine step_x / step_y
  *    These indicate the direction in which the ray will step:
