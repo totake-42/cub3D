@@ -6,13 +6,13 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 10:38:20 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/14 19:18:20 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/14 19:30:18 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "libft.h"
-#include <mlx.h>
+#include "mlx.h"
 #include <stdlib.h>
 #include <unistd.h>
 
