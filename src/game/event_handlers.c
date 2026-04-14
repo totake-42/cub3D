@@ -27,10 +27,7 @@
 int	handle_keypress(int keycode, t_cub3d *app)
 {
 	if (keycode == KEY_ESC)
-	{
 		mlx_loop_end(app->view->mlx_ptr);
-		mlx_destroy_window(app->view->mlx_ptr, app->view->win_ptr);
-	}
 	else if (keycode == KEY_W)
 		move_forward(app);
 	else if (keycode == KEY_S)
@@ -53,6 +50,5 @@ int	handle_keypress(int keycode, t_cub3d *app)
 int	handle_close(t_cub3d *app)
 {
 	mlx_loop_end(app->view->mlx_ptr);
-	mlx_destroy_window(app->view->mlx_ptr, app->view->win_ptr);
 	return (0);
 }

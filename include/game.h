@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:00:00 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/01 17:44:14 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/14 20:31:10 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,13 @@
 # include "cub3d.h"
 
 // Key codes for X11 (Linux)
-// # define KEY_W 119
-// # define KEY_A 97
-// # define KEY_S 115
-// # define KEY_D 100
-// # define KEY_ESC 65307
-// # define KEY_LEFT 65361
-// # define KEY_RIGHT 65363
-
-// Key codes for macOS
-# define KEY_W 13
-# define KEY_A 0
-# define KEY_S 1
-# define KEY_D 2
-# define KEY_ESC 53
-# define KEY_LEFT 123
-# define KEY_RIGHT 124
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_ESC 65307
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
 
 // Movement and rotation speeds
 # define MOVE_SPEED 0.1
