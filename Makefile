@@ -6,7 +6,7 @@
 #    By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/26 10:45:00 by itakumi           #+#    #+#              #
-#    Updated: 2026/03/30 15:23:04 by totake           ###   ########.fr        #
+#    Updated: 2026/04/14 19:13:18 by totake           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,7 @@ override	CFLAGS	= -Wall -Werror -Wextra -g
 
 M_FLAG				= -lm
 # Linux
-# MLX_FLAGS			= -L $(DIR_MLX) -lmlx -lXext -lX11
-# macOS
-MLX_FLAGS			= -L lib/minilibx -lmlx -framework OpenGL -framework AppKit
+MLX_FLAGS			= -L $(DIR_MLX) -lmlx -lXext -lX11
 
 override DIR_SRCS	= src
 override DIR_INCS	= include

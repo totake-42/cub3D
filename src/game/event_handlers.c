@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:00:00 by itakumi           #+#    #+#             */
-/*   Updated: 2026/03/30 15:21:37 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/14 19:15:19 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	handle_keypress(int keycode, t_cub3d *app)
 {
 	if (keycode == KEY_ESC)
 	{
-		// mlx_loop_end(app->view->mlx_ptr);
+		mlx_loop_end(app->view->mlx_ptr);
 		mlx_destroy_window(app->view->mlx_ptr, app->view->win_ptr);
 	}
 	else if (keycode == KEY_W)
@@ -52,7 +52,7 @@ int	handle_keypress(int keycode, t_cub3d *app)
  */
 int	handle_close(t_cub3d *app)
 {
-	// mlx_loop_end(app->view->mlx_ptr);
+	mlx_loop_end(app->view->mlx_ptr);
 	mlx_destroy_window(app->view->mlx_ptr, app->view->win_ptr);
 	return (0);
 }
