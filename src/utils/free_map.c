@@ -3,39 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   free_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 13:45:45 by itakumi           #+#    #+#             */
-/*   Updated: 2026/03/11 20:28:24 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/02/20 14:19:32 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "libft.h"
-
 #include "cub3d.h"
+#include "libft.h"
+#include <stdlib.h>
 
 void	free_map(t_map **map_data)
 {
 	char	**grid;
-	int		i;
 
 	if (map_data == NULL || *map_data == NULL)
 		return ;
 	grid = (*map_data)->grid;
-	while (*grid != NULL)
+	if (grid != NULL)
 	{
-		free(*grid);
-		grid++;
+		while (*grid != NULL)
+		{
+			free(*grid);
+			grid++;
+		}
+		free((*map_data)->grid);
+		(*map_data)->grid = NULL;
 	}
-	free((*map_data)->grid);
-	(*map_data)->grid = NULL;
-	i = 0;
-	while (i < DIR_COUNT)
-	{
-		free((*map_data)->texture_pathes[i]);
-		i++;
-	}
+	if ((*map_data)->north_tex_path != NULL)
+		free((*map_data)->north_tex_path);
+	if ((*map_data)->south_tex_path != NULL)
+		free((*map_data)->south_tex_path);
+	if ((*map_data)->west_tex_path != NULL)
+		free((*map_data)->west_tex_path);
+	if ((*map_data)->east_tex_path != NULL)
+		free((*map_data)->east_tex_path);
 	free(*map_data);
 	*map_data = NULL;
 }

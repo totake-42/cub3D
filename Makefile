@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+         #
+#    By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/26 10:45:00 by itakumi           #+#    #+#              #
-#    Updated: 2026/02/25 15:01:12 by tigarashi        ###   ########.fr        #
+#    Updated: 2026/04/14 19:13:18 by totake           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 override	NAME	= cub3D
 
 override	CC		= cc
-CFLAGS				= -Wall -Werror -Wextra -g
+override	CFLAGS	= -Wall -Werror -Wextra -g
 
 M_FLAG				= -lm
 # Linux
@@ -25,7 +25,7 @@ override DIR_OBJS	= build
 override DIR_LIBS	= lib
 override DIR_MLX	= lib/minilibx
 
-SRCS				= $(shell find $(DIR_SRCS) -type f -name "*.c")
+SRCS				= $(shell find $(DIR_SRCS) -type f -name "*.c") main.c
 
 INCS				= -I $(DIR_INCS) $(foreach PATH_LIB,$(PATH_LIBS),-I $(PATH_LIB))
 INCS				+= -I $(DIR_MLX)
@@ -49,7 +49,7 @@ $(NAME): $(ARCH_LIBS) $(LIB_MLX) $(OBJS)
 $(DIR_OBJS)/%.o: %.c
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
-	
+
 all: $(NAME)
 
 bonus: all
@@ -57,7 +57,7 @@ bonus: all
 clean: $(ARCH_LIBS:%=%__clean)
 	$(MAKE) clean -C $(DIR_MLX)
 	rm -rf $(DIR_OBJS)
-	
+
 fclean: clean $(ARCH_LIBS:%=%__fclean)
 	rm -f $(NAME)
 
@@ -85,10 +85,10 @@ $(LIB_MLX):
 		fi; \
 	fi
 	$(MAKE) all -C $(DIR_MLX)
-	
+
 %.a__clean:
 	$(MAKE) clean -C $(dir $@)
-	
+
 %.a__fclean:
 	$(MAKE) fclean -C $(dir $@)
 

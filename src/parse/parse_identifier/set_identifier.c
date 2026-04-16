@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   set_identifier.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:44:18 by itakumi           #+#    #+#             */
-/*   Updated: 2026/03/08 22:18:52 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/02/20 14:03:04 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 #include "cub3d.h"
+#include "libft.h"
+#include "parse.h"
 #include "status.h"
 #include "utils.h"
-#include "parse.h"
 
 #define ERROR_VALUE -1
 #define RGB_COLOR_LIMIT 255
@@ -58,13 +57,11 @@ static size_t	find_target_index(const char *hex, char target)
 // if (*value != '\0' || *value != '\n')
 // 	return (STATUS_ERROR);
 // それ以降に文字があったら、
-
-#include <stdio.h>
 t_status	set_layer_color(t_map *map_data, size_t offset, const char *value)
 {
-	int		len;
-	int		*target_ptr;
-	int		i;
+	int	len;
+	int	*target_ptr;
+	int	i;
 
 	target_ptr = (int *)((char *)map_data + offset);
 	i = 0;
@@ -75,8 +72,8 @@ t_status	set_layer_color(t_map *map_data, size_t offset, const char *value)
 		else
 			len = find_target_index(value, ',');
 		if (len == ERROR_VALUE)
-			return (ft_putendl_fd(ERROR_INVALID_COLOR, STDERR_FILENO), \
-							STATUS_ERROR);
+			return (ft_putendl_fd(ERROR_INVALID_COLOR, STDERR_FILENO),
+				STATUS_ERROR);
 		target_ptr[i] = ft_atoi_only_plus_number(value, len);
 		if (target_ptr[i] == ERROR_VALUE)
 		{
@@ -93,13 +90,17 @@ t_status	set_layer_color(t_map *map_data, size_t offset, const char *value)
 // value ポインタ以降の文字列をすべて受け取るようにする
 // ただし、改行は抜く
 // FIX ME
-t_status	set_texture_path(t_map *map_data, size_t offset , const char *value)
+t_status	set_texture_path(t_map *map_data, size_t offset, const char *value)
 {
-	t_dir	dir;
+	size_t	len;
+	char	**target_ptr;
 
-	dir = (t_dir)offset;
-	map_data->texture_pathes[dir] = ft_strdup(value);
-	if (map_data->texture_pathes[dir] == NULL)
+	target_ptr = (char **)((char *)map_data + offset);
+	len = 0;
+	while (value[len] != '\0')
+		len++;
+	*target_ptr = ft_strndup(value, len);
+	if (*target_ptr == NULL)
 		return (STATUS_ERROR);
 	return (STATUS_OK);
 }

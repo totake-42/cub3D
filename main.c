@@ -3,30 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:07:34 by itakumi           #+#    #+#             */
-/*   Updated: 2026/03/11 18:26:25 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/02/20 15:28:56 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "get_next_line_no_nl.h"
-#include "libft.h"
-
 #include "cub3d.h"
+#include "game.h"
+#include "get_next_line_no_nl.h"
 #include "init.h"
-#include "execute.h"
-#include "utils.h"
+#include "libft.h"
+#include "mlx.h"
 #include "parse.h"
 #include "utils.h"
-
-void	debug_grid(char **grid)
-{
-	for (int i = 0; grid[i] != NULL; i++) {
-			printf("%s\n", grid[i]);
-	}
-}
+#include <stdlib.h>
 
 int	main(int argc, char **argv)
 {
@@ -39,24 +31,26 @@ int	main(int argc, char **argv)
 	}
 	app.map_data = NULL;
 	app.view = NULL;
-	app.time = get_time();
-	if (app.time == -1)
-		return (EXIT_FAILURE);
 	if (parse_map(&app, argv[1]) == STATUS_ERROR)
 		return (EXIT_FAILURE);
-	for (int i = 0; i < DIR_COUNT; i++)
-	{
-		printf("%s\n", app.map_data->texture_pathes[i]);
-	}
 	if (init_view(&app) == STATUS_ERROR)
 	{
 		free_map(&(app.map_data));
 		return (EXIT_FAILURE);
 	}
-	if (set_texture_image(&app) == STATUS_ERROR)
-		exit_cub3d(&app, EXIT_FAILURE);
-	if (execute_game(&app) == STATUS_ERROR)
-		exit_cub3d(&app, EXIT_FAILURE);
-	exit_cub3d(&app, EXIT_SUCCESS);
+	if (init_textures(&app) == STATUS_ERROR)
+	{
+		free_view(&(app.view));
+		free_map(&(app.map_data));
+		return (EXIT_FAILURE);
+	}
+	init_player(&app);
+	mlx_loop_hook(app.view->mlx_ptr, game_loop, &app);
+	mlx_hook(app.view->win_ptr, 2, 1L << 0, handle_keypress, &app);
+	mlx_hook(app.view->win_ptr, 17, 0, handle_close, &app);
+	mlx_loop(app.view->mlx_ptr);
+	free_textures(&app);
+	free_view(&(app.view));
+	free_map(&(app.map_data));
 	return (EXIT_SUCCESS);
 }

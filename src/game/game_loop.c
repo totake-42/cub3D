@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_cub3d.c                                       :+:      :+:    :+:   */
+/*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/27 13:35:02 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/22 16:21:33 by totake           ###   ########.fr       */
+/*   Created: 2026/01/06 17:00:00 by itakumi           #+#    #+#             */
+/*   Updated: 2026/02/20 12:45:27 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "utils.h"
-#include <stdlib.h>
+#include "game.h"
+#include "mlx.h"
 
-// free cub3d structure and exit exit_status
-void	exit_cub3d(t_cub3d *cub3d, int exit_status)
+/**
+ * main game loop function
+ * called every frame by mlx_loop_hook
+ */
+int	game_loop(t_cub3d *app)
 {
-	if (cub3d == NULL)
-		exit(exit_status);
-	free_textures(cub3d);
-	if (cub3d->view != NULL)
-		free_view(&(cub3d->view));
-	if (cub3d->map_data != NULL)
-		free_map(&(cub3d->map_data));
-	exit(exit_status);
+	render(app);
+	mlx_put_image_to_window(app->view->mlx_ptr, app->view->win_ptr,
+		app->view->img_ptr, 0, 0);
+	return (0);
 }

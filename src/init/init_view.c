@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   init_view.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:33:06 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/27 21:34:40 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/04/14 19:20:41 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "cub3d.h"
 #include "libft.h"
 #include "mlx.h"
-
 #include "status.h"
-#include "cub3d.h"
+#include <stdlib.h>
 
 static t_status	set_mlx(t_cub3d *app)
 {
@@ -37,20 +36,20 @@ static t_status	set_window(t_minilibx *view)
 	int	screen_width;
 	int	screen_height;
 
+	view->title = "cub3D";
 	mlx_get_screen_size(view->mlx_ptr, &screen_width, &screen_height);
 	if (screen_width > DEFAULT_WIN_WIDTH && screen_height > DEFAULT_WIN_HEIGHT)
 	{
 		view->win_width = DEFAULT_WIN_WIDTH;
-		view->win_height = DEBUG_WIN_HEIGHT;
+		view->win_height = DEFAULT_WIN_HEIGHT;
 	}
 	else
 	{
 		view->win_width = screen_width;
 		view->win_height = screen_height;
 	}
-	view->title = "cub3d";
-	view->win_ptr = mlx_new_window(view->mlx_ptr, \
-		view->win_width, view->win_height, view->title);
+	view->win_ptr = mlx_new_window(view->mlx_ptr, view->win_width,
+			view->win_height, view->title);
 	if (view->win_ptr == NULL)
 	{
 		ft_putendl_fd(ERROR_NEW_WINDOW, STDERR_FILENO);
@@ -61,8 +60,8 @@ static t_status	set_window(t_minilibx *view)
 
 static t_status	set_image(t_minilibx *view)
 {
-	view->img_ptr = mlx_new_image(view->mlx_ptr, \
-		view->win_width, view->win_height);
+	view->img_ptr = mlx_new_image(view->mlx_ptr, view->win_width,
+			view->win_height);
 	if (view->img_ptr == NULL)
 	{
 		ft_putendl_fd(ERROR_IMAGE, STDERR_FILENO);
@@ -73,8 +72,8 @@ static t_status	set_image(t_minilibx *view)
 
 static t_status	set_data_addr(t_minilibx *view)
 {
-	view->data_addr = mlx_get_data_addr(view->img_ptr, \
-		&(view->bits_per_pixel), &(view->size_line), &(view->endian));
+	view->data_addr = mlx_get_data_addr(view->img_ptr, &(view->bits_per_pixel),
+			&(view->size_line), &(view->endian));
 	if (view->data_addr == NULL)
 	{
 		ft_putendl_fd(ERROR_DATA_ADDR, STDERR_FILENO);
@@ -83,7 +82,6 @@ static t_status	set_data_addr(t_minilibx *view)
 	return (STATUS_OK);
 }
 
-#include <stdio.h>
 t_status	init_view(t_cub3d *app)
 {
 	if (app == NULL || set_mlx(app) == STATUS_ERROR)

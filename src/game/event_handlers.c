@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key.c                                              :+:      :+:    :+:   */
+/*   event_handlers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/27 14:46:09 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/02/27 16:46:49 by tigarashi        ###   ########.fr       */
+/*   Created: 2026/01/06 17:00:00 by itakumi           #+#    #+#             */
+/*   Updated: 2026/04/14 19:15:19 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include <stddef.h>
-
 #include "cub3d.h"
-#include "render.h"
+#include "game.h"
+#include "mlx.h"
+#include "utils.h"
 
-/**
- * @fn handle_key
- * @brief keypress handling
- * @param ( cub3d_ptr ) all information.
- * @return success or failure
+// window close button event
+#define EVENT_CLOSE 17
+
+/*
+ * Handle keyboard input
+ * W/A/S/D: movement
+ * Left/Right arrow: rotation
+ * ESC: exit
  */
-
 int	handle_keypress(int keycode, t_cub3d *app)
 {
 	if (keycode == KEY_ESC)
@@ -39,5 +40,15 @@ int	handle_keypress(int keycode, t_cub3d *app)
 		rotate_left(app);
 	else if (keycode == KEY_RIGHT)
 		rotate_right(app);
+	return (0);
+}
+
+/**
+ * if the window close button is pressed
+ * exit the game
+ */
+int	handle_close(t_cub3d *app)
+{
+	mlx_loop_end(app->view->mlx_ptr);
 	return (0);
 }

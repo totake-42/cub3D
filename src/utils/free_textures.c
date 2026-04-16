@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_texture.c                                     :+:      :+:    :+:   */
+/*   free_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/11 18:27:22 by tigarashi         #+#    #+#             */
-/*   Updated: 2026/03/11 20:30:56 by tigarashi        ###   ########.fr       */
+/*   Created: 2026/02/22 12:00:00 by totake            #+#    #+#             */
+/*   Updated: 2026/04/14 19:30:21 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include <stddef.h>
-
 #include "cub3d.h"
+#include "mlx.h"
 
-void	free_texture(t_cub3d *app)
+void	free_textures(t_cub3d *app)
 {
 	int	i;
 
-	if (app == NULL)
+	if (app == NULL || app->view == NULL || app->view->mlx_ptr == NULL)
 		return ;
 	i = 0;
-	while (i < DIR_COUNT)
+	while (i < TEX_COUNT)
 	{
-		mlx_destroy_image(app->view->mlx_ptr, app->texture[i].img_ptr);
+		if (app->textures[i].img_ptr != NULL)
+		{
+			mlx_destroy_image(app->view->mlx_ptr, app->textures[i].img_ptr);
+			app->textures[i].img_ptr = NULL;
+		}
 		i++;
 	}
 }

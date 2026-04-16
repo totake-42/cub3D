@@ -1,40 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_identifiers.c                                :+:      :+:    :+:   */
+/*   parse_indentifiers.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 13:50:15 by itakumi           #+#    #+#             */
-/*   Updated: 2026/03/08 22:18:33 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/02/20 13:48:08 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include "libft.h"
-
 #include "cub3d.h"
+#include "libft.h"
 #include "parse.h"
 #include "status.h"
 #include "utils.h"
+#include <stddef.h>
 
-static t_element_config	g_config_table[] = {
-{.identifier = "NO", .is_set = false, \
-	.func = set_texture_path, .offset = NORTH},
-{.identifier = "SO", .is_set = false, \
-	.func = set_texture_path, .offset = SOUTH},
-{.identifier = "WE", .is_set = false, \
-	.func = set_texture_path, .offset = WEST},
-{.identifier = "EA", .is_set = false, \
-	.func = set_texture_path, .offset = EAST},
-{.identifier = "F", .is_set = false, \
-	.func = set_layer_color, .offset = offsetof(t_map, floor_color)},
-{.identifier = "C", .is_set = false, \
-	.func = set_layer_color, .offset = offsetof(t_map, ceiling_color)}
-};
+static t_element_config	g_config_table[] = {{.identifier = "NO",
+		.is_set = false, .func = set_texture_path, .offset = offsetof(t_map,
+			north_tex_path)}, {.identifier = "SO", .is_set = false,
+		.func = set_texture_path, .offset = offsetof(t_map, south_tex_path)},
+		{.identifier = "WE", .is_set = false, .func = set_texture_path,
+		.offset = offsetof(t_map, west_tex_path)}, {.identifier = "EA",
+		.is_set = false, .func = set_texture_path, .offset = offsetof(t_map,
+			east_tex_path)}, {.identifier = "F", .is_set = false,
+		.func = set_layer_color, .offset = offsetof(t_map, floor_color)},
+		{.identifier = "C", .is_set = false, .func = set_layer_color,
+		.offset = offsetof(t_map, ceiling_color)}};
 
-static const int		g_config_table_len = \
-	sizeof(g_config_table) / sizeof(g_config_table[0]);
+static const int		g_config_table_len = sizeof(g_config_table)
+			/ sizeof(g_config_table[0]);
 
 static int	find_identifier_index(const char *line)
 {
@@ -68,8 +64,8 @@ static t_status	validate_identifier_status(int config_idx, const char *line)
 	return (STATUS_OK);
 }
 
-static t_status	process_config_line(
-const char *line, t_map *map_data, int *set_count)
+static t_status	process_config_line(const char *line, t_map *map_data,
+		int *set_count)
 {
 	int	idx;
 
@@ -86,7 +82,8 @@ const char *line, t_map *map_data, int *set_count)
 		print_error((char *)line, ERROR_INVALID_IDENTIFIER_VALUE);
 		return (STATUS_ERROR);
 	}
-	if (g_config_table[idx].func(map_data, g_config_table[idx].offset, line) == STATUS_ERROR)
+	if (g_config_table[idx].func(map_data, g_config_table[idx].offset,
+			line) == STATUS_ERROR)
 		return (STATUS_ERROR);
 	return (STATUS_OK);
 }
@@ -105,9 +102,7 @@ t_status	parse_identifiers(const char ***file_lines, t_map *map_data)
 		if (ft_strequal(line, "") == false)
 		{
 			if (process_config_line(line, map_data, &set_count) == STATUS_ERROR)
-			{
 				return (STATUS_ERROR);
-			}
 		}
 		(*file_lines)++;
 	}

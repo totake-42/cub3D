@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_characters.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 14:06:45 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/27 20:39:26 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/01/06 17:57:13 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

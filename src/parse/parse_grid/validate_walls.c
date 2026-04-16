@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_walls.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 14:10:33 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/27 21:28:57 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/02/20 13:33:13 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "status.h"
 #include "utils.h"
 
-#include <stdio.h>
 // stack overflowに気をつけないといけない
 // playerが行くことができない、領域を削除するアルゴリズムができる
 // bonusのスプライト実装のときに、孤立エリアを削除することで、高速化できるので、
@@ -29,11 +28,12 @@
 static t_status	flood_fill(char **file_lines, int x_pos, int y_pos,
 		t_map const *map_data)
 {
-	if (x_pos < 0 || y_pos < 0 || file_lines[y_pos][x_pos] == '\0'
-		|| y_pos >= map_data->grid_height)
-	{
+	if (y_pos < 0 || y_pos >= map_data->grid_height)
 		return (STATUS_ERROR);
-	}
+	if (x_pos < 0 || x_pos >= (int)ft_strlen(file_lines[y_pos]))
+		return (STATUS_ERROR);
+	if (file_lines[y_pos][x_pos] == '\0' || file_lines[y_pos][x_pos] == ' ')
+		return (STATUS_ERROR);
 	if (file_lines[y_pos][x_pos] == WALL)
 		return (STATUS_OK);
 	file_lines[y_pos][x_pos] = WALL;
@@ -48,12 +48,12 @@ static t_status	flood_fill(char **file_lines, int x_pos, int y_pos,
 	return (STATUS_OK);
 }
 
+#include <stdio.h>
+
 t_status	validate_walls(const char **file_lines, t_map *map_data)
 {
 	char	**file_lines_cpy;
 
-	while (*file_lines != NULL && **file_lines == '\0')
-		file_lines++;
 	file_lines_cpy = duplicate_file_lines(file_lines, map_data->grid_height);
 	if (file_lines_cpy == NULL)
 		return (STATUS_ERROR);

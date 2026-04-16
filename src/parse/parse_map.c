@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:29:12 by itakumi           #+#    #+#             */
-/*   Updated: 2026/03/11 20:30:25 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/02/20 13:33:23 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 t_status	parse_map(t_cub3d *app, const char *input_file)
 {
 	char	**file_lines;
-	char	**file_lines_temp;
+	char	**file_lines_head;
 
 	if (app == NULL || input_file == NULL)
 		return (STATUS_ERROR);
@@ -34,22 +34,24 @@ t_status	parse_map(t_cub3d *app, const char *input_file)
 	file_lines = load_input_file(input_file);
 	if (file_lines == NULL)
 		return (STATUS_ERROR);
-	file_lines_temp = file_lines;
+	file_lines_head = file_lines;
 	app->map_data = ft_calloc(sizeof(t_map), 1);
+	if (app->map_data == NULL)
+		return (free_array((void **)file_lines_head), STATUS_ERROR);
 	if (parse_identifiers((const char ***)&file_lines,
 			app->map_data) == STATUS_ERROR)
 	{
-		free(app->map_data);
-		free_array((void **)file_lines_temp);
+		free_map(&(app->map_data));
+		free_array((void **)file_lines_head);
 		return (STATUS_ERROR);
 	}
 	if (parse_grid((const char **)file_lines, app->map_data) == STATUS_ERROR)
 	{
-		free(app->map_data);
-		free_array((void **)file_lines_temp);
+		free_map(&(app->map_data));
+		free_array((void **)file_lines_head);
 		return (STATUS_ERROR);
 	}
-	free_array((void **)file_lines_temp);
+	free_array((void **)file_lines_head);
 	return (STATUS_OK);
 }
 
