@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:00:00 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/14 19:15:19 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/16 17:42:44 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 #include "game.h"
 #include "mlx.h"
 #include "utils.h"
-
-// window close button event
-#define EVENT_CLOSE 17
 
 /*
  * Handle keyboard input
