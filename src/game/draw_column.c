@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 17:00:00 by totake            #+#    #+#             */
-/*   Updated: 2026/04/01 16:44:36 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/17 17:40:52 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,11 @@
 void	calc_draw_info(t_cub3d *app, t_ray_result *ray, t_draw_info *di,
 		int tex_idx)
 {
+	if (ray->perp_wall_dist < 0.001)
+		ray->perp_wall_dist = 0.001;
 	di->line_height = (int)(app->view->win_height / ray->perp_wall_dist);
+	if (di->line_height == 0)
+		di->line_height = 1;
 	di->draw_start = -di->line_height / 2 + app->view->win_height / 2;
 	if (di->draw_start < 0)
 		di->draw_start = 0;
