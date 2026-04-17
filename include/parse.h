@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:32:11 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/21 17:06:09 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/17 18:51:36 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 /* parse grid*/
 /* Error messages */
 # define ERROR_TOO_MANY_PLAYERS "Error\n too many players"
+# define ERROR_INVALID_CHARACTER "Error\n invalid character"
 
 /* Boundary condition number*/
 # define AIRSPACE '0'
