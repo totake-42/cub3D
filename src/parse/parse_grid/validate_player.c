@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 14:08:40 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/06 18:58:55 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/17 17:33:57 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 #include "status.h"
 #include "parse.h"
 
-// playerが複数人いても対応できるようにする
-// 本当は、設定ファイルのような概念を用いて、playerの検証を行うのがよいのかも
 static bool	is_player_character(int c)
 {
 	const unsigned char	uc = (const unsigned char)c;
@@ -49,7 +47,6 @@ const char *line, t_map *map_data, bool *is_set_player, int row_count)
 	return (STATUS_OK);
 }
 
-// validate_objectという関数にするのがが良いかもしれない
 t_status	validate_player(const char **file_lines, t_map *map_data)
 {
 	const char	*line;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_indentifiers.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 13:50:15 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/20 13:48:08 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/17 17:33:16 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,55 +113,3 @@ t_status	parse_identifiers(const char ***file_lines, t_map *map_data)
 	}
 	return (STATUS_OK);
 }
-// // 空行とは、改行のみの行を指す。
-// // それ以外はエラーとして弾く。
-// // 1. grid までの文字列を検証する
-// // (空行はスキップする)
-// // 既に、is_setがtrueの状態で、同じ識別子が来たら、弾く。
-
-// // should use strequal
-// // spaceまでの、長さを図る
-
-// その後に１単語を読み取る。
-// color系と, texture系で分岐させる
-// F, Cに関しては、0~ 255 までの整数ではなかったら弾く。
-// 整数が、３つなかったら、数値が足りないとして弾く
-// 値を抽出する
-// その後に、改行または、null文字ではなかったら、エラーとする
-// -> 他の単語が有るということ
-
-/* file_line identifier test */
-// int	main(void)
-// {
-// 	char	*file_lines[] =
-// 	{
-// 		"NO ", "NOOO", "INVALID", "", NULL
-// 	};
-// 	t_status status = parse_identifiers(file_lines);
-// 	printf("status: %d\n", status);
-// 	return (0);
-// }
-
-// #include <stdio.h>
-// int	main(void)
-// {
-// 	const char	*t1 = ft_strdup("NO /north");
-// 	const char	*t2 = ft_strdup("SO /south");
-// 	const char	*t3 = ft_strdup("WE /west");
-// 	const char	*t4 = ft_strdup("EA /east");
-// 	const char 	*t5 = ft_strdup("F 0,255,0");
-// 	const char	*t6 = ft_strdup("C 0,0,255");
-// 	const char	**file_lines1 = malloc(sizeof(const char *) * 7);
-// 	file_lines1[0] = t1;
-// 	file_lines1[1] = t2;
-// 	file_lines1[2] = t3;
-// 	file_lines1[3] = t4;
-// 	file_lines1[4] = t5;
-// 	file_lines1[5] = t6;
-// 	file_lines1[6] = NULL;
-// 	t_map	map_data;
-
-// 	t_status	status = parse_identifiers(&file_lines1, &map_data);
-// 	printf("status: %d\n", status);
-// 	return (0);
-// }
