@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 16:00:00 by totake            #+#    #+#             */
-/*   Updated: 2026/04/17 16:17:20 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/17 16:38:34 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@
  *
  * Returns:
  *   t_ray_result containing collision and rendering data.
+ *
+ * wall_x:
+ *   Exact hit position along the wall surface (range: 0.0 to 1.0).
+ *   This value is calculated by taking the fractional part of the
+ *   collision coordinate and is used for texture mapping.
+ *   It determines which column of the texture to sample.
  */
 
 static t_ray_result	cast_single_ray(t_cub3d *app, double ray_x, double ray_y)
