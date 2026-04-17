@@ -55,6 +55,8 @@
 void	calc_draw_info(t_cub3d *app, t_ray_result *ray, t_draw_info *di,
 		int tex_idx)
 {
+	if (ray->perp_wall_dist < 0.001)
+		ray->perp_wall_dist = 0.001;
 	di->line_height = (int)(app->view->win_height / ray->perp_wall_dist);
 	di->draw_start = -di->line_height / 2 + app->view->win_height / 2;
 	if (di->draw_start < 0)
