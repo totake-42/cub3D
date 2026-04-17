@@ -6,7 +6,7 @@
 #    By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/26 10:45:00 by itakumi           #+#    #+#              #
-#    Updated: 2026/04/14 19:13:18 by totake           ###   ########.fr        #
+#    Updated: 2026/04/17 14:40:08 by totake           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ override DIR_OBJS	= build
 override DIR_LIBS	= lib
 override DIR_MLX	= lib/minilibx
 
-SRCS				= $(shell find $(DIR_SRCS) -type f -name "*.c") main.c
+SRCS				= $(shell find $(DIR_SRCS) -type f -name "*.c")
 
 INCS				= -I $(DIR_INCS) $(foreach PATH_LIB,$(PATH_LIBS),-I $(PATH_LIB))
 INCS				+= -I $(DIR_MLX)
