@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 14:20:00 by totake            #+#    #+#             */
-/*   Updated: 2026/02/20 15:53:17 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/17 14:20:02 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,38 @@
  * E: East  (dir: right, 1, 0)
  * W: West  (dir: left, -1, 0)
  */
+// static void	set_player_direction(t_player *player, char direction)
+// {
+// 	if (direction == 'N')
+// 	{
+// 		player->dir_x = 0.0;
+// 		player->dir_y = -1.0;
+// 		player->plane_x = 0.66;
+// 		player->plane_y = 0.0;
+// 	}
+// 	else if (direction == 'S')
+// 	{
+// 		player->dir_x = 0.0;
+// 		player->dir_y = 1.0;
+// 		player->plane_x = -0.66;
+// 		player->plane_y = 0.0;
+// 	}
+// 	else if (direction == 'E')
+// 	{
+// 		player->dir_x = 1.0;
+// 		player->dir_y = 0.0;
+// 		player->plane_x = 0.0;
+// 		player->plane_y = 0.66;
+// 	}
+// 	else if (direction == 'W')
+// 	{
+// 		player->dir_x = -1.0;
+// 		player->dir_y = 0.0;
+// 		player->plane_x = 0.0;
+// 		player->plane_y = -0.66;
+// 	}
+// }
+
 static void	set_player_direction(t_player *player, char direction)
 {
 	if (direction == 'N')

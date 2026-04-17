@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 16:00:00 by totake            #+#    #+#             */
-/*   Updated: 2026/04/01 16:44:32 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/17 14:23:45 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,9 @@ static t_ray_result	cast_single_ray(t_cub3d *app, double ray_x, double ray_y)
 	r.map_x = dda.map_x;
 	r.map_y = dda.map_y;
 	if (r.side == 0)
-		r.perp_wall_dist = (dda.map_x - app->player.pos_x + (1 - dda.step_x)
-				/ 2) / ray_x;
+		r.perp_wall_dist = (dda.side_dist_x - dda.delta_dist_x);
 	else
-		r.perp_wall_dist = (dda.map_y - app->player.pos_y + (1 - dda.step_y)
-				/ 2) / ray_y;
+		r.perp_wall_dist = (dda.side_dist_y - dda.delta_dist_y);
 	if (r.side == 0)
 		r.wall_x = app->player.pos_y + r.perp_wall_dist * ray_y;
 	else
@@ -203,9 +201,8 @@ void	raycast_all(t_cub3d *app)
 	while (x < app->view->win_width)
 	{
 		camera_x = 2.0 * x / (double)app->view->win_width - 1.0;
-		ray = cast_single_ray(app,
-				app->player.dir_x + app->player.plane_x * camera_x,
-				app->player.dir_y + app->player.plane_y * camera_x);
+		ray = cast_single_ray(app, app->player.dir_x + app->player.plane_x
+				* camera_x, app->player.dir_y + app->player.plane_y * camera_x);
 		tex_idx = select_texture(&ray);
 		calc_draw_info(app, &ray, &di, tex_idx);
 		draw_textured_column(app, x, &di, tex_idx);
