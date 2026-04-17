@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:44:18 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/17 17:48:18 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/17 18:23:26 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	ft_atoi_only_plus_number(const char *value, size_t n)
 {
 	int	result;
 
-	if (value == NULL)
+	if (value == NULL || n == 0)
 		return (ERROR_VALUE);
 	result = 0;
 	while (ft_isdigit(*value) == true && n-- > 0)
