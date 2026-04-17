@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:44:18 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/17 17:35:07 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/17 17:48:18 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static size_t	find_target_index(const char *hex, char target)
 	hex_start = hex;
 	while (*hex != '\0')
 	{
-		printf("%s\n", hex);
 		if (*hex == target)
 		{
 			return (hex - hex_start);
@@ -118,10 +117,21 @@ t_status	set_texture_path(t_map *map_data, size_t offset, const char *value)
 
 	target_ptr = (char **)((char *)map_data + offset);
 	len = 0;
-	while (value[len] != '\0')
+	while (value[len] && is_whitespace(value[len]) == false)
 		len++;
 	*target_ptr = ft_strndup(value, len);
 	if (*target_ptr == NULL)
 		return (STATUS_ERROR);
+	value += len;
+	while (*value)
+	{
+		if (is_whitespace(*value) == false)
+		{
+			print_error((char *)value, ERROR_INVALID_IDENTIFIER_VALUE);
+			free(*target_ptr);
+			return (STATUS_ERROR);
+		}
+		value++;	
+	}
 	return (STATUS_OK);
 }
