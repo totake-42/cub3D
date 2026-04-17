@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:44:18 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/17 16:16:08 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/17 17:35:07 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,6 @@ static size_t	strlen_whitespace(const char *str)
 	return (str - str_head);
 }
 
-// number
-// validateの役割も持たせるべきだろうか？
-// if (*value != '\0' || *value != '\n')
-// 	return (STATUS_ERROR);
-// それ以降に文字があったら、
 t_status	set_layer_color(t_map *map_data, size_t offset, const char *value)
 {
 	int	len;
@@ -113,14 +108,9 @@ t_status	set_layer_color(t_map *map_data, size_t offset, const char *value)
 		ft_putendl_fd(ERROR_INVALID_COLOR, STDERR_FILENO);
 		return (STATUS_ERROR);
 	}
-// さいごのほうにごみがはいっていないかどうかくにんする。
 	return (STATUS_OK);
 }
 
-// valueを切り取る
-// value ポインタ以降の文字列をすべて受け取るようにする
-// ただし、改行は抜く
-// FIX ME
 t_status	set_texture_path(t_map *map_data, size_t offset, const char *value)
 {
 	size_t	len;

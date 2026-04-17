@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_grid.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 18:26:36 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/20 13:33:03 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/17 17:33:45 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,29 +38,6 @@ static void	analyze_file_dimensions(const char **file_lines, size_t *row_len,
 	}
 }
 
-/*
-	char	**grid;
-	int		grid_width;
-	int		grid_height;
-	int		player_x;
-	int		player_y;
-	int		player_dir;
-*/
-
-/*
-	1. gridの最大の高さと幅を代入する
-	2. playerの文字列が来たら、player変数系に代入する(playerはただ一人であるので、
-		bool値で管理する必要が有る)-> 管理するテーブルが必要
-	3. gridの情報をそのまま書き込む（ft_strdupする）
-	4. 有効な文字以外が来たら弾かなければならない。
-	5. playerの８方位すべてが1だったらどうする？
-*/
-
-// is_setがすべて登録されていたら、OK
-// 2. gridが閉じられているかどうかを検証する
-// (grid の空行は許されない)
-// コピー元のfile_linesはインクリメントしない
-// 最後まで見る
 t_status	parse_grid(const char **file_lines, t_map *map_data)
 {
 	size_t	row_len;

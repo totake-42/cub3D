@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_walls.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 14:10:33 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/20 13:33:13 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/17 17:34:29 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,6 @@
 #include "status.h"
 #include "utils.h"
 
-// stack overflowに気をつけないといけない
-// playerが行くことができない、領域を削除するアルゴリズムができる
-// bonusのスプライト実装のときに、孤立エリアを削除することで、高速化できるので、
-// こちらを採用する
-// mapをオブジェクト指向チックにしてもいいかもしれない
-// 4方位の中で、１ではない、かつ探索していない場所を探索するのかな
-// 上下左右がメモリ範囲外ではないかを確認する
-// playerは1の手前の０で止まるため、その、gridの行の範囲を越していたら、終了させる
-// その行の範囲はどのように,算出できるのか？
 static t_status	flood_fill(char **file_lines, int x_pos, int y_pos,
 		t_map const *map_data)
 {
