@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:32:11 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/17 18:51:36 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/17 19:55:02 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,12 @@
 
 /* parse grid*/
 /* Error messages */
+/* parse player */
 # define ERROR_TOO_MANY_PLAYERS "Error\n too many players"
+/* parse character */
 # define ERROR_INVALID_CHARACTER "Error\n invalid character"
+/* parse grid */
+# define ERROR_NO_SURROUNDED_WALL "Error\n No surrounded wall"
 
 /* Boundary condition number*/
 # define AIRSPACE '0'
