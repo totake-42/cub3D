@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 13:50:15 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/18 13:24:26 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/04/18 13:37:28 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,8 @@ static int find_identifier_index(const char* line)
     int id_len;
 
     index = 0;
-	printf("line: %s\n", line);
     while (index < g_config_table_len)
     {
-		printf("compare: %s\n", g_config_table[index].identifier);
         id_len = ft_strlen(g_config_table[index].identifier);
         if (ft_strncmp(line, g_config_table[index].identifier, id_len) == 0
             && line[id_len] == ' ')
@@ -84,7 +82,7 @@ static t_status process_config_line(const char* line, t_map* map_data,
         line++;
     if (*line == '\0')
     {
-        print_error((char*)line, ERROR_INVALID_IDENTIFIER_VALUE);
+        print_error(g_config_table[idx].identifier, ERROR_EMPTY_TEXTURE_PATH_CONTENT);
         return (STATUS_ERROR);
     }
     if (g_config_table[idx].func(map_data, g_config_table[idx].offset,
