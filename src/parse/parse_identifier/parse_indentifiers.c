@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 13:50:15 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/18 13:37:28 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/04/18 15:31:26 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,80 +92,80 @@ static t_status process_config_line(const char* line, t_map* map_data,
     return (STATUS_OK);
 }
 
-void reset_g_config_table(void)
-{
-    int i;
+// void reset_g_config_table(void)
+// {
+//     int i;
 
-    i = 0;
-    while (i < g_config_table_len)
-    {
-        g_config_table[i].is_set = false;
-        i++;
-    }
-}
+//     i = 0;
+//     while (i < g_config_table_len)
+//     {
+//         g_config_table[i].is_set = false;
+//         i++;
+//     }
+// }
 
-t_status parse_identifier_count(const char** file_lines)
-{
-    int set_count;
-    int i;
-    int config_idx;
+// t_status parse_identifier_count(const char** file_lines)
+// {
+//     int set_count;
+//     int i;
+//     int config_idx;
 
-    set_count = 0;
-    i = 0;
-    while (file_lines[i])
-    {
-        if (file_lines[i] == NULL)
-        {
-            i++;
-            continue;
-        }
-        config_idx = find_identifier_index(file_lines[i]);
-        if (config_idx == NOT_FOUND_IDENTIFIER)
-        {
-            i++;
-            continue;
-        }
-        if (g_config_table[config_idx].is_set == true)
-        {
-            print_error((char*)file_lines[i], ERROR_DUPLICATE_IDENTIFIER);
-            return (STATUS_ERROR);
-        }
-        g_config_table[config_idx].is_set = true;
-        printf("identifier: %s\n", g_config_table[config_idx].identifier);
-        set_count++;
-        i++;
-    }
-    if (set_count < 6)
-    {
-        puts("yes");
-        printf("set_count: %d\n", set_count);
-        ft_putendl_fd(ERROR_NO_ENOUGH_ELEMENTS, STDERR_FILENO);
-        return (STATUS_ERROR);
-    }
+//     set_count = 0;
+//     i = 0;
+//     while (file_lines[i])
+//     {
+//         if (file_lines[i] == NULL)
+//         {
+//             i++;
+//             continue;
+//         }
+//         config_idx = find_identifier_index(file_lines[i]);
+//         if (config_idx == NOT_FOUND_IDENTIFIER)
+//         {
+//             i++;
+//             continue;
+//         }
+//         if (g_config_table[config_idx].is_set == true)
+//         {
+//             print_error((char*)file_lines[i], ERROR_DUPLICATE_IDENTIFIER);
+//             return (STATUS_ERROR);
+//         }
+//         g_config_table[config_idx].is_set = true;
+//         printf("identifier: %s\n", g_config_table[config_idx].identifier);
+//         set_count++;
+//         i++;
+//     }
+//     if (set_count < 6)
+//     {
+//         puts("yes");
+//         printf("set_count: %d\n", set_count);
+//         ft_putendl_fd(ERROR_NO_ENOUGH_ELEMENTS, STDERR_FILENO);
+//         return (STATUS_ERROR);
+//     }
 
-    return (STATUS_OK);
-}
+//     return (STATUS_OK);
+// }
 
-t_status parse_identifiers(const char*** file_lines, t_map* map_data)
-{
-    int set_count;
-    const char* line;
+// t_status parse_identifiers(const char*** file_lines, t_map* map_data)
+// {
+//     int set_count;
+//     const char* line;
 
-    if (file_lines == NULL || *file_lines == NULL || map_data == NULL)
-        return (STATUS_ERROR);
-    set_count = 0;
-    while (**file_lines != NULL && set_count < g_config_table_len)
-    {
-        line = **file_lines;
-        if (ft_strequal(line, "") == false)
-        {
-            if (process_config_line(line, map_data, &set_count) == STATUS_ERROR)
-                return (STATUS_ERROR);
-        }
-        (*file_lines)++;
-    }
-    reset_g_config_table();
-	if (parse_identifier_count(*file_lines) == STATUS_ERROR)
-        return (STATUS_ERROR);
-    return (STATUS_OK);
-}
+//     if (file_lines == NULL || *file_lines == NULL || map_data == NULL)
+//         return (STATUS_ERROR);
+//     set_count = 0;
+//     while (**file_lines != NULL && set_count < g_config_table_len)
+//     {
+//         line = **file_lines;
+//         if (ft_strequal(line, "") == false)
+//         {
+//             if (process_config_line(line, map_data, &set_count) == STATUS_ERROR)
+//                 return (STATUS_ERROR);
+//         }
+//         (*file_lines)++;
+//     }
+//     reset_g_config_table();
+// 	if (parse_identifier_count(*file_lines) == STATUS_ERROR)
+//         return (STATUS_ERROR);
+//     return (STATUS_OK);
+// }

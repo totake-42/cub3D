@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:29:12 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/17 18:47:58 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/18 15:30:59 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ t_status	parse_map(t_cub3d *app, const char *input_file)
 		free_array((void **)file_lines_head);
 		return (STATUS_ERROR);
 	}
+	// 末尾にゴミが入っていないかどうかをパースする
 	free_array((void **)file_lines_head);
 	return (STATUS_OK);
 }
