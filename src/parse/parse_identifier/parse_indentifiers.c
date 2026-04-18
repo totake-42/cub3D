@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 13:50:15 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/18 13:15:20 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/04/18 13:24:26 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,6 @@ void reset_g_config_table(void)
     }
 }
 
-///   しきべつしがじゅうふくしていないかどうか、しきべつしがふそくしていないかどうか、しらべる　つまりかずなかみはみない
-//  しきべつしが、あっているかどうかとかんてんもある
-//  このしてんはぶんりするべきである。
 t_status parse_identifier_count(const char** file_lines)
 {
     int set_count;
