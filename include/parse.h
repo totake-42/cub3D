@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:32:11 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/18 13:40:25 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/04/18 16:19:56 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # define ERROR_INVALID_IDENTIFIER_VALUE "invalid identifier value"
 # define ERROR_INVALID_COLOR "invalid color"
 # define ERROR_NO_ENOUGH_ELEMENTS "not enough elements"
+
+# define ERROR_MISSING_IDENTIFIERS_BEFORE_MAP "Error\nMissing identifiers before map"
 
 /* parse grid*/
 /* Error messages */
