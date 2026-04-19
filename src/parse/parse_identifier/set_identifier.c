@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:44:18 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/17 18:23:26 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/19 17:49:35 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ t_status	set_texture_path(t_map *map_data, size_t offset, const char *value)
 		{
 			print_error((char *)value, ERROR_INVALID_IDENTIFIER_VALUE);
 			free(*target_ptr);
+			*target_ptr = NULL;
 			return (STATUS_ERROR);
 		}
 		value++;	
