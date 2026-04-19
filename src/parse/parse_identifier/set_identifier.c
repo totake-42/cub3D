@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:44:18 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/19 17:49:35 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/19 18:04:54 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,10 @@ static size_t	strlen_whitespace(const char *str)
 
 t_status	set_layer_color(t_map *map_data, size_t offset, const char *value)
 {
-	int	len;
-	int	*target_ptr;
-	int	i;
+	int			len;
+	int			*target_ptr;
+	int			i;
+	const char	*value_head = value;
 
 	target_ptr = (int *)((char *)map_data + offset);
 	i = 0;
@@ -91,22 +92,18 @@ t_status	set_layer_color(t_map *map_data, size_t offset, const char *value)
 		else
 			len = find_target_index(value, ',');
 		if (len == ERROR_VALUE)
-			return (ft_putendl_fd(ERROR_INVALID_COLOR, STDERR_FILENO),
+			return (print_error((char *)value_head, ERROR_INVALID_COLOR),
 				STATUS_ERROR);
 		target_ptr[i] = ft_atoi_only_plus_number(value, len);
 		if (target_ptr[i] == ERROR_VALUE)
-		{
-			ft_putendl_fd(ERROR_INVALID_COLOR, STDERR_FILENO);
-			return (STATUS_ERROR);
-		}
+			return (print_error((char *)value_head, ERROR_INVALID_COLOR),
+				STATUS_ERROR);
 		value += len + 1;
 		i++;
 	}
 	if (is_valid_end_of_strings(value) == false)
-	{
-		ft_putendl_fd(ERROR_INVALID_COLOR, STDERR_FILENO);
-		return (STATUS_ERROR);
-	}
+		return (print_error((char *)value_head, ERROR_INVALID_COLOR),
+				STATUS_ERROR);
 	return (STATUS_OK);
 }
 
