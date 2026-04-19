@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:00:00 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/16 17:42:44 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/19 11:43:26 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,17 @@ int	handle_keypress(int keycode, t_cub3d *app)
 int	handle_close(t_cub3d *app)
 {
 	mlx_loop_end(app->view->mlx_ptr);
+	return (0);
+}
+
+/*
+ * Handle expose event (window redraw)
+ * Called when window is uncovered or resized
+ */
+int	handle_expose(t_cub3d *app)
+{
+	render(app);
+	mlx_put_image_to_window(app->view->mlx_ptr, app->view->win_ptr,
+		app->view->img_ptr, 0, 0);
 	return (0);
 }

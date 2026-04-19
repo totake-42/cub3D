@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:00:00 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/14 20:31:10 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/19 11:43:50 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define GAME_H
 
 # include "cub3d.h"
+# include <X11/X.h>
 
 // Key codes for X11 (Linux)
 # define KEY_W 119
@@ -47,6 +48,7 @@ int			game_loop(t_cub3d *app);
 // event_handlers.c
 int			handle_keypress(int keycode, t_cub3d *app);
 int			handle_close(t_cub3d *app);
+int			handle_expose(t_cub3d *app);
 
 // render.c
 void		render(t_cub3d *app);
