@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:32:11 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/19 18:00:20 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/19 18:30:44 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@
 /* Not found identifier number */
 # define NOT_FOUND_IDENTIFIER -1
 
+/* Error value */
+# define ERROR_VALUE -1
+# define RGB_COLOR_LIMIT 255
+
 typedef struct s_element_config
 {
 	char		*identifier;
@@ -73,5 +77,10 @@ t_status		set_layer_color(t_map *map_data, size_t offset,
 /* parse utils */
 char			**duplicate_file_lines(const char **file_lines,
 					int grid_height);
+					
+/* parse identifier utils */
+bool			is_valid_end_of_strings(const char *str);
+int				ft_atoi_only_plus_number(const char *value, size_t n);
+size_t			get_color_component_len(const char *value, int color_idx);
 
 #endif
