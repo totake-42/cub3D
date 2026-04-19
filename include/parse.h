@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:32:11 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/21 17:06:09 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/18 16:19:56 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,21 @@
 /* parse identifiers */
 # define ERROR_INVALID_IDENTIFIER "invalid identifier"
 # define ERROR_DUPLICATE_IDENTIFIER "redefinition of identifier"
+# define ERROR_EMPTY_TEXTURE_PATH_CONTENT "texture path is missing"
 # define ERROR_INVALID_IDENTIFIER_VALUE "invalid identifier value"
 # define ERROR_INVALID_COLOR "invalid color"
 # define ERROR_NO_ENOUGH_ELEMENTS "not enough elements"
 
+# define ERROR_MISSING_IDENTIFIERS_BEFORE_MAP "Error\nMissing identifiers before map"
+
 /* parse grid*/
 /* Error messages */
+/* parse player */
 # define ERROR_TOO_MANY_PLAYERS "Error\n too many players"
+/* parse character */
+# define ERROR_INVALID_CHARACTER "Error\n invalid character"
+/* parse grid */
+# define ERROR_NO_SURROUNDED_WALL "Error\n No surrounded wall"
 
 /* Boundary condition number*/
 # define AIRSPACE '0'

@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 14:06:45 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/06 17:57:13 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/17 18:52:31 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include "cub3d.h"
 #include "status.h"
+#include "parse.h"
+#include "utils.h"
 
 // space is acceptable
 static bool	is_valid_character(int c)
@@ -35,7 +37,10 @@ t_status	validate_characters(const char **file_lines)
 		while (*line != '\0')
 		{
 			if (is_valid_character(*line) == false)
+			{
+				print_error((char *)line, ERROR_INVALID_CHARACTER);
 				return (STATUS_ERROR);
+			}
 			line++;
 		}
 		file_lines++;

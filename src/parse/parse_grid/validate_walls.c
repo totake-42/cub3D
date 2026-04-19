@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 14:10:33 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/17 17:34:29 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/17 19:55:20 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_status	validate_walls(const char **file_lines, t_map *map_data)
 			(t_map const *)map_data) == STATUS_ERROR)
 	{
 		free_array((void **)file_lines_cpy);
+		ft_putendl_fd(ERROR_NO_SURROUNDED_WALL, STDERR_FILENO);
 		return (STATUS_ERROR);
 	}
 	free_array((void **)file_lines_cpy);
