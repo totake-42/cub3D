@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 14:10:33 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/17 19:55:20 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/19 18:36:35 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ static t_status	flood_fill(char **file_lines, int x_pos, int y_pos,
 		return (STATUS_ERROR);
 	return (STATUS_OK);
 }
-
-#include <stdio.h>
 
 t_status	validate_walls(const char **file_lines, t_map *map_data)
 {

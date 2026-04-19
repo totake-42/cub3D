@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 18:17:57 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/19 18:31:51 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/19 18:35:44 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static size_t	len_until_char(const char *hex, char target)
 
 static size_t	len_until_whitespace(const char *str)
 {
-	const char *str_head = str;
+	const char	*str_head = str;
 
 	while (*str != '\0' && is_whitespace(*str) == false)
 		str++;
@@ -79,9 +79,9 @@ bool	is_valid_end_of_strings(const char *str)
 {
 	if (str == NULL)
 		return (false);
-	while (*str != '\0')	
+	while (*str != '\0')
 	{
-		if (is_whitespace(*str) == false)	
+		if (is_whitespace(*str) == false)
 			return (false);
 		str++;
 	}

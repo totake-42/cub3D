@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:29:12 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/18 15:30:59 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/04/19 19:27:15 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,16 @@ t_status	parse_map(t_cub3d *app, const char *input_file)
 		return (free_array((void **)file_lines_head), STATUS_ERROR);
 	if (parse_identifiers((const char ***)&file_lines,
 			app->map_data) == STATUS_ERROR)
-	{
-		free_map(&(app->map_data));
-		free_array((void **)file_lines_head);
-		return (STATUS_ERROR);
-	}
+		return (free_map(&(app->map_data)), \
+			free_array((void **)file_lines_head), STATUS_ERROR);
 	if (parse_grid((const char **)file_lines, app->map_data) == STATUS_ERROR)
-	{
-		free_map(&(app->map_data));
-		free_array((void **)file_lines_head);
-		return (STATUS_ERROR);
-	}
-	// 末尾にゴミが入っていないかどうかをパースする
-	free_array((void **)file_lines_head);
-	return (STATUS_OK);
+		return (free_map(&(app->map_data)), \
+			free_array((void **)file_lines_head), STATUS_ERROR);
+	return (free_array((void **)file_lines_head), STATUS_OK);
 }
 
 // #include <assert.h>
-// int	main(void)
+// int	main(void)k
 // {
 // 	char	*test0 = "";
 // 	char	*test1 = "cub";

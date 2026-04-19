@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 17:44:18 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/19 18:32:51 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/19 18:51:52 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_status	set_layer_color(t_map *map_data, size_t offset, const char *value)
 	}
 	if (is_valid_end_of_strings(value) == false)
 		return (print_error((char *)value_head, ERROR_INVALID_COLOR),
-				STATUS_ERROR);
+			STATUS_ERROR);
 	return (STATUS_OK);
 }
 
@@ -65,7 +65,7 @@ t_status	set_texture_path(t_map *map_data, size_t offset, const char *value)
 			*target_ptr = NULL;
 			return (STATUS_ERROR);
 		}
-		value++;	
+		value++;
 	}
 	return (STATUS_OK);
 }

@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:32:11 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/19 18:30:44 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/19 19:18:45 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 /* parse player */
 # define ERROR_TOO_MANY_PLAYERS "Error\n too many players"
 /* parse character */
-# define ERROR_INVALID_CHARACTER "Error\n invalid character"
+# define ERROR_INVALID_CHARACTER "invalid character"
 /* parse grid */
 # define ERROR_NO_SURROUNDED_WALL "Error\n No surrounded wall"
 
@@ -78,9 +78,12 @@ t_status		set_layer_color(t_map *map_data, size_t offset,
 char			**duplicate_file_lines(const char **file_lines,
 					int grid_height);
 					
-/* parse identifier utils */
+/* set identifier utils */
 bool			is_valid_end_of_strings(const char *str);
 int				ft_atoi_only_plus_number(const char *value, size_t n);
 size_t			get_color_component_len(const char *value, int color_idx);
+
+/* parse identifier utils */
+bool			is_valid_map_line(const char *line);
 
 #endif
