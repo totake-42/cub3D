@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:18:19 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/22 16:21:25 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/20 15:14:03 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define ERROR_MALLOC "Error\nmalloc failed"
 
 /* Texture error */
-# define ERROR_TEXTURE "Error\nfailed to load texture"
+# define ERROR_TEXTURE "failed to load texture"
 
 /* Texture index */
 # define TEX_NORTH 0
