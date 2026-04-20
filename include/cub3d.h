@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:18:19 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/20 15:14:03 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/20 16:10:24 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define ERROR_IMAGE "Error\nnew image failed"
 
 /* Data addr error */
-# define ERROR_DATA_ADDR "Error\nget data_addr failed"
+# define ERROR_DATA_ADDR "Failed to get data_addr"
 
 /* Map error */
 # define ERROR_INVALID_MAP_EXTENSION "Error\ninvalid map extension"
@@ -47,7 +47,7 @@
 # define ERROR_MALLOC "Error\nmalloc failed"
 
 /* Texture error */
-# define ERROR_TEXTURE "failed to load texture"
+# define ERROR_TEXTURE "Failed to load texture"
 
 /* Texture index */
 # define TEX_NORTH 0

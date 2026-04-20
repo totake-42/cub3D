@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 12:00:00 by totake            #+#    #+#             */
-/*   Updated: 2026/04/20 15:14:55 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/20 16:13:38 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_status	load_single_texture(void *mlx_ptr, t_texture *tex, char *path)
 			&tex->size_line, &tex->endian);
 	if (tex->data_addr == NULL)
 	{
-		ft_putendl_fd(ERROR_DATA_ADDR, STDERR_FILENO);
+		print_error(ERROR_DATA_ADDR, path);
 		mlx_destroy_image(mlx_ptr, tex->img_ptr);
 		tex->img_ptr = NULL;
 		return (STATUS_ERROR);
