@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 12:00:00 by totake            #+#    #+#             */
-/*   Updated: 2026/04/14 19:30:21 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/20 16:34:28 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_textures(t_cub3d *app)
 {
 	int	i;
 
-	if (app == NULL || app->view == NULL || app->view->mlx_ptr == NULL)
+	if (app == NULL)
 		return ;
 	i = 0;
 	while (i < TEX_COUNT)
