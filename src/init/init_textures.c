@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 12:00:00 by totake            #+#    #+#             */
-/*   Updated: 2026/02/22 16:21:04 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/20 16:13:38 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "libft.h"
 #include "mlx.h"
 #include "status.h"
+#include "utils.h"
 
 static t_status	load_single_texture(void *mlx_ptr, t_texture *tex, char *path)
 {
@@ -21,15 +22,14 @@ static t_status	load_single_texture(void *mlx_ptr, t_texture *tex, char *path)
 			&tex->height);
 	if (tex->img_ptr == NULL)
 	{
-		ft_putstr_fd("Error\nfailed to load texture: ", STDERR_FILENO);
-		ft_putendl_fd(path, STDERR_FILENO);
+		print_error(ERROR_TEXTURE, path);
 		return (STATUS_ERROR);
 	}
 	tex->data_addr = mlx_get_data_addr(tex->img_ptr, &tex->bits_per_pixel,
 			&tex->size_line, &tex->endian);
 	if (tex->data_addr == NULL)
 	{
-		ft_putendl_fd(ERROR_DATA_ADDR, STDERR_FILENO);
+		print_error(ERROR_DATA_ADDR, path);
 		mlx_destroy_image(mlx_ptr, tex->img_ptr);
 		tex->img_ptr = NULL;
 		return (STATUS_ERROR);
