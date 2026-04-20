@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:00:00 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/19 11:43:50 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/20 14:34:34 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 // Movement and rotation speeds
 # define MOVE_SPEED 0.1
 # define ROT_SPEED 0.05
-# define COLLISION_MARGIN 0.2
+# define COLLISION_MARGIN 0.1
 
 // DDA (Digital Differential Analyzer) structure to hold raycasting state
 typedef struct s_dda
