@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_walls.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 14:10:33 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/20 18:53:06 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/20 21:41:33 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ t_status	validate_walls(const char **file_lines, t_map *map_data)
 {
 	char	**file_lines_cpy;
 
+	if (map_data->grid_height > MAX_GRID_SIZE_HEIGHT
+		|| map_data->grid_width > MAX_GRID_SIZE_WIDTH)
+	{
+		print_error(ERROR_GRID_SIZE, NULL);
+		return (STATUS_ERROR);
+	}
 	file_lines_cpy = duplicate_file_lines(file_lines, map_data->grid_height);
 	if (file_lines_cpy == NULL)
 		return (STATUS_ERROR);

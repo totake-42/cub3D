@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:32:11 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/20 18:43:08 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/20 21:57:16 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,12 @@
 /* Error value */
 # define ERROR_VALUE -1
 # define RGB_COLOR_LIMIT 255
+
+/* Max grid size */
+# define MAX_GRID_SIZE_WIDTH 200
+# define MAX_GRID_SIZE_HEIGHT 200
+/* parse wall */
+# define ERROR_GRID_SIZE "Grid size exceeds the maximum limit of 200"
 
 typedef struct s_element_config
 {
