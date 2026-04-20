@@ -28,6 +28,7 @@
 // Movement and rotation speeds
 # define MOVE_SPEED 0.1
 # define ROT_SPEED 0.05
+# define COLLISION_MARGIN 0.2
 
 // DDA (Digital Differential Analyzer) structure to hold raycasting state
 typedef struct s_dda
