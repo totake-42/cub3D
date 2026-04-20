@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:29:12 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/19 19:28:35 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/20 18:41:00 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ t_status	parse_map(t_cub3d *app, const char *input_file)
 	if (app == NULL || input_file == NULL)
 		return (STATUS_ERROR);
 	if (validate_input_file_extension(input_file) == false)
-		return (ft_putendl_fd(ERROR_INVALID_MAP_EXTENSION, STDERR_FILENO),
-			STATUS_ERROR);
+		return (STATUS_ERROR);
 	file_lines = load_input_file(input_file);
 	if (file_lines == NULL)
 		return (STATUS_ERROR);
@@ -40,10 +39,10 @@ t_status	parse_map(t_cub3d *app, const char *input_file)
 		return (free_array((void **)file_lines_head), STATUS_ERROR);
 	if (parse_identifiers((const char ***)&file_lines,
 			app->map_data) == STATUS_ERROR)
-		return (free_map(&(app->map_data)), \
+		return (free_map(&(app->map_data)),
 			free_array((void **)file_lines_head), STATUS_ERROR);
 	if (parse_grid((const char **)file_lines, app->map_data) == STATUS_ERROR)
-		return (free_map(&(app->map_data)), \
+		return (free_map(&(app->map_data)),
 			free_array((void **)file_lines_head), STATUS_ERROR);
 	return (free_array((void **)file_lines_head), STATUS_OK);
 }

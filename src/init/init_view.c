@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:33:06 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/14 19:20:41 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/20 19:18:43 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,8 @@
 #include "libft.h"
 #include "mlx.h"
 #include "status.h"
+#include "utils.h"
 #include <stdlib.h>
-
-static t_status	set_mlx(t_cub3d *app)
-{
-	app->view = malloc(sizeof(t_minilibx));
-	if (app->view == NULL)
-		return (STATUS_ERROR);
-	app->view->mlx_ptr = mlx_init();
-	if (app->view->mlx_ptr == NULL)
-	{
-		ft_putendl_fd(ERROR_MLX, STDERR_FILENO);
-		free(app->view);
-		return (STATUS_ERROR);
-	}
-	return (STATUS_OK);
-}
 
 static t_status	set_window(t_minilibx *view)
 {
@@ -52,7 +38,7 @@ static t_status	set_window(t_minilibx *view)
 			view->win_height, view->title);
 	if (view->win_ptr == NULL)
 	{
-		ft_putendl_fd(ERROR_NEW_WINDOW, STDERR_FILENO);
+		print_error(ERROR_NEW_WINDOW, NULL);
 		return (STATUS_ERROR);
 	}
 	return (STATUS_OK);
@@ -64,7 +50,7 @@ static t_status	set_image(t_minilibx *view)
 			view->win_height);
 	if (view->img_ptr == NULL)
 	{
-		ft_putendl_fd(ERROR_IMAGE, STDERR_FILENO);
+		print_error(ERROR_IMAGE, NULL);
 		return (STATUS_ERROR);
 	}
 	return (STATUS_OK);
@@ -76,7 +62,7 @@ static t_status	set_data_addr(t_minilibx *view)
 			&(view->size_line), &(view->endian));
 	if (view->data_addr == NULL)
 	{
-		ft_putendl_fd(ERROR_DATA_ADDR, STDERR_FILENO);
+		print_error(ERROR_DATA_ADDR, NULL);
 		return (STATUS_ERROR);
 	}
 	return (STATUS_OK);
@@ -84,8 +70,6 @@ static t_status	set_data_addr(t_minilibx *view)
 
 t_status	init_view(t_cub3d *app)
 {
-	if (app == NULL || set_mlx(app) == STATUS_ERROR)
-		return (STATUS_ERROR);
 	if (set_window(app->view) == STATUS_ERROR)
 	{
 		mlx_destroy_display(app->view->mlx_ptr);

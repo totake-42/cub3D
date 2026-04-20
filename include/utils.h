@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:35:22 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/17 16:03:18 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/20 18:59:12 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	free_map(t_map **map_data);
 void	free_array(void **array);
 bool	ft_strequal(const char *s1, const char *s2);
 char	*ft_strndup(const char *s, size_t n);
-void	print_error(char *context, char *message);
+void	print_error(const char *context, const char *message);
 bool	is_whitespace(int c);
 
 #endif

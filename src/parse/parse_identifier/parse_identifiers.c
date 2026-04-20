@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_identifiers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 13:50:15 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/19 19:24:41 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/20 19:12:32 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ static t_status	validate_identifier_status(int config_idx, const char *line)
 	return (STATUS_OK);
 }
 
-static t_status	process_config_line(
-	const char *line, t_map *map_data, int *set_count)
+static t_status	process_config_line(const char *line, t_map *map_data,
+		int *set_count)
 {
 	int	idx;
 
@@ -82,18 +82,18 @@ static t_status	process_config_line(
 		line++;
 	if (*line == '\0')
 	{
-		print_error(g_config_table[idx].identifier, \
+		print_error(g_config_table[idx].identifier,
 			ERROR_EMPTY_TEXTURE_PATH_CONTENT);
 		return (STATUS_ERROR);
 	}
-	if (g_config_table[idx].func(map_data, g_config_table[idx].offset, \
-		line) == STATUS_ERROR)
+	if (g_config_table[idx].func(map_data, g_config_table[idx].offset,
+			line) == STATUS_ERROR)
 		return (STATUS_ERROR);
 	return (STATUS_OK);
 }
 
-static t_status	parse_single_line(
-	const char *line, t_map *map_data, int *set_count, bool *is_map)
+static t_status	parse_single_line(const char *line, t_map *map_data,
+		int *set_count, bool *is_map)
 {
 	int	config_idx;
 
@@ -122,8 +122,8 @@ t_status	parse_identifiers(const char ***file_lines, t_map *map_data)
 	is_map = false;
 	while (**file_lines != NULL)
 	{
-		if (parse_single_line(**file_lines, map_data, &set_count, \
-			&is_map) == STATUS_ERROR)
+		if (parse_single_line(**file_lines, map_data, &set_count,
+				&is_map) == STATUS_ERROR)
 			return (STATUS_ERROR);
 		if (is_map == true)
 			break ;
@@ -131,7 +131,7 @@ t_status	parse_identifiers(const char ***file_lines, t_map *map_data)
 	}
 	if (set_count != g_config_table_len)
 	{
-		ft_putendl_fd(ERROR_MISSING_IDENTIFIERS_BEFORE_MAP, STDERR_FILENO);
+		print_error(ERROR_MISSING_IDENTIFIERS_BEFORE_MAP, NULL);
 		return (STATUS_ERROR);
 	}
 	return (STATUS_OK);

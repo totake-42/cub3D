@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   load_input_file.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 17:39:53 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/06 16:56:41 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/20 18:57:18 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <sys/types.h>
-#include <stdbool.h>
-#include "libft.h"
-#include "get_next_line_no_nl.h"
-
 #include "cub3d.h"
+#include "get_next_line_no_nl.h"
+#include "libft.h"
 #include "status.h"
+#include "utils.h"
+#include <fcntl.h>
+#include <stdbool.h>
+#include <sys/types.h>
 
-static t_status	analyze_file_dimensions(
-const char *input_file, size_t *col_max_len, size_t *row_len)
+static t_status	analyze_file_dimensions(const char *input_file,
+		size_t *col_max_len, size_t *row_len)
 {
 	int		fd;
 	char	*line;
@@ -29,7 +29,7 @@ const char *input_file, size_t *col_max_len, size_t *row_len)
 	fd = open(input_file, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putendl_fd("Error", STDERR_FILENO);
+		print_error(NULL, NULL);
 		perror(input_file);
 		return (STATUS_ERROR);
 	}
@@ -48,8 +48,8 @@ const char *input_file, size_t *col_max_len, size_t *row_len)
 	return (STATUS_OK);
 }
 
-static char	**init_file_lines_from_input_file(
-const char *input_file, size_t row_len)
+static char	**init_file_lines_from_input_file(const char *input_file,
+		size_t row_len)
 {
 	char	**file_lines;
 	char	**file_lines_temp;
@@ -58,11 +58,11 @@ const char *input_file, size_t row_len)
 
 	file_lines = ft_calloc(sizeof(char *), (row_len + 1));
 	if (file_lines == NULL)
-		return (ft_putendl_fd(ERROR_MALLOC, STDERR_FILENO), NULL);
+		return (print_error(ERROR_MALLOC, NULL), NULL);
 	fd = open(input_file, O_RDONLY);
 	if (fd == -1)
-		return (free(file_lines),
-			ft_putendl_fd((char *)input_file, STDERR_FILENO), NULL);
+		return (free(file_lines), print_error(NULL, NULL), perror(input_file),
+			NULL);
 	file_lines_temp = file_lines;
 	while (true)
 	{
@@ -86,8 +86,8 @@ char	**load_input_file(const char *input_file)
 		return (NULL);
 	col_max_len = 0;
 	row_len = 0;
-	if (analyze_file_dimensions(input_file, \
-		&col_max_len, &row_len) == STATUS_ERROR)
+	if (analyze_file_dimensions(input_file, &col_max_len,
+			&row_len) == STATUS_ERROR)
 		return (NULL);
 	file_lines = init_file_lines_from_input_file(input_file, row_len);
 	if (file_lines == NULL)

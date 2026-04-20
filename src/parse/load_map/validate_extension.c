@@ -3,27 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   validate_extension.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 18:23:46 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/06 12:55:31 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/20 18:57:33 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+#include "parse.h"
+#include "utils.h"
 #include <stdbool.h>
 #include <stddef.h>
-#include "libft.h"
 
 bool	validate_input_file_extension(const char *input_file)
 {
 	size_t	len;
+	int		ret;
 
 	if (input_file == NULL)
 		return (false);
 	len = ft_strlen(input_file);
 	if (len < 4)
 		return (false);
-	return (ft_strncmp(input_file + len - 4, ".cub", 4) == 0);
+	ret = ft_strncmp(input_file + len - 4, ".cub", 4);
+	if (ret != 0)
+	{
+		print_error(ERROR_INVALID_MAP_EXTENSION, input_file);
+		return (false);
+	}
+	return (true);
 }
 
 // #include <assert.h>

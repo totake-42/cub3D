@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:18:19 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/20 16:10:24 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/20 18:41:36 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdlib.h>
 
 /* Argument error */
-# define ERROR_ARGC "Error\nUsage: ./cub3D <map_file>"
+# define ERROR_ARGC "Usage: ./cub3D <map_file>"
 
 /* window numbers */
 # define DEFAULT_WIN_WIDTH 1024
@@ -29,22 +29,22 @@
 # define DEBUG_WIN_HEIGHT 480
 
 /* Mlx error */
-# define ERROR_MLX "Error\ninit mlx failed"
+# define ERROR_MLX "Failed to init mlx"
 
 /* Window error */
-# define ERROR_NEW_WINDOW "Error\nnew window failed"
+# define ERROR_NEW_WINDOW "Failed to create new window"
 
 /* Image error */
-# define ERROR_IMAGE "Error\nnew image failed"
+# define ERROR_IMAGE "Failed to new image"
 
 /* Data addr error */
 # define ERROR_DATA_ADDR "Failed to get data_addr"
 
 /* Map error */
-# define ERROR_INVALID_MAP_EXTENSION "Error\ninvalid map extension"
+# define ERROR_INVALID_MAP_EXTENSION "Failed to load map: invalid extension"
 
 /* Mallox error */
-# define ERROR_MALLOC "Error\nmalloc failed"
+# define ERROR_MALLOC "Failed to malloc"
 
 /* Texture error */
 # define ERROR_TEXTURE "Failed to load texture"

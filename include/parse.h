@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:32:11 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/19 19:18:45 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/20 18:43:08 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,22 @@
 # include "status.h"
 
 /* parse identifiers */
-# define ERROR_INVALID_IDENTIFIER "invalid identifier"
-# define ERROR_DUPLICATE_IDENTIFIER "redefinition of identifier"
-# define ERROR_EMPTY_TEXTURE_PATH_CONTENT "texture path is missing"
-# define ERROR_INVALID_IDENTIFIER_VALUE "invalid identifier value"
-# define ERROR_INVALID_COLOR "invalid color"
-# define ERROR_NO_ENOUGH_ELEMENTS "not enough elements"
-
-# define ERROR_MISSING_IDENTIFIERS_BEFORE_MAP "Error\nMissing identifiers before map"
+# define ERROR_INVALID_IDENTIFIER "Invalid identifier"
+# define ERROR_DUPLICATE_IDENTIFIER "Redefinition of identifier"
+# define ERROR_EMPTY_TEXTURE_PATH_CONTENT "Texture path is missing"
+# define ERROR_INVALID_IDENTIFIER_VALUE "Invalid identifier value"
+# define ERROR_INVALID_COLOR "Invalid color"
+# define ERROR_NO_ENOUGH_ELEMENTS "Not enough elements"
+# define ERROR_MISSING_IDENTIFIERS_BEFORE_MAP "Missing identifiers before map"
 
 /* parse grid*/
 /* Error messages */
 /* parse player */
-# define ERROR_TOO_MANY_PLAYERS "Error\n too many players"
+# define ERROR_TOO_MANY_PLAYERS "Too many players"
 /* parse character */
-# define ERROR_INVALID_CHARACTER "invalid character"
+# define ERROR_INVALID_CHARACTER "Invalid character"
 /* parse grid */
-# define ERROR_NO_SURROUNDED_WALL "Error\n No surrounded wall"
+# define ERROR_NO_SURROUNDED_WALL "No surrounded wall"
 
 /* Boundary condition number*/
 # define AIRSPACE '0'
@@ -77,7 +76,7 @@ t_status		set_layer_color(t_map *map_data, size_t offset,
 /* parse utils */
 char			**duplicate_file_lines(const char **file_lines,
 					int grid_height);
-					
+
 /* set identifier utils */
 bool			is_valid_end_of_strings(const char *str);
 int				ft_atoi_only_plus_number(const char *value, size_t n);

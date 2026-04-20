@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 18:55:38 by itakumi           #+#    #+#             */
-/*   Updated: 2026/02/20 12:39:05 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/20 18:45:20 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	**duplicate_file_lines(const char **file_lines, int grid_height)
 	file_lines_cpy = ft_calloc(sizeof(char *), (grid_height + 1));
 	if (file_lines_cpy == NULL)
 	{
-		ft_putendl_fd(ERROR_MALLOC, STDERR_FILENO);
+		print_error(ERROR_MALLOC, NULL);
 		return (NULL);
 	}
 	tmp = file_lines_cpy;

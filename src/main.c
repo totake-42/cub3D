@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:07:34 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/19 11:41:27 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/20 19:24:38 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,40 @@ static void	cleanup_game(t_cub3d *app)
 	free_map(&(app->map_data));
 }
 
+static t_status	init_mlx(t_cub3d *app)
+{
+	app->view = ft_calloc(sizeof(t_minilibx), 1);
+	if (app->view == NULL)
+		return (STATUS_ERROR);
+	app->view->mlx_ptr = mlx_init();
+	if (app->view->mlx_ptr == NULL)
+	{
+		print_error(ERROR_MLX, NULL);
+		free(app->view);
+		app->view = NULL;
+		return (STATUS_ERROR);
+	}
+	return (STATUS_OK);
+}
+
 static int	init_game(t_cub3d *app, char *map_file)
 {
 	app->map_data = NULL;
 	app->view = NULL;
 	if (parse_map(app, map_file) == STATUS_ERROR)
 		return (STATUS_ERROR);
-	if (init_view(app) == STATUS_ERROR)
+	if (init_mlx(app) == STATUS_ERROR)
 	{
 		free_map(&(app->map_data));
 		return (STATUS_ERROR);
 	}
 	if (init_textures(app) == STATUS_ERROR)
+	{
+		free_view(&(app->view));
+		free_map(&(app->map_data));
+		return (STATUS_ERROR);
+	}
+	if (init_view(app) == STATUS_ERROR)
 	{
 		free_view(&(app->view));
 		free_map(&(app->map_data));
@@ -72,7 +94,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_putendl_fd(ERROR_ARGC, STDERR_FILENO);
+		print_error(ERROR_ARGC, NULL);
 		return (EXIT_FAILURE);
 	}
 	if (init_game(&app, argv[1]) == STATUS_ERROR)
