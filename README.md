@@ -1,4 +1,4 @@
-*This project has been created as part of the 42 curriculum by itakumi.*
+*This project has been created as part of the 42 curriculum by itakumi ,totake.*
 
 ## Description
 The goal of this project is to create a 3D first-person perspective game inspired by the classic Wolfenstein 3D. 
@@ -126,4 +126,12 @@ To run the game, provide a `.cub` map file as an argument:
 ## Resources
 * [Raycasting (Lode Vandevenne)](https://lodev.org/cgtutor/raycasting.html) - Raycasting is a rendering technique to create a 3D perspective in a 2D map...
 
-* **AI Usage:** I use Gemini to understand the reference materials contents.
+* **itakumi AI Usage**
+  * I use Gemini to understand the reference materials contents.
+* **totake AI Usage**
+  * Understanding the project subject and requirements
+  * Supplementing mathematical knowledge
+  * Code explanation and clarification
+  * Code suggestions and auto-completion
+  * Generating maps and textures for testing
+  * *Note: All implemented code has been fully understood and reviewed. No code was used without proper comprehension.*
