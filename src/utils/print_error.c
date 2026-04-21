@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 15:35:28 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/20 19:01:15 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/21 17:01:15 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	print_error(const char *context, const char *message)
 	if (context != NULL)
 	{
 		ft_putstr_fd((char *)context, STDERR_FILENO);
+		ft_putstr_fd(": ", STDERR_FILENO);
 	}
 	if (message != NULL)
 	{
-		ft_putstr_fd(": ", STDERR_FILENO);
 		ft_putendl_fd((char *)message, STDERR_FILENO);
 	}
 }

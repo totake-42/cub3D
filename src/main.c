@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:07:34 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/20 19:24:38 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/21 17:01:59 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static t_status	init_mlx(t_cub3d *app)
 	app->view->mlx_ptr = mlx_init();
 	if (app->view->mlx_ptr == NULL)
 	{
-		print_error(ERROR_MLX, NULL);
+		print_error(NULL, ERROR_MALLOC);
 		free(app->view);
 		app->view = NULL;
 		return (STATUS_ERROR);
@@ -94,7 +94,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		print_error(ERROR_ARGC, NULL);
+		print_error(NULL, ERROR_ARGC);
 		return (EXIT_FAILURE);
 	}
 	if (init_game(&app, argv[1]) == STATUS_ERROR)

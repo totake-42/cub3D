@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_input_file.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 17:39:53 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/20 18:57:18 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/21 17:03:31 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static char	**init_file_lines_from_input_file(const char *input_file,
 
 	file_lines = ft_calloc(sizeof(char *), (row_len + 1));
 	if (file_lines == NULL)
-		return (print_error(ERROR_MALLOC, NULL), NULL);
+		return (print_error(NULL, ERROR_MALLOC), NULL);
 	fd = open(input_file, O_RDONLY);
 	if (fd == -1)
 		return (free(file_lines), print_error(NULL, NULL), perror(input_file),

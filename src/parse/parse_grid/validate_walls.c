@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 14:10:33 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/20 21:41:33 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/21 17:04:43 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_status	validate_walls(const char **file_lines, t_map *map_data)
 	if (map_data->grid_height > MAX_GRID_SIZE_HEIGHT
 		|| map_data->grid_width > MAX_GRID_SIZE_WIDTH)
 	{
-		print_error(ERROR_GRID_SIZE, NULL);
+		print_error(NULL, ERROR_GRID_SIZE);
 		return (STATUS_ERROR);
 	}
 	file_lines_cpy = duplicate_file_lines(file_lines, map_data->grid_height);
@@ -56,7 +56,7 @@ t_status	validate_walls(const char **file_lines, t_map *map_data)
 			(t_map const *)map_data) == STATUS_ERROR)
 	{
 		free_array((void **)file_lines_cpy);
-		print_error(ERROR_NO_SURROUNDED_WALL, NULL);
+		print_error(NULL, ERROR_NO_SURROUNDED_WALL);
 		return (STATUS_ERROR);
 	}
 	free_array((void **)file_lines_cpy);
