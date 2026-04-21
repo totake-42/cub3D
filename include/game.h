@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:00:00 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/20 14:34:34 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/21 14:04:02 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@
 # define MOVE_SPEED 0.1
 # define ROT_SPEED 0.05
 # define COLLISION_MARGIN 0.1
+
+// AABB collision detection
+# define PLAYER_RADIUS 0.2
 
 // DDA (Digital Differential Analyzer) structure to hold raycasting state
 typedef struct s_dda
@@ -67,6 +70,10 @@ void		draw_textured_column(t_cub3d *app, int x, t_draw_info *di,
 // raycasting.c
 void		raycast_all(t_cub3d *app);
 void		raycast_single(t_cub3d *app);
+
+
+// check_collision.c
+int			check_collision(t_cub3d *app, double new_x, double new_y);
 
 // movement.c
 void		move_forward(t_cub3d *app);
