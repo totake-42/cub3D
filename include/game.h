@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:00:00 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/21 14:04:02 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/21 18:02:24 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void		draw_textured_column(t_cub3d *app, int x, t_draw_info *di,
 // raycasting.c
 void		raycast_all(t_cub3d *app);
 void		raycast_single(t_cub3d *app);
-
 
 // check_collision.c
 int			check_collision(t_cub3d *app, double new_x, double new_y);

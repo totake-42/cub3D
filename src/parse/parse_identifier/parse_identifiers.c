@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_identifiers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 13:50:15 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/21 17:05:03 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/21 18:01:29 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ static t_status	validate_identifier_status(int config_idx, const char *line)
 {
 	if (config_idx == NOT_FOUND_IDENTIFIER)
 	{
-		print_error((char *)line, ERROR_INVALID_IDENTIFIER);
+		print_error(line, ERROR_INVALID_IDENTIFIER);
 		return (STATUS_ERROR);
 	}
 	else if (g_config_table[config_idx].is_set == true)
 	{
-		print_error((char *)line, ERROR_DUPLICATE_IDENTIFIER);
+		print_error(line, ERROR_DUPLICATE_IDENTIFIER);
 		return (STATUS_ERROR);
 	}
 	return (STATUS_OK);
@@ -107,7 +107,7 @@ static t_status	parse_single_line(const char *line, t_map *map_data,
 			*is_map = true;
 			return (STATUS_OK);
 		}
-		print_error((char *)line, ERROR_INVALID_IDENTIFIER);
+		print_error(line, ERROR_INVALID_IDENTIFIER);
 		return (STATUS_ERROR);
 	}
 	return (process_config_line(line, map_data, set_count));

@@ -6,14 +6,14 @@
 #    By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/26 10:45:00 by itakumi           #+#    #+#              #
-#    Updated: 2026/04/17 14:40:08 by totake           ###   ########.fr        #
+#    Updated: 2026/04/21 18:19:29 by totake           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 override	NAME	= cub3D
 
 override	CC		= cc
-override	CFLAGS	= -Wall -Werror -Wextra -g
+override	CFLAGS	= -Wall -Werror -Wextra
 
 M_FLAG				= -lm
 # Linux
@@ -25,7 +25,40 @@ override DIR_OBJS	= build
 override DIR_LIBS	= lib
 override DIR_MLX	= lib/minilibx
 
-SRCS				= $(shell find $(DIR_SRCS) -type f -name "*.c")
+SRCS				= game/dda.c\
+					game/draw_column.c\
+					game/game_loop.c\
+					game/raycasting.c\
+					game/render.c\
+					game/rotate.c\
+					game/event_handlers.c\
+					game/check_collision.c\
+					game/movement.c\
+					init/init_player.c\
+					init/init_textures.c\
+					init/init_view.c\
+					init/validate_textures.c\
+					parse/load_map/validate_extension.c\
+					parse/load_map/load_input_file.c\
+					parse/parse_grid/parse_grid.c\
+					parse/parse_grid/validate_characters.c\
+					parse/parse_grid/validate_player.c\
+					parse/parse_grid/validate_walls.c\
+					parse/parse_identifier/parse_identifier_utils.c\
+					parse/parse_identifier/set_identifier.c\
+					parse/parse_identifier/set_identifier_utils.c\
+					parse/parse_identifier/parse_identifiers.c\
+					parse/parse_map.c\
+					parse/parse_utils.c\
+					utils/free_array.c\
+					utils/free_map.c\
+					utils/free_textures.c\
+					utils/free_view.c\
+					utils/ft_strequal.c\
+					utils/ft_strndup.c\
+					utils/ft_is_only_whitespace.c\
+					utils/print_error.c\
+					main.c
 
 INCS				= -I $(DIR_INCS) $(foreach PATH_LIB,$(PATH_LIBS),-I $(PATH_LIB))
 INCS				+= -I $(DIR_MLX)
@@ -46,7 +79,7 @@ LIB_MLX				= $(DIR_MLX)/libmlx.a
 $(NAME): $(ARCH_LIBS) $(LIB_MLX) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(ARCH_LIBS) $(MLX_FLAGS) $(M_FLAG) -o $@
 
-$(DIR_OBJS)/%.o: %.c
+$(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 

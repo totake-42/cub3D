@@ -18,5 +18,6 @@
 t_status	init_view(t_cub3d *app);
 t_status	init_textures(t_cub3d *app);
 void		init_player(t_cub3d *app);
+t_status	validate_textures_different(t_texture *textures);
 
 #endif

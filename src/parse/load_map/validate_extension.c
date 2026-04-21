@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 18:23:46 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/20 18:57:33 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/21 17:51:41 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	validate_input_file_extension(const char *input_file)
 	ret = ft_strncmp(input_file + len - 4, ".cub", 4);
 	if (ret != 0)
 	{
-		print_error(ERROR_INVALID_MAP_EXTENSION, input_file);
+		print_error(input_file, ERROR_INVALID_MAP_EXTENSION);
 		return (false);
 	}
 	return (true);

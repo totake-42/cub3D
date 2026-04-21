@@ -6,16 +6,16 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 12:00:00 by totake            #+#    #+#             */
-/*   Updated: 2026/04/21 15:59:52 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/21 17:57:47 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "init.h"
 #include "libft.h"
 #include "mlx.h"
 #include "status.h"
 #include "utils.h"
-#include "init.h"
 
 static t_status	load_single_texture(void *mlx_ptr, t_texture *tex, char *path)
 {
@@ -23,14 +23,14 @@ static t_status	load_single_texture(void *mlx_ptr, t_texture *tex, char *path)
 			&tex->height);
 	if (tex->img_ptr == NULL)
 	{
-		print_error(ERROR_TEXTURE, path);
+		print_error(path, ERROR_TEXTURE);
 		return (STATUS_ERROR);
 	}
 	tex->data_addr = mlx_get_data_addr(tex->img_ptr, &tex->bits_per_pixel,
 			&tex->size_line, &tex->endian);
 	if (tex->data_addr == NULL)
 	{
-		print_error(ERROR_DATA_ADDR, path);
+		print_error(path, ERROR_DATA_ADDR);
 		mlx_destroy_image(mlx_ptr, tex->img_ptr);
 		tex->img_ptr = NULL;
 		return (STATUS_ERROR);
@@ -90,9 +90,7 @@ t_status	init_textures(t_cub3d *app)
 		i++;
 	}
 	if (validate_textures_different(app->textures) == STATUS_ERROR)
-	{
-		free_loaded_textures(app->view->mlx_ptr, app->textures, TEX_COUNT);
-		return (STATUS_ERROR);
-	}
+		return (free_loaded_textures(app->view->mlx_ptr, app->textures,
+				TEX_COUNT), STATUS_ERROR);
 	return (STATUS_OK);
 }

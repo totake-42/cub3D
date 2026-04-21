@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:18:19 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/20 18:41:36 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/21 14:46:35 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@
 
 /* Texture error */
 # define ERROR_TEXTURE "Failed to load texture"
+# define ERROR_TEXTURE_SIZE_OVERFLOW "Texture size overflow detected"
+# define ERROR_TEXTURE_IDENTICAL "Textures are identical"
 
 /* Texture index */
 # define TEX_NORTH 0
