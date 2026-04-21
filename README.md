@@ -16,12 +16,6 @@ sudo apt-get install gcc make xorg libxext-dev libbsd-dev
 ```
 *(Note: If you encounter missing library errors, ensure you have `libx11-dev` and `libxrandr-dev` installed as well.)*
 
-**For macOS:**
-macOS natively supports the required frameworks (OpenGL/AppKit). Simply ensure that you have the Xcode Command Line Tools installed:
-```bash
-xcode-select --install
-```
-
 ### Compilation
 Once the dependencies are installed, you can compile the project using the provided Makefile.
 
