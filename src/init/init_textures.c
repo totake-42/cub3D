@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 12:00:00 by totake            #+#    #+#             */
-/*   Updated: 2026/04/20 16:13:38 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/21 15:59:52 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "mlx.h"
 #include "status.h"
 #include "utils.h"
+#include "init.h"
 
 static t_status	load_single_texture(void *mlx_ptr, t_texture *tex, char *path)
 {
@@ -87,6 +88,11 @@ t_status	init_textures(t_cub3d *app)
 			return (STATUS_ERROR);
 		}
 		i++;
+	}
+	if (validate_textures_different(app->textures) == STATUS_ERROR)
+	{
+		free_loaded_textures(app->view->mlx_ptr, app->textures, TEX_COUNT);
+		return (STATUS_ERROR);
 	}
 	return (STATUS_OK);
 }
