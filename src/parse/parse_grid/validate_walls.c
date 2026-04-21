@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 14:10:33 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/21 21:20:11 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/21 21:48:10 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,15 @@ static t_status	flood_fill(char **file_lines, int x_pos, int y_pos,
 	return (STATUS_OK);
 }
 
-//  ひせいじょうもじれつはべかんすうのせきむ
-static t_status	check_4_direction(const char **file_lines, int x, int y) 
+static t_status	check_4_direction(const char **file_lines, int x, int y)
 {
-	// x - 1, x + 1, y - 1, y + 1 がはんいがいかどうかしらべる
-	if (x <= 0 || file_lines[y][x + 1] == '\0' || y <= 0 || file_lines[y + 1] == NULL)
+	if (x <= 0 || file_lines[y][x + 1] == '\0'
+		|| y <= 0 || file_lines[y + 1] == NULL)
 		return (STATUS_ERROR);
 	if (file_lines[y][x - 1] == ' ' || file_lines[y][x + 1] == ' ')
 		return (STATUS_ERROR);
-	if ((size_t)x >= ft_strlen(file_lines[y - 1]) || (size_t)x >= ft_strlen(file_lines[y + 1]))
+	if ((size_t)x >= ft_strlen(file_lines[y - 1])
+		|| (size_t)x >= ft_strlen(file_lines[y + 1]))
 		return (STATUS_ERROR);
 	if (file_lines[y - 1][x] == ' ' || file_lines[y + 1][x] == ' ')
 		return (STATUS_ERROR);
@@ -65,14 +65,13 @@ static t_status	validate_all_walls(const char **file_lines)
 	int		y;
 
 	y = 0;
-	while (file_lines[y] != NULL)	
+	while (file_lines[y] != NULL)
 	{
 		x = 0;
-		while (file_lines[y][x] != '\0') // 
+		while (file_lines[y][x] != '\0')
 		{
 			if (file_lines[y][x] != '0')
 			{
-				// check 4 direction.
 				x++;
 				continue ;
 			}
