@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 14:10:33 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/21 17:04:43 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/21 21:20:11 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,55 @@ static t_status	flood_fill(char **file_lines, int x_pos, int y_pos,
 	return (STATUS_OK);
 }
 
+//  ひせいじょうもじれつはべかんすうのせきむ
+static t_status	check_4_direction(const char **file_lines, int x, int y) 
+{
+	// x - 1, x + 1, y - 1, y + 1 がはんいがいかどうかしらべる
+	if (x <= 0 || file_lines[y][x + 1] == '\0' || y <= 0 || file_lines[y + 1] == NULL)
+		return (STATUS_ERROR);
+	if (file_lines[y][x - 1] == ' ' || file_lines[y][x + 1] == ' ')
+		return (STATUS_ERROR);
+	if ((size_t)x >= ft_strlen(file_lines[y - 1]) || (size_t)x >= ft_strlen(file_lines[y + 1]))
+		return (STATUS_ERROR);
+	if (file_lines[y - 1][x] == ' ' || file_lines[y + 1][x] == ' ')
+		return (STATUS_ERROR);
+	return (STATUS_OK);
+}
+
+/**
+ * @fn validate_all_walls
+ * @param (file_lines) @param (map_data)
+ * @brief validate all '0' for 4 direction.
+ */
+static t_status	validate_all_walls(const char **file_lines)
+{
+	int		x;
+	int		y;
+
+	y = 0;
+	while (file_lines[y] != NULL)	
+	{
+		x = 0;
+		while (file_lines[y][x] != '\0') // 
+		{
+			if (file_lines[y][x] != '0')
+			{
+				// check 4 direction.
+				x++;
+				continue ;
+			}
+			if (check_4_direction(file_lines, x, y) == STATUS_ERROR)
+			{
+				print_error(NULL, ERROR_NO_SURROUNDED_WALL);
+				return (STATUS_ERROR);
+			}
+			x++;
+		}
+		y++;
+	}
+	return (STATUS_OK);
+}
+
 t_status	validate_walls(const char **file_lines, t_map *map_data)
 {
 	char	**file_lines_cpy;
@@ -52,6 +101,11 @@ t_status	validate_walls(const char **file_lines, t_map *map_data)
 	file_lines_cpy = duplicate_file_lines(file_lines, map_data->grid_height);
 	if (file_lines_cpy == NULL)
 		return (STATUS_ERROR);
+	if (validate_all_walls((const char **)file_lines_cpy) == STATUS_ERROR)
+	{
+		free_array((void **)file_lines_cpy);
+		return (STATUS_ERROR);
+	}
 	if (flood_fill(file_lines_cpy, map_data->player_x, map_data->player_y,
 			(t_map const *)map_data) == STATUS_ERROR)
 	{
