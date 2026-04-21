@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_view.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:33:06 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/20 19:18:43 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/21 17:02:50 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static t_status	set_window(t_minilibx *view)
 			view->win_height, view->title);
 	if (view->win_ptr == NULL)
 	{
-		print_error(ERROR_NEW_WINDOW, NULL);
+		print_error(NULL, ERROR_NEW_WINDOW);
 		return (STATUS_ERROR);
 	}
 	return (STATUS_OK);
@@ -50,7 +50,7 @@ static t_status	set_image(t_minilibx *view)
 			view->win_height);
 	if (view->img_ptr == NULL)
 	{
-		print_error(ERROR_IMAGE, NULL);
+		print_error(NULL, ERROR_IMAGE);
 		return (STATUS_ERROR);
 	}
 	return (STATUS_OK);
@@ -62,7 +62,7 @@ static t_status	set_data_addr(t_minilibx *view)
 			&(view->size_line), &(view->endian));
 	if (view->data_addr == NULL)
 	{
-		print_error(ERROR_DATA_ADDR, NULL);
+		print_error(NULL, ERROR_DATA_ADDR);
 		return (STATUS_ERROR);
 	}
 	return (STATUS_OK);

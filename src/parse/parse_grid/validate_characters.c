@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 14:06:45 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/17 18:52:31 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/21 17:21:58 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static bool	is_valid_character(int c)
 t_status	validate_characters(const char **file_lines)
 {
 	const char	*line;
+	char		invalid_character[2];	
 
 	while (*file_lines != NULL)
 	{
@@ -38,7 +39,9 @@ t_status	validate_characters(const char **file_lines)
 		{
 			if (is_valid_character(*line) == false)
 			{
-				print_error((char *)line, ERROR_INVALID_CHARACTER);
+				invalid_character[0] = *line;
+				invalid_character[1] = '\0';
+				print_error(invalid_character, ERROR_INVALID_CHARACTER);
 				return (STATUS_ERROR);
 			}
 			line++;

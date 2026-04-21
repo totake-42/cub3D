@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_player.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 14:08:40 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/20 18:59:38 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/21 17:04:05 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static t_status	process_validate_player(const char *line, t_map *map_data,
 		{
 			if (*is_set_player == true)
 			{
-				print_error(ERROR_TOO_MANY_PLAYERS, NULL);
+				print_error(NULL, ERROR_TOO_MANY_PLAYERS);
 				return (STATUS_ERROR);
 			}
 			map_data->player_x = line - line_temp;

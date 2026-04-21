@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_identifiers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 13:50:15 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/20 19:12:32 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/21 17:05:03 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ t_status	parse_identifiers(const char ***file_lines, t_map *map_data)
 	}
 	if (set_count != g_config_table_len)
 	{
-		print_error(ERROR_MISSING_IDENTIFIERS_BEFORE_MAP, NULL);
+		print_error(NULL, ERROR_MISSING_IDENTIFIERS_BEFORE_MAP);
 		return (STATUS_ERROR);
 	}
 	return (STATUS_OK);

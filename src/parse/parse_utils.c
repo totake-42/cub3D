@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 18:55:38 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/20 18:45:20 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/21 17:03:11 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	**duplicate_file_lines(const char **file_lines, int grid_height)
 	file_lines_cpy = ft_calloc(sizeof(char *), (grid_height + 1));
 	if (file_lines_cpy == NULL)
 	{
-		print_error(ERROR_MALLOC, NULL);
+		print_error(NULL, ERROR_MALLOC);
 		return (NULL);
 	}
 	tmp = file_lines_cpy;
