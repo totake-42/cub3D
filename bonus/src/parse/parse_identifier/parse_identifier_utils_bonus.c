@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_identifier_utils_bonus.c                                   :+:      :+:    :+:   *//*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   parse_identifier_utils_bonus.c                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/19 19:10:20 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/19 19:24:16 by itakumi          ###   ########.fr       */
+/*   Created: 2026/04/22 13:16:17 by totake            #+#    #+#             */
+/*   Updated: 2026/04/22 13:16:29 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
 #include "cub3d_bonus.h"
 #include "status_bonus.h"
 
