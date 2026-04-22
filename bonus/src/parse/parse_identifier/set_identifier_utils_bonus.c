@@ -56,7 +56,7 @@ static size_t	len_until_whitespace(const char *str)
 {
 	const char	*str_head = str;
 
-	while (*str != '\0' && is_whitespace(*str) == false)
+	while (*str != '\0' && ft_is_whitespace(*str) == false)
 		str++;
 	return (str - str_head);
 }
@@ -80,7 +80,7 @@ bool	is_valid_end_of_strings(const char *str)
 		return (false);
 	while (*str != '\0')
 	{
-		if (is_whitespace(*str) == false)
+		if (ft_is_whitespace(*str) == false)
 			return (false);
 		str++;
 	}

@@ -13,9 +13,9 @@
 #include <stdbool.h>
 #include <stddef.h>
 
-bool	is_whitespace(int c)
+bool	ft_is_whitespace(int c)
 {
-	const char			*whitespace = " \t\n";
+	const char			*whitespace = " ";
 	const unsigned char	cc = (unsigned char)c;
 
 	while (*whitespace != '\0')

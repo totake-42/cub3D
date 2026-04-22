@@ -46,7 +46,7 @@ t_status	set_texture_path(t_map *map_data, size_t offset, const char *value)
 
 	target_ptr = (char **)((char *)map_data + offset);
 	len = 0;
-	while (value[len] && is_whitespace(value[len]) == false)
+	while (value[len] && ft_is_whitespace(value[len]) == false)
 		len++;
 	*target_ptr = ft_strndup(value, len);
 	if (*target_ptr == NULL)
@@ -54,7 +54,7 @@ t_status	set_texture_path(t_map *map_data, size_t offset, const char *value)
 	value += len;
 	while (*value)
 	{
-		if (is_whitespace(*value) == false)
+		if (ft_is_whitespace(*value) == false)
 		{
 			print_error(value, ERROR_INVALID_IDENTIFIER_VALUE);
 			free(*target_ptr);
