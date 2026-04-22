@@ -6,7 +6,7 @@
 #    By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/26 10:45:00 by itakumi           #+#    #+#              #
-#    Updated: 2026/04/21 18:19:29 by totake           ###   ########.fr        #
+#    Updated: 2026/04/22 12:25:18 by totake           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,21 @@ M_FLAG				= -lm
 # Linux
 MLX_FLAGS			= -L $(DIR_MLX) -lmlx -lXext -lX11
 
-override DIR_SRCS	= src
-override DIR_INCS	= include
-override DIR_OBJS	= build
-override DIR_LIBS	= lib
-override DIR_MLX	= lib/minilibx
+# Mandatory
+M_DIR_SRCS			= mandatory/src
+M_DIR_INCS			= mandatory/include
+M_DIR_OBJS			= mandatory/build
 
-SRCS				= game/dda.c\
+# Bonus
+B_DIR_SRCS			= bonus/src
+B_DIR_INCS			= bonus/include
+B_DIR_OBJS			= bonus/build
+
+DIR_LIBS			= lib
+DIR_MLX				= lib/minilibx
+
+# Mandatory sources
+M_SRCS				= game/dda.c\
 					game/draw_column.c\
 					game/game_loop.c\
 					game/raycasting.c\
@@ -60,10 +68,51 @@ SRCS				= game/dda.c\
 					utils/print_error.c\
 					main.c
 
-INCS				= -I $(DIR_INCS) $(foreach PATH_LIB,$(PATH_LIBS),-I $(PATH_LIB))
-INCS				+= -I $(DIR_MLX)
+# Bonus sources
+B_SRCS				= game/check_collision_bonus.c\
+					game/dda_bonus.c\
+					game/draw_column_bonus.c\
+					game/event_handlers_bonus.c\
+					game/game_loop_bonus.c\
+					game/movement_bonus.c\
+					game/raycasting_bonus.c\
+					game/render_bonus.c\
+					game/rotate_bonus.c\
+					init/init_player_bonus.c\
+					init/init_textures_bonus.c\
+					init/init_view_bonus.c\
+					init/validate_textures_bonus.c\
+					parse/load_map/load_input_file_bonus.c\
+					parse/load_map/validate_extension_bonus.c\
+					parse/parse_grid/parse_grid_bonus.c\
+					parse/parse_grid/validate_characters_bonus.c\
+					parse/parse_grid/validate_player_bonus.c\
+					parse/parse_grid/validate_walls_bonus.c\
+					parse/parse_identifier/parse_identifier_utils_bonus.c\
+					parse/parse_identifier/parse_identifiers_bonus.c\
+					parse/parse_identifier/set_identifier_bonus.c\
+					parse/parse_identifier/set_identifier_utils_bonus.c\
+					parse/parse_map_bonus.c\
+					parse/parse_utils_bonus.c\
+					utils/free_array_bonus.c\
+					utils/free_map_bonus.c\
+					utils/free_textures_bonus.c\
+					utils/free_view_bonus.c\
+					utils/ft_strequal_bonus.c\
+					utils/ft_strndup_bonus.c\
+					utils/ft_is_only_whitespace_bonus.c\
+					utils/print_error_bonus.c\
+					main_bonus.c
 
-OBJS				= $(SRCS:%.c=$(DIR_OBJS)/%.o)
+M_INCS				= -I $(M_DIR_INCS) $(foreach PATH_LIB,$(PATH_LIBS),-I $(PATH_LIB))
+M_INCS				+= -I $(DIR_MLX)
+
+B_INCS				= -I $(B_DIR_INCS) $(foreach PATH_LIB,$(PATH_LIBS),-I $(PATH_LIB))
+B_INCS				+= -I $(DIR_MLX)
+
+OBJS 				= $(M_OBJS)
+M_OBJS				= $(M_SRCS:%.c=$(M_DIR_OBJS)/%.o)
+B_OBJS				= $(B_SRCS:%.c=$(B_DIR_OBJS)/%.o)
 LIBS				= libft get_next_line get_next_line_no_nl
 
 PATH_LIBS			= $(foreach LIB,$(LIBS),$(DIR_LIBS)/$(LIB))
@@ -72,24 +121,34 @@ ARCH_LIBS			= $(foreach PATH_LIB,$(PATH_LIBS),$(PATH_LIB)/$(notdir $(PATH_LIB)).
 ### minilibx ###
 LIB_MLX				= $(DIR_MLX)/libmlx.a
 
+BONUS_FLAGS		= 0
+ifeq ($(BONUS_FLAGS), 1)
+	OBJS = $(B_OBJS)
+endif
+
 ### Default Rules ###
-
 .DEFAULT_GOAL		:= all
-
-$(NAME): $(ARCH_LIBS) $(LIB_MLX) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(ARCH_LIBS) $(MLX_FLAGS) $(M_FLAG) -o $@
-
-$(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c
-	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
 all: $(NAME)
 
-bonus: all
+$(NAME): $(ARCH_LIBS) $(LIB_MLX) $(OBJS) 
+	$(CC) $(CFLAGS) $(OBJS) $(ARCH_LIBS) $(MLX_FLAGS) $(M_FLAG) -o $(NAME)
+
+bonus:
+	$(MAKE) BONUS_FLAGS=1 all
+
+$(M_DIR_OBJS)/%.o: $(M_DIR_SRCS)/%.c
+	mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(M_INCS) -c $< -o $@
+
+$(B_DIR_OBJS)/%.o: $(B_DIR_SRCS)/%.c
+	mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(B_INCS) -c $< -o $@
 
 clean: $(ARCH_LIBS:%=%__clean)
 	$(MAKE) clean -C $(DIR_MLX)
-	rm -rf $(DIR_OBJS)
+	rm -rf $(M_DIR_OBJS)
+	rm -rf $(B_DIR_OBJS)
 
 fclean: clean $(ARCH_LIBS:%=%__fclean)
 	rm -f $(NAME)
@@ -129,13 +188,18 @@ $(LIB_MLX):
 	$(MAKE) re -C $(dir $@)
 
 ### Utils Rules ###
-SRCS_LIST			= $(shell find $(DIR_SRCS) -type f -name "*.c")
+M_SRCS_LIST			= $(shell find $(M_DIR_SRCS) -type f -name "*.c")
+B_SRCS_LIST			= $(shell find $(B_DIR_SRCS) -type f -name "*.c")
 
 print_sourcefiles:
-	@$(foreach SRC,$(SRCS_LIST),echo '$(SRC:$(DIR_SRCS)/%.c=%.c\\)';)
+	@echo "=== Mandatory Sources ==="
+	@$(foreach SRC,$(M_SRCS_LIST),echo '$(SRC:$(M_DIR_SRCS)/%.c=%.c\\)';)
+	@echo ""
+	@echo "=== Bonus Sources ==="
+	@$(foreach SRC,$(B_SRCS_LIST),echo '$(SRC:$(B_DIR_SRCS)/%.c=%.c\\)';)
 
 norm:
-	@norminette $(DIR_SRCS) | grep 'Error'
+	@norminette mandatory/src mandatory/include bonus/src bonus/include | grep 'Error'
 
 .PHONY: print_sourcefiles norm
 

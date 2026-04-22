@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_player.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 14:08:40 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/21 17:04:05 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/04/21 22:22:59 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,28 +68,3 @@ t_status	validate_player(const char **file_lines, t_map *map_data)
 	}
 	return (STATUS_OK);
 }
-
-// #include <assert.h>
-// int	main(void)
-// {
-// 	const char  *m1 = ft_strdup("11111");
-//     const char  *m2 = ft_strdup("1N001");
-//     const char  *m3 = ft_strdup("10N01"); // 真ん中にプレイヤー(North向き)
-//     const char  *m4 = ft_strdup("10001");
-//     const char  *m5 = ft_strdup("11111");
-// 	const char	**file_lines1 = malloc(sizeof(const char *) * 6);
-// 	file_lines1[0] = m1;
-//     file_lines1[1] = m2;
-//     file_lines1[2] = m3;
-//     file_lines1[3] = m4;
-//     file_lines1[4] = m5;
-//     file_lines1[5] = NULL;
-// 	t_map	map_data = {0};
-// 	assert(validate_player(file_lines1, &map_data) == STATUS_ERROR);
-// 	puts("Test1 OK!!");
-// 	const char	*m6 = ft_strdup("10001");
-// 	file_lines1[1] = m6;
-// 	assert(validate_player(file_lines1, &map_data) == STATUS_OK);
-// 	puts("Test2 OK!!");
-// 	return (0);
-// }

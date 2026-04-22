@@ -1,0 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_array_bonus.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/04 18:29:33 by itakumi           #+#    #+#             */
+/*   Updated: 2026/04/21 21:42:19 by itakumi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdlib.h>
+
+void	free_array(void **array)
+{
+	void	**array_temp;
+
+	if (array == NULL)
+		return ;
+	array_temp = array;
+	while (*array != NULL)
+	{
+		free(*array);
+		*array = NULL;
+		array++;
+	}
+	free(array_temp);
+}
