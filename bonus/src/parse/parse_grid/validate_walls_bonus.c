@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_walls_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 13:16:08 by totake            #+#    #+#             */
-/*   Updated: 2026/04/22 13:16:10 by totake           ###   ########.fr       */
+/*   Updated: 2026/05/02 16:08:33 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static t_status	validate_all_walls(const char **file_lines)
 			}
 			if (check_4_direction(file_lines, x, y) == STATUS_ERROR)
 			{
-				print_error(NULL, ERROR_NO_SURROUNDED_WALL);
+				print_error(NULL, ERROR_UNCLOSED_MAP);
 				return (STATUS_ERROR);
 			}
 			x++;
@@ -109,7 +109,7 @@ t_status	validate_walls(const char **file_lines, t_map *map_data)
 			(t_map const *)map_data) == STATUS_ERROR)
 	{
 		free_array((void **)file_lines_cpy);
-		print_error(NULL, ERROR_NO_SURROUNDED_WALL);
+		print_error(NULL, ERROR_UNCLOSED_MAP);
 		return (STATUS_ERROR);
 	}
 	free_array((void **)file_lines_cpy);
