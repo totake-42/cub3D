@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 14:10:33 by itakumi           #+#    #+#             */
-/*   Updated: 2026/05/02 16:07:48 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/05/02 16:34:52 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,6 @@
 #include "parse.h"
 #include "status.h"
 #include "utils.h"
-
-static t_status	flood_fill(char **file_lines, int x_pos, int y_pos,
-		t_map const *map_data)
-{
-	if (y_pos < 0 || y_pos >= map_data->grid_height)
-		return (STATUS_ERROR);
-	if (x_pos < 0 || x_pos >= (int)ft_strlen(file_lines[y_pos]))
-		return (STATUS_ERROR);
-	if (file_lines[y_pos][x_pos] == '\0' || file_lines[y_pos][x_pos] == ' ')
-		return (STATUS_ERROR);
-	if (file_lines[y_pos][x_pos] == WALL)
-		return (STATUS_OK);
-	file_lines[y_pos][x_pos] = WALL;
-	if (flood_fill(file_lines, x_pos + 1, y_pos, map_data) == STATUS_ERROR)
-		return (STATUS_ERROR);
-	if (flood_fill(file_lines, x_pos - 1, y_pos, map_data) == STATUS_ERROR)
-		return (STATUS_ERROR);
-	if (flood_fill(file_lines, x_pos, y_pos + 1, map_data) == STATUS_ERROR)
-		return (STATUS_ERROR);
-	if (flood_fill(file_lines, x_pos, y_pos - 1, map_data) == STATUS_ERROR)
-		return (STATUS_ERROR);
-	return (STATUS_OK);
-}
 
 static t_status	check_4_direction(const char **file_lines, int x, int y)
 {
@@ -103,13 +80,6 @@ t_status	validate_walls(const char **file_lines, t_map *map_data)
 	if (validate_all_walls((const char **)file_lines_cpy) == STATUS_ERROR)
 	{
 		free_array((void **)file_lines_cpy);
-		return (STATUS_ERROR);
-	}
-	if (flood_fill(file_lines_cpy, map_data->player_x, map_data->player_y,
-			(t_map const *)map_data) == STATUS_ERROR)
-	{
-		free_array((void **)file_lines_cpy);
-		print_error(NULL, ERROR_UNCLOSED_MAP);
 		return (STATUS_ERROR);
 	}
 	free_array((void **)file_lines_cpy);
