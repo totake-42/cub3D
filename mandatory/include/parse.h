@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:32:11 by itakumi           #+#    #+#             */
-/*   Updated: 2026/05/02 16:07:14 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/05/04 18:53:00 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 /* Error messages */
 /* parse player */
 # define ERROR_TOO_MANY_PLAYERS "Too many players"
+# define ERROR_NO_PLAYER "No player found in the map"
 /* parse character */
 # define ERROR_INVALID_CHARACTER "Invalid character"
 /* parse grid */
