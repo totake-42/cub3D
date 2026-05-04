@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 13:15:17 by totake            #+#    #+#             */
-/*   Updated: 2026/05/04 18:59:51 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/05/04 21:05:28 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,15 @@ static t_status	analyze_file_dimensions(const char *input_file,
 	return (STATUS_OK);
 }
 
-static char	**init_file_lines_from_input_file(const char *input_file,
-		size_t row_len)
+static char	**get_file_lines(int fd, size_t row_len, const char *input_file)
 {
 	char	**file_lines;
 	char	**file_lines_temp;
-	int		fd;
 	char	*line;
 
 	file_lines = ft_calloc(sizeof(char *), (row_len + 1));
 	if (file_lines == NULL)
 		return (print_error(NULL, ERROR_MALLOC), NULL);
-	fd = open(input_file, O_RDONLY);
-	if (fd == -1)
-		return (free(file_lines), print_error(NULL, NULL), perror(input_file),
-			NULL);
 	file_lines_temp = file_lines;
 	while (true)
 	{
@@ -73,14 +67,37 @@ static char	**init_file_lines_from_input_file(const char *input_file,
 		{
 			if (errno != 0)
 				return (print_error(NULL, NULL), perror(input_file),
-					*file_lines = NULL, free_array((void **)file_lines_temp), NULL);
+					*file_lines = NULL, free_array((void **)file_lines_temp),
+					NULL);
 			break ;
 		}
 		*file_lines = line;
 		file_lines++;
 	}
-	close(fd);
 	return (file_lines_temp);
+}
+
+static char	**init_file_lines_from_input_file(const char *input_file,
+		size_t row_len)
+{
+	char	**file_lines;
+	int		fd;
+
+	fd = open(input_file, O_RDONLY);
+	if (fd == -1)
+	{
+		print_error(NULL, NULL);
+		perror(input_file);
+		return (NULL);
+	}
+	file_lines = get_file_lines(fd, row_len, input_file);
+	if (file_lines == NULL)
+	{
+		close(fd);
+		return (NULL);
+	}
+	close(fd);
+	return (file_lines);
 }
 
 char	**load_input_file(const char *input_file)

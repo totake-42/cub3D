@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 17:39:53 by itakumi           #+#    #+#             */
-/*   Updated: 2026/05/04 18:55:53 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/05/04 20:58:55 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ static char	**get_file_lines(int fd, size_t row_len, const char *input_file)
 		{
 			if (errno != 0)
 				return (print_error(NULL, NULL), perror(input_file),
-					*file_lines = NULL, free_array((void **)file_lines_temp), NULL);
+					*file_lines = NULL, free_array((void **)file_lines_temp),
+					NULL);
 			break ;
 		}
 		*file_lines = line;

@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 13:16:08 by totake            #+#    #+#             */
-/*   Updated: 2026/05/04 20:55:44 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/05/04 21:07:42 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,37 @@ static t_status	check_4_direction(const char **file_lines, int x, int y)
 	return (STATUS_OK);
 }
 
+static t_status	validate_map_oneline(
+	const char **file_lines, int y, bool is_first_emptyline)
+{
+	int	x;
+
+	x = 0;
+	while (file_lines[y][x] != '\0')
+	{
+		if (is_first_emptyline == true)
+			return (print_error(NULL, ERROR_MAP_IS_SEPARATED_EMPTY_LINES),
+				STATUS_ERROR);
+		if (file_lines[y][x] != '0')
+		{
+			x++;
+			continue ;
+		}
+		if (check_4_direction(file_lines, x, y) == STATUS_ERROR)
+			return (print_error(NULL, ERROR_UNCLOSED_MAP),
+				STATUS_ERROR);
+		x++;
+	}
+	return (STATUS_OK);
+}
+
 /**
- * @fn  validate_map_boundaries
+ * @fn validate_map_boundaries
  * @param (file_lines) @param (map_data)
  * @brief validate all '0' for 4 direction.
  */
 static t_status	validate_map_boundaries(const char **file_lines)
 {
-	int		x;
 	int		y;
 	bool	is_first_emptyline;
 
@@ -46,24 +69,11 @@ static t_status	validate_map_boundaries(const char **file_lines)
 	is_first_emptyline = false;
 	while (file_lines[y] != NULL)
 	{
-		x = 0;
-		if (file_lines[y][x] == '\0')
+		if (file_lines[y][0] == '\0')
 			is_first_emptyline = true;
-		while (file_lines[y][x] != '\0')
-		{
-			if (is_first_emptyline == true)
-				return (print_error(NULL, ERROR_MAP_IS_SEPARATED_EMPTY_LINES),
-					STATUS_ERROR);
-			if (file_lines[y][x] != '0')
-			{
-				x++;
-				continue ;
-			}
-			if (check_4_direction(file_lines, x, y) == STATUS_ERROR)
-				return (print_error(NULL, ERROR_UNCLOSED_MAP),
-					STATUS_ERROR);
-			x++;
-		}
+		if (validate_map_oneline(file_lines, y, is_first_emptyline)
+			== STATUS_ERROR)
+			return (STATUS_ERROR);
 		y++;
 	}
 	return (STATUS_OK);
