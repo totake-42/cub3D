@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strequal.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 14:43:00 by itakumi           #+#    #+#             */
-/*   Updated: 2026/01/05 18:29:21 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/05/04 19:30:52 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,28 @@
 #include <stddef.h>
 #include "libft.h"
 
-bool	ft_strequal(const char *s1, const char *s2)
+static int	ft_strcmp(const char *s1, const char *s2)
 {
-	size_t	s1_len;
-	size_t	s2_len;	
+	const unsigned char	*str1 = (const unsigned char *)s1;
+	const unsigned char	*str2 = (const unsigned char *)s2;
 
 	if (s1 == NULL || s2 == NULL)
+		return (-1);
+	while (*str1 && *str2)
+	{
+		if (*str1 != *str2)
+			return (*str1 - *str2);
+		str1++;
+		str2++;
+	}
+	if (*str1 != *str2)
+		return (*str1 - *str2);
+	return (0);
+}
+
+bool	ft_strequal(const char *s1, const char *s2)
+{
+	if (s1 == NULL || s2 == NULL)
 		return (false);
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	if (s1_len == s2_len && ft_strncmp(s1, s2, s1_len) == 0)
-		return (true);
-	return (false);
+	return (ft_strcmp(s1, s2));
 }
