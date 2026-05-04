@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 14:10:33 by itakumi           #+#    #+#             */
-/*   Updated: 2026/05/04 20:00:36 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/05/04 20:53:46 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static t_status	check_4_direction(const char **file_lines, int x, int y)
 }
 
 /**
- * @fn validate_all_walls
+ * @fn validate_map_boundaries
  * @param (file_lines) @param (map_data)
  * @brief validate all '0' for 4 direction.
  */
@@ -40,13 +40,19 @@ static t_status	validate_map_boundaries(const char **file_lines)
 {
 	int		x;
 	int		y;
+	bool	is_first_emptyline;
 
 	y = 0;
+	is_first_emptyline = false;
 	while (file_lines[y] != NULL)
 	{
 		x = 0;
+		if (file_lines[y][x] == '\0')
+			is_first_emptyline = true;
 		while (file_lines[y][x] != '\0')
 		{
+			if (is_first_emptyline == true)
+				return (print_error(NULL, ERROR_MAP_IS_SEPARATED_EMPTY_LINES), STATUS_ERROR);
 			if (file_lines[y][x] != '0')
 			{
 				x++;

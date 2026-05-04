@@ -6,14 +6,14 @@
 #    By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/26 10:45:00 by itakumi           #+#    #+#              #
-#    Updated: 2026/05/04 19:13:32 by tigarashi        ###   ########.fr        #
+#    Updated: 2026/05/04 20:28:53 by tigarashi        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 override	NAME	= cub3D
 
 override	CC		= cc
-override	CFLAGS	= -Wall -Werror -Wextra
+override	CFLAGS	= -Wall -Werror -Wextra -g
 
 M_FLAG				= -lm
 # Linux

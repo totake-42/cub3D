@@ -1,0 +1,18 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "make cub3D",
+            "type": "shell",
+            // Makefileがあるディレクトリでmakeを実行
+            "command": "make",
+            "args": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Makefileを使用してプロジェクト全体をビルドします"
+        }
+    ]
+}

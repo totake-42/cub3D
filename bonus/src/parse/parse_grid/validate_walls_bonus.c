@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 13:16:08 by totake            #+#    #+#             */
-/*   Updated: 2026/05/04 20:01:26 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/05/04 20:55:44 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,28 @@ static t_status	validate_map_boundaries(const char **file_lines)
 {
 	int		x;
 	int		y;
+	bool	is_first_emptyline;
 
 	y = 0;
+	is_first_emptyline = false;
 	while (file_lines[y] != NULL)
 	{
 		x = 0;
+		if (file_lines[y][x] == '\0')
+			is_first_emptyline = true;
 		while (file_lines[y][x] != '\0')
 		{
+			if (is_first_emptyline == true)
+				return (print_error(NULL, ERROR_MAP_IS_SEPARATED_EMPTY_LINES),
+					STATUS_ERROR);
 			if (file_lines[y][x] != '0')
 			{
 				x++;
 				continue ;
 			}
 			if (check_4_direction(file_lines, x, y) == STATUS_ERROR)
-			{
-				print_error(NULL, ERROR_UNCLOSED_MAP);
-				return (STATUS_ERROR);
-			}
+				return (print_error(NULL, ERROR_UNCLOSED_MAP),
+					STATUS_ERROR);
 			x++;
 		}
 		y++;
