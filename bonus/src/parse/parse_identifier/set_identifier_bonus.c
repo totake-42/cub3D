@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_identifier_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 13:16:48 by totake            #+#    #+#             */
-/*   Updated: 2026/04/22 13:16:49 by totake           ###   ########.fr       */
+/*   Updated: 2026/05/04 19:12:23 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_status	set_texture_path(t_map *map_data, size_t offset, const char *value)
 
 	target_ptr = (char **)((char *)map_data + offset);
 	len = 0;
-	while (value[len] && ft_is_whitespace(value[len]) == false)
+	while (value[len] && ft_isspace(value[len]) == false)
 		len++;
 	*target_ptr = ft_strndup(value, len);
 	if (*target_ptr == NULL)
@@ -55,7 +55,7 @@ t_status	set_texture_path(t_map *map_data, size_t offset, const char *value)
 	value += len;
 	while (*value)
 	{
-		if (ft_is_whitespace(*value) == false)
+		if (ft_isspace(*value) == false)
 		{
 			print_error(value, ERROR_INVALID_IDENTIFIER_VALUE);
 			free(*target_ptr);

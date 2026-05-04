@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_identifier_utils_bonus.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 13:16:59 by totake            #+#    #+#             */
-/*   Updated: 2026/04/22 13:17:00 by totake           ###   ########.fr       */
+/*   Updated: 2026/05/04 19:12:40 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static size_t	len_until_whitespace(const char *str)
 {
 	const char	*str_head = str;
 
-	while (*str != '\0' && ft_is_whitespace(*str) == false)
+	while (*str != '\0' && ft_isspace(*str) == false)
 		str++;
 	return (str - str_head);
 }
@@ -81,7 +81,7 @@ bool	is_valid_end_of_strings(const char *str)
 		return (false);
 	while (*str != '\0')
 	{
-		if (ft_is_whitespace(*str) == false)
+		if (ft_isspace(*str) == false)
 			return (false);
 		str++;
 	}

@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_only_whitespace.c                            :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 15:56:54 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/22 12:56:14 by totake           ###   ########.fr       */
+/*   Updated: 2026/05/04 19:09:45 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 #include <stddef.h>
 
-bool	ft_is_whitespace(int c)
+bool	ft_isspace(int c)
 {
-	const char			*whitespace = " ";
 	const unsigned char	cc = (unsigned char)c;
 
-	while (*whitespace != '\0')
-	{
-		if (cc == *whitespace)
-			return (true);
-		whitespace++;
-	}
+	if (cc == ' ')
+		return (true);
 	return (false);
 }

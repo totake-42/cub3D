@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+         #
+#    By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/26 10:45:00 by itakumi           #+#    #+#              #
-#    Updated: 2026/04/22 12:25:18 by totake           ###   ########.fr        #
+#    Updated: 2026/05/04 19:13:32 by tigarashi        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ M_SRCS				= game/dda.c\
 					utils/free_view.c\
 					utils/ft_strequal.c\
 					utils/ft_strndup.c\
-					utils/ft_is_only_whitespace.c\
+					utils/ft_isspace.c\
 					utils/print_error.c\
 					main.c
 
@@ -100,7 +100,7 @@ B_SRCS				= game/check_collision_bonus.c\
 					utils/free_view_bonus.c\
 					utils/ft_strequal_bonus.c\
 					utils/ft_strndup_bonus.c\
-					utils/ft_is_only_whitespace_bonus.c\
+					utils/ft_isspace_bonus.c\
 					utils/print_error_bonus.c\
 					main_bonus.c
 

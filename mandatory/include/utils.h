@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 13:35:22 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/22 12:58:20 by totake           ###   ########.fr       */
+/*   Updated: 2026/05/04 19:10:10 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ void	free_array(void **array);
 bool	ft_strequal(const char *s1, const char *s2);
 char	*ft_strndup(const char *s, size_t n);
 void	print_error(const char *context, const char *message);
-bool	ft_is_whitespace(int c);
+bool	ft_isspace(int c);
 
 #endif
