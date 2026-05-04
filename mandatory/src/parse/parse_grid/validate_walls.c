@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 14:10:33 by itakumi           #+#    #+#             */
-/*   Updated: 2026/05/02 16:34:52 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/05/04 20:00:36 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_status	check_4_direction(const char **file_lines, int x, int y)
  * @param (file_lines) @param (map_data)
  * @brief validate all '0' for 4 direction.
  */
-static t_status	validate_all_walls(const char **file_lines)
+static t_status	validate_map_boundaries(const char **file_lines)
 {
 	int		x;
 	int		y;
@@ -77,7 +77,7 @@ t_status	validate_walls(const char **file_lines, t_map *map_data)
 	file_lines_cpy = duplicate_file_lines(file_lines, map_data->grid_height);
 	if (file_lines_cpy == NULL)
 		return (STATUS_ERROR);
-	if (validate_all_walls((const char **)file_lines_cpy) == STATUS_ERROR)
+	if (validate_map_boundaries((const char **)file_lines_cpy) == STATUS_ERROR)
 	{
 		free_array((void **)file_lines_cpy);
 		return (STATUS_ERROR);
