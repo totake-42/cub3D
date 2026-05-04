@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 14:43:00 by itakumi           #+#    #+#             */
-/*   Updated: 2026/05/04 19:30:52 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/05/04 20:37:42 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ bool	ft_strequal(const char *s1, const char *s2)
 {
 	if (s1 == NULL || s2 == NULL)
 		return (false);
-	return (ft_strcmp(s1, s2));
+	if (ft_strcmp(s1, s2) == 0)
+		return (true);
+	return (false);
 }
