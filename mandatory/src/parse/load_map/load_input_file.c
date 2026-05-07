@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   load_input_file.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 17:39:53 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/21 17:03:31 by itakumi          ###   ########.fr       */
+/*   Updated: 2026/05/04 20:58:55 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <errno.h>
 #include "cub3d.h"
 #include "get_next_line_no_nl.h"
 #include "libft.h"
@@ -28,16 +29,17 @@ static t_status	analyze_file_dimensions(const char *input_file,
 
 	fd = open(input_file, O_RDONLY);
 	if (fd == -1)
-	{
-		print_error(NULL, NULL);
-		perror(input_file);
-		return (STATUS_ERROR);
-	}
+		return (print_error(NULL, NULL), perror(input_file), STATUS_ERROR);
 	while (true)
 	{
 		line = get_next_line_no_nl(fd);
 		if (line == NULL)
+		{
+			if (errno != 0)
+				return (print_error(NULL, NULL), perror(input_file),
+					close(fd), STATUS_ERROR);
 			break ;
+		}
 		line_len = ft_strlen(line);
 		if (line_len > *col_max_len)
 			*col_max_len = line_len;
@@ -48,32 +50,54 @@ static t_status	analyze_file_dimensions(const char *input_file,
 	return (STATUS_OK);
 }
 
-static char	**init_file_lines_from_input_file(const char *input_file,
-		size_t row_len)
+static char	**get_file_lines(int fd, size_t row_len, const char *input_file)
 {
 	char	**file_lines;
 	char	**file_lines_temp;
-	int		fd;
 	char	*line;
 
 	file_lines = ft_calloc(sizeof(char *), (row_len + 1));
 	if (file_lines == NULL)
 		return (print_error(NULL, ERROR_MALLOC), NULL);
-	fd = open(input_file, O_RDONLY);
-	if (fd == -1)
-		return (free(file_lines), print_error(NULL, NULL), perror(input_file),
-			NULL);
 	file_lines_temp = file_lines;
 	while (true)
 	{
 		line = get_next_line_no_nl(fd);
 		if (line == NULL)
+		{
+			if (errno != 0)
+				return (print_error(NULL, NULL), perror(input_file),
+					*file_lines = NULL, free_array((void **)file_lines_temp),
+					NULL);
 			break ;
+		}
 		*file_lines = line;
 		file_lines++;
 	}
-	close(fd);
 	return (file_lines_temp);
+}
+
+static char	**init_file_lines_from_input_file(const char *input_file,
+		size_t row_len)
+{
+	char	**file_lines;
+	int		fd;
+
+	fd = open(input_file, O_RDONLY);
+	if (fd == -1)
+	{
+		print_error(NULL, NULL);
+		perror(input_file);
+		return (NULL);
+	}
+	file_lines = get_file_lines(fd, row_len, input_file);
+	if (file_lines == NULL)
+	{
+		close(fd);
+		return (NULL);
+	}
+	close(fd);
+	return (file_lines);
 }
 
 char	**load_input_file(const char *input_file)

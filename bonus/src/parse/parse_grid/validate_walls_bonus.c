@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_walls_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 13:16:08 by totake            #+#    #+#             */
-/*   Updated: 2026/04/22 13:16:10 by totake           ###   ########.fr       */
+/*   Updated: 2026/05/04 21:07:42 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,6 @@
 #include "parse_bonus.h"
 #include "status_bonus.h"
 #include "utils_bonus.h"
-
-static t_status	flood_fill(char **file_lines, int x_pos, int y_pos,
-		t_map const *map_data)
-{
-	if (y_pos < 0 || y_pos >= map_data->grid_height)
-		return (STATUS_ERROR);
-	if (x_pos < 0 || x_pos >= (int)ft_strlen(file_lines[y_pos]))
-		return (STATUS_ERROR);
-	if (file_lines[y_pos][x_pos] == '\0' || file_lines[y_pos][x_pos] == ' ')
-		return (STATUS_ERROR);
-	if (file_lines[y_pos][x_pos] == WALL)
-		return (STATUS_OK);
-	file_lines[y_pos][x_pos] = WALL;
-	if (flood_fill(file_lines, x_pos + 1, y_pos, map_data) == STATUS_ERROR)
-		return (STATUS_ERROR);
-	if (flood_fill(file_lines, x_pos - 1, y_pos, map_data) == STATUS_ERROR)
-		return (STATUS_ERROR);
-	if (flood_fill(file_lines, x_pos, y_pos + 1, map_data) == STATUS_ERROR)
-		return (STATUS_ERROR);
-	if (flood_fill(file_lines, x_pos, y_pos - 1, map_data) == STATUS_ERROR)
-		return (STATUS_ERROR);
-	return (STATUS_OK);
-}
 
 static t_status	check_4_direction(const char **file_lines, int x, int y)
 {
@@ -54,34 +31,49 @@ static t_status	check_4_direction(const char **file_lines, int x, int y)
 	return (STATUS_OK);
 }
 
+static t_status	validate_map_oneline(
+	const char **file_lines, int y, bool is_first_emptyline)
+{
+	int	x;
+
+	x = 0;
+	while (file_lines[y][x] != '\0')
+	{
+		if (is_first_emptyline == true)
+			return (print_error(NULL, ERROR_MAP_IS_SEPARATED_EMPTY_LINES),
+				STATUS_ERROR);
+		if (file_lines[y][x] != '0')
+		{
+			x++;
+			continue ;
+		}
+		if (check_4_direction(file_lines, x, y) == STATUS_ERROR)
+			return (print_error(NULL, ERROR_UNCLOSED_MAP),
+				STATUS_ERROR);
+		x++;
+	}
+	return (STATUS_OK);
+}
+
 /**
- * @fn validate_all_walls
+ * @fn validate_map_boundaries
  * @param (file_lines) @param (map_data)
  * @brief validate all '0' for 4 direction.
  */
-static t_status	validate_all_walls(const char **file_lines)
+static t_status	validate_map_boundaries(const char **file_lines)
 {
-	int		x;
 	int		y;
+	bool	is_first_emptyline;
 
 	y = 0;
+	is_first_emptyline = false;
 	while (file_lines[y] != NULL)
 	{
-		x = 0;
-		while (file_lines[y][x] != '\0')
-		{
-			if (file_lines[y][x] != '0')
-			{
-				x++;
-				continue ;
-			}
-			if (check_4_direction(file_lines, x, y) == STATUS_ERROR)
-			{
-				print_error(NULL, ERROR_NO_SURROUNDED_WALL);
-				return (STATUS_ERROR);
-			}
-			x++;
-		}
+		if (file_lines[y][0] == '\0')
+			is_first_emptyline = true;
+		if (validate_map_oneline(file_lines, y, is_first_emptyline)
+			== STATUS_ERROR)
+			return (STATUS_ERROR);
 		y++;
 	}
 	return (STATUS_OK);
@@ -100,16 +92,9 @@ t_status	validate_walls(const char **file_lines, t_map *map_data)
 	file_lines_cpy = duplicate_file_lines(file_lines, map_data->grid_height);
 	if (file_lines_cpy == NULL)
 		return (STATUS_ERROR);
-	if (validate_all_walls((const char **)file_lines_cpy) == STATUS_ERROR)
+	if (validate_map_boundaries((const char **)file_lines_cpy) == STATUS_ERROR)
 	{
 		free_array((void **)file_lines_cpy);
-		return (STATUS_ERROR);
-	}
-	if (flood_fill(file_lines_cpy, map_data->player_x, map_data->player_y,
-			(t_map const *)map_data) == STATUS_ERROR)
-	{
-		free_array((void **)file_lines_cpy);
-		print_error(NULL, ERROR_NO_SURROUNDED_WALL);
 		return (STATUS_ERROR);
 	}
 	free_array((void **)file_lines_cpy);

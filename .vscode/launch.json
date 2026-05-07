@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "cub3D Debug",
+            "type": "cppdbg",
+            "request": "launch",
+            // 実行ファイル名を指定（Makefileで生成される名前、通常は cub3D）
+            "program": "${workspaceFolder}/cub3D", 
+            // 実行時に渡すマップ引数
+            "args": ["maps/1test.cub"], 
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            // デバッグ開始前に上の tasks.json で定義したビルドを実行
+            "preLaunchTask": "make cub3D",
+            "miDebuggerPath": "/usr/bin/gdb"
+        }
+    ]
+}

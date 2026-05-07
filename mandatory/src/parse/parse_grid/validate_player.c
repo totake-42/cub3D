@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_player.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 14:08:40 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/21 22:22:59 by totake           ###   ########.fr       */
+/*   Updated: 2026/05/04 18:53:44 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,11 @@ t_status	validate_player(const char **file_lines, t_map *map_data)
 			return (STATUS_ERROR);
 		row_count++;
 		file_lines++;
+	}
+	if (is_set_player == false)
+	{
+		print_error(NULL, ERROR_NO_PLAYER);
+		return (STATUS_ERROR);
 	}
 	return (STATUS_OK);
 }

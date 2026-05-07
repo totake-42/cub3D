@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:32:11 by itakumi           #+#    #+#             */
-/*   Updated: 2026/04/21 23:04:01 by totake           ###   ########.fr       */
+/*   Updated: 2026/05/04 20:55:00 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,12 @@
 /* Error messages */
 /* parse player */
 # define ERROR_TOO_MANY_PLAYERS "Too many players"
+# define ERROR_NO_PLAYER "No player found in the map"
 /* parse character */
 # define ERROR_INVALID_CHARACTER "Invalid character"
 /* parse grid */
-# define ERROR_NO_SURROUNDED_WALL "No surrounded wall"
-
+# define ERROR_UNCLOSED_MAP "Unclosed map" 
+# define ERROR_MAP_IS_SEPARATED_EMPTY_LINES "Map contains empty lines"
 /* Boundary condition number*/
 # define AIRSPACE '0'
 # define WALL '1'
