@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_player_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 13:15:51 by totake            #+#    #+#             */
-/*   Updated: 2026/05/04 18:53:28 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/05/07 18:35:20 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,6 @@
 #include "parse_bonus.h"
 #include "status_bonus.h"
 #include "utils_bonus.h"
-
-static bool	is_player_character(int c)
-{
-	const unsigned char	uc = (const unsigned char)c;
-
-	return (uc == 'N' || uc == 'S' || uc == 'E' || uc == 'W');
-}
 
 static t_status	process_validate_player(const char *line, t_map *map_data,
 		bool *is_set_player, int row_count)

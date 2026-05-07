@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_walls_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 13:16:08 by totake            #+#    #+#             */
-/*   Updated: 2026/05/04 21:07:42 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/05/07 18:41:38 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static t_status	validate_map_oneline(
 		if (is_first_emptyline == true)
 			return (print_error(NULL, ERROR_MAP_IS_SEPARATED_EMPTY_LINES),
 				STATUS_ERROR);
-		if (file_lines[y][x] != '0')
+		if (file_lines[y][x] != '0'
+			&& is_player_character(file_lines[y][x] == false))
 		{
 			x++;
 			continue ;

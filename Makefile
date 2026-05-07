@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+         #
+#    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/26 10:45:00 by itakumi           #+#    #+#              #
-#    Updated: 2026/05/04 20:28:53 by tigarashi        ###   ########.fr        #
+#    Updated: 2026/05/07 18:34:56 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ M_SRCS				= game/dda.c\
 					parse/load_map/validate_extension.c\
 					parse/load_map/load_input_file.c\
 					parse/parse_grid/parse_grid.c\
+					parse/parse_grid/parse_grid_utils.c\
 					parse/parse_grid/validate_characters.c\
 					parse/parse_grid/validate_player.c\
 					parse/parse_grid/validate_walls.c\
@@ -85,6 +86,7 @@ B_SRCS				= game/check_collision_bonus.c\
 					parse/load_map/load_input_file_bonus.c\
 					parse/load_map/validate_extension_bonus.c\
 					parse/parse_grid/parse_grid_bonus.c\
+					parse/parse_grid/parse_grid_utils_bonus.c\
 					parse/parse_grid/validate_characters_bonus.c\
 					parse/parse_grid/validate_player_bonus.c\
 					parse/parse_grid/validate_walls_bonus.c\
