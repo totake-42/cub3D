@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 14:32:11 by itakumi           #+#    #+#             */
-/*   Updated: 2026/05/04 20:23:05 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/05/07 18:33:17 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ t_status		parse_grid(const char **file_lines, t_map *map_data);
 t_status		validate_characters(const char **file_lines);
 t_status		validate_player(const char **file_lines, t_map *map_data);
 t_status		validate_walls(const char **file_lines, t_map *map_data);
+bool			is_player_character(int c);
 
 /* parse identifiers */
 t_status		parse_identifiers(const char ***file_lines, t_map *map_data);
