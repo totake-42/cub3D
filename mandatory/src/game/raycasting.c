@@ -6,7 +6,7 @@
 /*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 16:00:00 by totake            #+#    #+#             */
-/*   Updated: 2026/04/17 16:38:34 by totake           ###   ########.fr       */
+/*   Updated: 2026/04/29 16:07:55 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,11 @@ static t_ray_result	cast_single_ray(t_cub3d *app, double ray_x, double ray_y)
  *
  * ray->step_x / ray->step_y:
  *   indicate the ray movement direction:
- *     negative → ray moving toward WEST or NORTH
- *     positive → ray moving toward EAST or SOUTH
+ *     negative → ray moving toward WEST or NORTH → display EAST or SOUTH texture
+ *     positive → ray moving toward EAST or SOUTH → display WEST or NORTH texture
  *
  * Returns:
- *   Texture index corresponding to wall orientation.
+ *   Texture index corresponding to opposite wall orientation.
  */
 
 static int	select_texture(t_ray_result *ray)
@@ -83,12 +83,12 @@ static int	select_texture(t_ray_result *ray)
 	if (ray->side == 0)
 	{
 		if (ray->step_x < 0)
-			return (TEX_WEST);
-		return (TEX_EAST);
+			return (TEX_EAST);
+		return (TEX_WEST);
 	}
 	if (ray->step_y < 0)
-		return (TEX_NORTH);
-	return (TEX_SOUTH);
+		return (TEX_SOUTH);
+	return (TEX_NORTH);
 }
 
 /*
