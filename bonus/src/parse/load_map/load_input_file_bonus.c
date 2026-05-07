@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_input_file_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: totake <totake@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 13:15:17 by totake            #+#    #+#             */
-/*   Updated: 2026/05/04 21:05:28 by tigarashi        ###   ########.fr       */
+/*   Updated: 2026/05/07 19:28:30 by totake           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static t_status	analyze_file_dimensions(const char *input_file,
 		{
 			if (errno != 0)
 				return (print_error(NULL, NULL), perror(input_file),
-					STATUS_ERROR);
+					close(fd), STATUS_ERROR);
 			break ;
 		}
 		line_len = ft_strlen(line);
